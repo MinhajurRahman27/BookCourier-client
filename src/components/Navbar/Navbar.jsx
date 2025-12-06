@@ -61,7 +61,7 @@ const Navbar = () => {
       <div className="navbar-end">
         <Theme></Theme>
         <div className="m-2 w-5 h-5 rounded-[50%] ">
-          <img className="w-5 h-5 rounded-lg" src={user.photoURL} alt="" />
+          <img className="w-5 h-5 rounded-lg" src={user?.photoURL} alt="" />
         </div>
 
         {user ? (

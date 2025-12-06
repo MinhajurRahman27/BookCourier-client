@@ -12,6 +12,7 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+        loader: ()=> fetch('/servicecenter.json').then(res => res.json())
       },
       {
         path:'/login',

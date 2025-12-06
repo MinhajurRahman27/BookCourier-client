@@ -1,11 +1,15 @@
 import React from "react";
-import { AuthContext } from "../../Auth/AuthContext";
-import useAuth from "../../Hooks/useAuth";
+import Coverage from "../../components/CoverageSection/Coverage";
+import { useLoaderData } from "react-router";
 
 const Home = () => {
-  // const {name} = useAuth()
-  // console.log(name);
-  return <div>this is home </div>;
+  const serviceCenter = useLoaderData();
+  // console.log(serviceCenter);
+  return (
+    <div>
+      <Coverage serviceCenter={serviceCenter}></Coverage>
+    </div>
+  );
 };
 
 export default Home;
