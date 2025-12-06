@@ -6,7 +6,7 @@ const Theme = () => {
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
-    // ডিফল্ট data-theme
+    
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 

@@ -1,17 +1,18 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
 import Theme from "../../darklightmode/theme";
+import { GrBook } from "react-icons/gr";
 
 const Navbar = () => {
   const links = (
     <>
-      <NavLink to="/">
+      <NavLink className="btn" to="/">
         <li>Home</li>
       </NavLink>
-      <NavLink to="/books">
+      <NavLink className="btn" to="/books">
         <li>Books</li>
       </NavLink>
-      <NavLink to="/dashboard">
+      <NavLink className="btn" to="/dashboard">
         <li>Dashboard</li>
       </NavLink>
     </>
@@ -44,7 +45,8 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">BookCourier</a>
+        <GrBook />
+        <a className="btn-ghost text-xl">BookCourier</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
