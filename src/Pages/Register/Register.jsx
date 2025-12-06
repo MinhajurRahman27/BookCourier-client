@@ -19,11 +19,30 @@ const Register = () => {
     console.log(data);
     const email = data.email;
     const password = data.pass;
+    const photoUrl = data.photo;
+    const name = data.name;
 
-    createUser(email, password).then((res) => {
-      console.log(res.user);
-      reset();
-    });
+    createUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+        reset();
+        alert('registation successfull')
+        const updateUserInfo = {
+          displayName: name,
+          photoURL: photoUrl,
+        };
+
+        updateUser(updateUserInfo)
+          .then(() => {
+            console.log("user updated successfully");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
 
     // if(passwordRegex.test(data.pass)){
 
@@ -51,6 +70,15 @@ const Register = () => {
             />
             <label className="label">Image</label>
             <input
+              type="text"
+              {...register("photo", { required: true })}
+              className="input"
+              placeholder="your photo URL"
+            />
+            {errors.photo?.type === "required" && (
+              <p className="text-red-500">photo is required</p>
+            )}
+            {/* <input
               type="file"
               {...register("photo", { required: true })}
               className="file-input"
@@ -58,7 +86,7 @@ const Register = () => {
             />
             {errors.photo?.type === "required" && (
               <p className="text-red-500">photo is required</p>
-            )}
+            )} */}
             {/* <input
               type="file"
               name="photo"
@@ -100,7 +128,10 @@ const Register = () => {
             </Link>
           </p>
         </form>
-        <button onClick={googlesubmit} className="btn bg-white text-black border-[#e5e5e5]">
+        <button
+          onClick={googlesubmit}
+          className="btn bg-white text-black border-[#e5e5e5]"
+        >
           <svg
             aria-label="Google logo"
             width="16"

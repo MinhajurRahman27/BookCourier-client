@@ -60,9 +60,14 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <Theme></Theme>
+        <div className="m-2 w-5 h-5 rounded-[50%] ">
+          <img className="w-5 h-5 rounded-lg" src={user.photoURL} alt="" />
+        </div>
 
         {user ? (
-          <button className="btn" onClick={handleSignOut}>LogOut</button>
+          <button className="btn" onClick={handleSignOut}>
+            LogOut
+          </button>
         ) : (
           <Link to="/login" className="btn">
             Login/Register
