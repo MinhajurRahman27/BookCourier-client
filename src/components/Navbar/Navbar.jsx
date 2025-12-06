@@ -2,8 +2,15 @@ import React from "react";
 import { Link, NavLink } from "react-router";
 import Theme from "../../darklightmode/theme";
 import { GrBook } from "react-icons/gr";
+import useAuth from "../../Hooks/useAuth";
 
 const Navbar = () => {
+  const { signOutUser, user } = useAuth();
+  const handleSignOut = () => {
+    signOutUser().then(() => {
+      console.log("signout successful");
+    });
+  };
   const links = (
     <>
       <NavLink className="btn" to="/">
@@ -53,9 +60,14 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <Theme></Theme>
-        <Link to="/login" className="btn">
-          Login/Register
-        </Link>
+
+        {user ? (
+          <button className="btn" onClick={handleSignOut}>LogOut</button>
+        ) : (
+          <Link to="/login" className="btn">
+            Login/Register
+          </Link>
+        )}
       </div>
     </div>
   );

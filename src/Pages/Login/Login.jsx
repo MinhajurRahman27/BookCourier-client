@@ -1,12 +1,26 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
+import useAuth from "../../Hooks/useAuth";
 
 const Login = () => {
+  const { signIn, signwithGoogle } = useAuth();
   const { register, handleSubmit } = useForm();
 
   const formsubmit = (data) => {
     console.log(data);
+    const email = data.email;
+    const password = data.pass;
+
+    signIn(email, password).then((res) => {
+      console.log("login suceess ful");
+    });
+  };
+
+  const googlesubmit = () => {
+    signwithGoogle().then((res) => {
+      console.log(res.user);
+    });
   };
   return (
     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
@@ -42,7 +56,10 @@ const Login = () => {
             </Link>
           </p>
         </form>
-        <button className="btn bg-white text-black border-[#e5e5e5]">
+        <button
+          onClick={googlesubmit}
+          className="btn bg-white text-black border-[#e5e5e5]"
+        >
           <svg
             aria-label="Google logo"
             width="16"

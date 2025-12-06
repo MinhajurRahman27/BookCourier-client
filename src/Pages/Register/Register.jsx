@@ -1,22 +1,39 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
+import useAuth from "../../Hooks/useAuth";
 
 const Register = () => {
+  const { createUser, updateUser, signwithGoogle } = useAuth();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
   const formsubmit = (data) => {
     console.log(data);
+    const email = data.email;
+    const password = data.pass;
+
+    createUser(email, password).then((res) => {
+      console.log(res.user);
+      reset();
+    });
 
     // if(passwordRegex.test(data.pass)){
 
     // }
+  };
+
+  const googlesubmit = () => {
+    signwithGoogle().then((res) => {
+      console.log(res.user);
+    });
   };
   return (
     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
@@ -83,7 +100,7 @@ const Register = () => {
             </Link>
           </p>
         </form>
-        <button className="btn bg-white text-black border-[#e5e5e5]">
+        <button onClick={googlesubmit} className="btn bg-white text-black border-[#e5e5e5]">
           <svg
             aria-label="Google logo"
             width="16"
