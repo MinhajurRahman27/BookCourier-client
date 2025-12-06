@@ -20,12 +20,14 @@ const Login = () => {
               className="input"
               placeholder="Email"
               {...register("email")}
+              required
             />
             <label className="label">Password</label>
             <input
               type="password"
               className="input"
               placeholder="Password"
+              required
               {...register("pass")}
             />
             <div>
