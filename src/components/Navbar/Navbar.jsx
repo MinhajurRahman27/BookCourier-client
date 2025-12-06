@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
+import Theme from "../../darklightmode/theme";
 
 const Navbar = () => {
   const links = (
@@ -49,6 +50,7 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
+        <Theme></Theme>
         <Link to="/login" className="btn">
           Login/Register
         </Link>
