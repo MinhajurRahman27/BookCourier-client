@@ -10,6 +10,8 @@ import Invoice from "../Pages/UserPage/Invoice";
 import AddBooks from "../Pages/LiberianPage/AddBooks";
 import MyBooks from "../Pages/LiberianPage/MyBooks";
 import Orders from "../Pages/LiberianPage/Orders";
+import AllUser from "../Pages/AdminPage/AllUser";
+import ManageBook from "../Pages/AdminPage/ManageBook";
 
 export const router = createBrowserRouter([
   {
@@ -61,11 +63,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "allusers",
-        Component: Orders,
+        Component: AllUser,
       },
       {
         path: "managebooks",
-        Component: Orders,
+        Component: ManageBook,
       },
     ],
   },

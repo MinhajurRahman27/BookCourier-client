@@ -2,8 +2,10 @@ import React from "react";
 import { FaJediOrder } from "react-icons/fa";
 import { GiProfit } from "react-icons/gi";
 import { NavLink, Outlet } from "react-router";
+import useRole from "../Hooks/useRole";
 
 const DashboardLayout = () => {
+  const { role } = useRole();
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -71,117 +73,132 @@ const DashboardLayout = () => {
                   <span className="is-drawer-close:hidden">Home</span>
                 </NavLink>
               </li>
-
               {/* List item */}
 
-              <li>
-                <NavLink
-                  to="/dashboard/myorders"
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  data-tip="My Orders"
-                >
-                  {/* Settings icon */}
-                  <FaJediOrder></FaJediOrder>
+              {role === "user" && (
+                <>
+                  {" "}
+                  <li>
+                    <NavLink
+                      to="/dashboard/myorders"
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="My Orders"
+                    >
+                      {/* Settings icon */}
+                      <FaJediOrder></FaJediOrder>
 
-                  <span className="is-drawer-close:hidden">My Orders</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dashboard/myprofile"
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  data-tip="My Profile"
-                >
-                  {/* Settings icon */}
-                  <GiProfit></GiProfit>
+                      <span className="is-drawer-close:hidden">My Orders</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/myprofile"
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="My Profile"
+                    >
+                      {/* Settings icon */}
+                      <GiProfit></GiProfit>
 
-                  <span className="is-drawer-close:hidden">My Profile</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dashboard/invoice"
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  data-tip="Invoice"
-                >
-                  {/* Settings icon */}
-                  <GiProfit></GiProfit>
+                      <span className="is-drawer-close:hidden">My Profile</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/invoice"
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="Invoice"
+                    >
+                      {/* Settings icon */}
+                      <GiProfit></GiProfit>
 
-                  <span className="is-drawer-close:hidden">Invoice</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dashboard/addbook"
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  data-tip="Add Book"
-                >
-                  {/* Settings icon */}
-                  <GiProfit></GiProfit>
+                      <span className="is-drawer-close:hidden">Invoice</span>
+                    </NavLink>
+                  </li>
+                </>
+              )}
 
-                  <span className="is-drawer-close:hidden">Add Book</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dashboard/mybooks"
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  data-tip="My books"
-                >
-                  {/* Settings icon */}
-                  <GiProfit></GiProfit>
+              {role === "librarian" && (
+                <>
+                  <li>
+                    <NavLink
+                      to="/dashboard/addbook"
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="Add Book"
+                    >
+                      {/* Settings icon */}
+                      <GiProfit></GiProfit>
 
-                  <span className="is-drawer-close:hidden">My Books</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dashboard/orders"
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  data-tip="Orders"
-                >
-                  {/* Settings icon */}
-                  <GiProfit></GiProfit>
+                      <span className="is-drawer-close:hidden">Add Book</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/mybooks"
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="My books"
+                    >
+                      {/* Settings icon */}
+                      <GiProfit></GiProfit>
 
-                  <span className="is-drawer-close:hidden">Orders</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dashboard/allusers"
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  data-tip="All Users"
-                >
-                  {/* Settings icon */}
-                  <GiProfit></GiProfit>
+                      <span className="is-drawer-close:hidden">My Books</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/orders"
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="Orders"
+                    >
+                      {/* Settings icon */}
+                      <GiProfit></GiProfit>
 
-                  <span className="is-drawer-close:hidden">All Users</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dashboard/managebooks"
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  data-tip="Manage books"
-                >
-                  {/* Settings icon */}
-                  <GiProfit></GiProfit>
+                      <span className="is-drawer-close:hidden">Orders</span>
+                    </NavLink>
+                  </li>
+                </>
+              )}
+              {role === "admin" && (
+                <>
+                  <li>
+                    <NavLink
+                      to="/dashboard/allusers"
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="All Users"
+                    >
+                      {/* Settings icon */}
+                      <GiProfit></GiProfit>
 
-                  <span className="is-drawer-close:hidden">Manage Books</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dashboard/myprofile"
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  data-tip="My Profile"
-                >
-                  {/* Settings icon */}
-                  <GiProfit></GiProfit>
+                      <span className="is-drawer-close:hidden">All Users</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/managebooks"
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="Manage books"
+                    >
+                      {/* Settings icon */}
+                      <GiProfit></GiProfit>
 
-                  <span className="is-drawer-close:hidden">My Profile</span>
-                </NavLink>
-              </li>
+                      <span className="is-drawer-close:hidden">
+                        Manage Books
+                      </span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/myprofile"
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="My Profile"
+                    >
+                      {/* Settings icon */}
+                      <GiProfit></GiProfit>
+
+                      <span className="is-drawer-close:hidden">My Profile</span>
+                    </NavLink>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>
