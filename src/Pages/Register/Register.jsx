@@ -2,8 +2,10 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import useAuth from "../../Hooks/useAuth";
+import useAxios from "../../Hooks/useAxios";
 
 const Register = () => {
+  const axiosSecure= useAxios()
   const { createUser, updateUser, signwithGoogle } = useAuth();
 
   const {
@@ -27,6 +29,23 @@ const Register = () => {
         console.log(res.user);
         reset();
         alert('registation successfull')
+
+        const userInfo = {
+          email : data.email,
+          displayName : data.name,
+          photoURL : data.photo
+        }
+
+
+        //sending user to backend
+        axiosSecure.post('/users', userInfo)
+        .then(res => {
+          if(res.data.insertedId){
+            alert('user inserted successfully')
+          }
+        })
+
+
         const updateUserInfo = {
           displayName: name,
           photoURL: photoUrl,
