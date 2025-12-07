@@ -6,7 +6,7 @@ import useAuth from "../../Hooks/useAuth";
 const AllUser = () => {
   const { user } = useAuth();
   const axiosSecure = useAxios();
-  const { data: users = [] } = useQuery({
+  const { refetch, data: users = [] } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/alluser/${user.email}`);
@@ -23,13 +23,23 @@ const AllUser = () => {
     console.log(u);
     axiosSecure.patch(`/update-user/${u._id}`, update).then((res) => {
       if (res.data.modifiedCount) {
+        refetch();
         alert("updated as admin");
       }
     });
   };
 
   const makeLibrarian = (u) => {
+    const update = {
+      role: "librarian",
+    };
     console.log(u);
+    axiosSecure.patch(`/update-user/${u._id}`, update).then((res) => {
+      if (res.data.modifiedCount) {
+        refetch();
+        alert("updated as librarian");
+      }
+    });
   };
 
   return (
