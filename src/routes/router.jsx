@@ -4,6 +4,12 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import DashboardLayout from "../Layout/DashboardLayout";
+import MyOrders from "../Pages/UserPage/MyOrders";
+import MyProfile from "../Pages/UserPage/MyProfile";
+import Invoice from "../Pages/UserPage/Invoice";
+import AddBooks from "../Pages/LiberianPage/AddBooks";
+import MyBooks from "../Pages/LiberianPage/MyBooks";
+import Orders from "../Pages/LiberianPage/Orders";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +34,39 @@ export const router = createBrowserRouter([
   {
     path: "dashboard",
     Component: DashboardLayout,
-    children: [],
+    children: [
+      {
+        path: "myorders",
+        Component: MyOrders,
+      },
+      {
+        path: "myprofile",
+        Component: MyProfile,
+      },
+      {
+        path: "invoice",
+        Component: Invoice,
+      },
+      {
+        path: "addbook",
+        Component: AddBooks,
+      },
+      {
+        path: "mybooks",
+        Component: MyBooks,
+      },
+      {
+        path: "orders",
+        Component: Orders,
+      },
+      {
+        path: "allusers",
+        Component: Orders,
+      },
+      {
+        path: "managebooks",
+        Component: Orders,
+      },
+    ],
   },
 ]);
