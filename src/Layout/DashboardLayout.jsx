@@ -3,9 +3,15 @@ import { FaJediOrder } from "react-icons/fa";
 import { GiProfit } from "react-icons/gi";
 import { NavLink, Outlet } from "react-router";
 import useRole from "../Hooks/useRole";
+import useAuth from "../Hooks/useAuth";
 
 const DashboardLayout = () => {
   const { role } = useRole();
+  const {loading} = useAuth()
+
+  if (loading) {
+    return <span className="loading loading-spinner loading-sm"></span>;
+  }
   return (
     <div>
       <div className="drawer lg:drawer-open">

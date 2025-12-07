@@ -4,7 +4,7 @@ import useAxios from "../../Hooks/useAxios";
 import useAuth from "../../Hooks/useAuth";
 
 const AllUser = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const axiosSecure = useAxios();
   const { refetch, data: users = [] } = useQuery({
     queryKey: ["users"],
@@ -15,6 +15,10 @@ const AllUser = () => {
   });
 
   console.log(users);
+
+  if (loading) {
+    return <span className="loading loading-spinner loading-sm"></span>;
+  }
 
   const makeAdmin = (u) => {
     const update = {
