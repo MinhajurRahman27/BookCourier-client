@@ -14,6 +14,8 @@ import AllUser from "../Pages/AdminPage/AllUser";
 import ManageBook from "../Pages/AdminPage/ManageBook";
 import PrivateRoutes from "./PrivateRoutes";
 import AdminRoutes from "./AdminRoutes";
+import UserRoutes from "./UserRoutes";
+import LibrarianRoutes from "./LibrarianRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -45,27 +47,51 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "myorders",
-        Component: MyOrders,
+        element: (
+          <UserRoutes>
+            <MyOrders></MyOrders>
+          </UserRoutes>
+        ),
       },
       {
         path: "myprofile",
-        Component: MyProfile,
+        element: (
+          <UserRoutes>
+            <MyProfile></MyProfile>
+          </UserRoutes>
+        ),
       },
       {
         path: "invoice",
-        Component: Invoice,
+        element: (
+          <UserRoutes>
+            <Invoice></Invoice>
+          </UserRoutes>
+        ),
       },
       {
         path: "addbook",
-        Component: AddBooks,
+        element: (
+          <LibrarianRoutes>
+            <AddBooks></AddBooks>
+          </LibrarianRoutes>
+        ),
       },
       {
         path: "mybooks",
-        Component: MyBooks,
+        element: (
+          <LibrarianRoutes>
+            <MyBooks></MyBooks>
+          </LibrarianRoutes>
+        ),
       },
       {
         path: "orders",
-        Component: Orders,
+        element: (
+          <LibrarianRoutes>
+            <Orders></Orders>
+          </LibrarianRoutes>
+        ),
       },
       {
         path: "allusers",
