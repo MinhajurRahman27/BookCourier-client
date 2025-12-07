@@ -1,10 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import useAxios from "../../Hooks/useAxios";
 
 const Login = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log(location);
   const axiosSecure = useAxios();
 
   const { signIn, signwithGoogle, updateUser } = useAuth();
@@ -17,13 +20,14 @@ const Login = () => {
 
     signIn(email, password).then((res) => {
       console.log("login suceess ful");
+      navigate(location?.state || "/");
     });
   };
 
   const googlesubmit = () => {
     signwithGoogle().then((res) => {
       console.log(res.user);
-
+      navigate(location?.state || "/");
       const userInfo = {
         email: res.user.email,
         displayName: res.user.displayName,
@@ -83,7 +87,7 @@ const Login = () => {
           </fieldset>
           <p>
             Don't have an account!
-            <Link className="text-blue-500 font-semibold" to="/register">
+            <Link state={location.state} className="text-blue-500 font-semibold" to="/register">
               Register Now
             </Link>
           </p>

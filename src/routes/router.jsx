@@ -12,6 +12,8 @@ import MyBooks from "../Pages/LiberianPage/MyBooks";
 import Orders from "../Pages/LiberianPage/Orders";
 import AllUser from "../Pages/AdminPage/AllUser";
 import ManageBook from "../Pages/AdminPage/ManageBook";
+import PrivateRoutes from "./PrivateRoutes";
+import AdminRoutes from "./AdminRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -35,7 +37,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    Component: DashboardLayout,
+    element: (
+      <PrivateRoutes>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoutes>
+    ),
     children: [
       {
         path: "myorders",
@@ -63,11 +69,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "allusers",
-        Component: AllUser,
+        element: (
+          <AdminRoutes>
+            <AllUser></AllUser>
+          </AdminRoutes>
+        ),
       },
       {
         path: "managebooks",
-        Component: ManageBook,
+        element: (
+          <AdminRoutes>
+            <ManageBook></ManageBook>
+          </AdminRoutes>
+        ),
       },
     ],
   },

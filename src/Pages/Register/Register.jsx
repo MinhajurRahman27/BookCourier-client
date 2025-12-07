@@ -1,10 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import useAxios from "../../Hooks/useAxios";
 
 const Register = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log(location);
   const axiosSecure = useAxios();
   const { createUser, updateUser, signwithGoogle } = useAuth();
 
@@ -26,6 +29,7 @@ const Register = () => {
 
     createUser(email, password)
       .then((res) => {
+        navigate(location.state || "/");
         console.log(res.user);
         reset();
         alert("registation successfull");
@@ -68,7 +72,7 @@ const Register = () => {
   const googlesubmit = () => {
     signwithGoogle().then((res) => {
       console.log(res.user);
-
+      navigate(location.state || "/");
       const userInfo = {
         email: res.user.email,
         displayName: res.user.displayName,
@@ -168,7 +172,11 @@ const Register = () => {
           {errors.pass && <p className="text-red-500">{errors.pass.message}</p>}
           <p>
             Already have an account!
-            <Link className="text-blue-500 font-semibold" to="/login">
+            <Link
+              state={location.state}
+              className="text-blue-500 font-semibold"
+              to="/login"
+            >
               Login
             </Link>
           </p>
