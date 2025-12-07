@@ -3,6 +3,7 @@ import RootLayout from "../Layout/RootLayout";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import DashboardLayout from "../Layout/DashboardLayout";
 
 export const router = createBrowserRouter([
   {
@@ -12,16 +13,21 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader: ()=> fetch('/servicecenter.json').then(res => res.json())
+        loader: () => fetch("/servicecenter.json").then((res) => res.json()),
       },
       {
-        path:'/login',
-        Component: Login
+        path: "/login",
+        Component: Login,
       },
       {
-        path:'/register',
-        Component: Register
+        path: "/register",
+        Component: Register,
       },
     ],
+  },
+  {
+    path: "dashboard",
+    Component: DashboardLayout,
+    children: [],
   },
 ]);
