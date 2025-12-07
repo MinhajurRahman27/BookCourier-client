@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAxios from "../../Hooks/useAxios";
+import { Link } from "react-router";
 
 const MyBooks = () => {
   const axiosSecure = useAxios();
@@ -44,7 +45,12 @@ const MyBooks = () => {
                   <div className="font-bold">{u.bookname}</div>
                 </td>
                 <td className="font-semibold">
-                  <button className="btn btn-primary btn-xs">Edit</button>
+                  <Link
+                    to={`/dashboard/mybooks/editbooks/${u._id}`}
+                    className="btn btn-primary btn-xs"
+                  >
+                    Edit
+                  </Link>
                 </td>
               </tr>
             ))}

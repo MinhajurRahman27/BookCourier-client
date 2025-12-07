@@ -16,6 +16,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import AdminRoutes from "./AdminRoutes";
 import UserRoutes from "./UserRoutes";
 import LibrarianRoutes from "./LibrarianRoutes";
+import Editbooks from "../Pages/LiberianPage/Editbooks";
 
 export const router = createBrowserRouter([
   {
@@ -78,6 +79,14 @@ export const router = createBrowserRouter([
         element: (
           <LibrarianRoutes>
             <MyBooks></MyBooks>
+          </LibrarianRoutes>
+        ),
+      },
+      {
+        path: "mybooks/editbooks/:id",
+        element: (
+          <LibrarianRoutes>
+           <Editbooks></Editbooks>
           </LibrarianRoutes>
         ),
       },

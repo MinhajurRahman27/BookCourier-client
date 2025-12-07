@@ -20,7 +20,7 @@ const AddBooks = () => {
   };
   return (
     <div>
-      add bookjs
+      add book
       <div className="card-body">
         <h1 className="text-5xl font-bold">Add Book</h1>
         <form onSubmit={handleSubmit(handleAddBook)}>
