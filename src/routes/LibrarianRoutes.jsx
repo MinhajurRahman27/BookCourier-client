@@ -10,7 +10,7 @@ const LibrarianRoutes = ({ children }) => {
   }
 
   if (role !== "librarian") {
-    return signOutUser();
+    return <span class="loading loading-spinner loading-sm"></span>;
   }
   return children;
 };
