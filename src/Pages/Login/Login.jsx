@@ -2,9 +2,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import useAuth from "../../Hooks/useAuth";
+import useAxios from "../../Hooks/useAxios";
 
 const Login = () => {
-  const { signIn, signwithGoogle } = useAuth();
+  const axiosSecure = useAxios();
+
+  const { signIn, signwithGoogle, updateUser } = useAuth();
   const { register, handleSubmit } = useForm();
 
   const formsubmit = (data) => {
@@ -20,6 +23,35 @@ const Login = () => {
   const googlesubmit = () => {
     signwithGoogle().then((res) => {
       console.log(res.user);
+
+      const userInfo = {
+        email: res.user.email,
+        displayName: res.user.displayName,
+        photoURL: res.user.photoURL,
+      };
+
+      console.log(userInfo);
+
+      //sending user to backend
+
+      axiosSecure.post("/users", userInfo).then((res) => {
+        if (res.data.insertedId) {
+          alert("user inserted successfully");
+        }
+      });
+
+      const updateUserInfo = {
+        displayName: res.user.displayName,
+        photoURL: res.user.photoURL,
+      };
+
+      updateUser(updateUserInfo)
+        .then(() => {
+          console.log("user updated successfully");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     });
   };
   return (

@@ -5,7 +5,7 @@ import useAuth from "../../Hooks/useAuth";
 import useAxios from "../../Hooks/useAxios";
 
 const Register = () => {
-  const axiosSecure= useAxios()
+  const axiosSecure = useAxios();
   const { createUser, updateUser, signwithGoogle } = useAuth();
 
   const {
@@ -28,23 +28,20 @@ const Register = () => {
       .then((res) => {
         console.log(res.user);
         reset();
-        alert('registation successfull')
+        alert("registation successfull");
 
         const userInfo = {
-          email : data.email,
-          displayName : data.name,
-          photoURL : data.photo
-        }
-
+          email: data.email,
+          displayName: data.name,
+          photoURL: data.photo,
+        };
 
         //sending user to backend
-        axiosSecure.post('/users', userInfo)
-        .then(res => {
-          if(res.data.insertedId){
-            alert('user inserted successfully')
+        axiosSecure.post("/users", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            alert("user inserted successfully");
           }
-        })
-
+        });
 
         const updateUserInfo = {
           displayName: name,
@@ -71,6 +68,35 @@ const Register = () => {
   const googlesubmit = () => {
     signwithGoogle().then((res) => {
       console.log(res.user);
+
+      const userInfo = {
+        email: res.user.email,
+        displayName: res.user.displayName,
+        photoURL: res.user.photoURL,
+      };
+
+      console.log(userInfo);
+
+      //sending user to backend
+
+      axiosSecure.post("/users", userInfo).then((res) => {
+        if (res.data.insertedId) {
+          alert("user inserted successfully");
+        }
+      });
+
+      const updateUserInfo = {
+        displayName: res.user.displayName,
+        photoURL: res.user.photoURL,
+      };
+
+      updateUser(updateUserInfo)
+        .then(() => {
+          console.log("user updated successfully");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     });
   };
   return (
