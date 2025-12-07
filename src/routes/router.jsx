@@ -55,11 +55,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "myprofile",
-        element: (
-          <UserRoutes>
-            <MyProfile></MyProfile>
-          </UserRoutes>
-        ),
+        element: <MyProfile></MyProfile>,
       },
       {
         path: "invoice",
