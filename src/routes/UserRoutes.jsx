@@ -9,7 +9,7 @@ const UserRoutes = ({ children }) => {
     return <span class="loading loading-spinner loading-sm"></span>;
   }
 
-  if (role !== "user" || role !== "admin") {
+  if (role !== "user") {
     return signOutUser();
   }
   return children;

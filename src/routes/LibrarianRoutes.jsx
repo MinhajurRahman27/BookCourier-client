@@ -9,7 +9,7 @@ const LibrarianRoutes = ({ children }) => {
     return <span class="loading loading-spinner loading-sm"></span>;
   }
 
-  if (role !== "librarian" || role !== "admin") {
+  if (role !== "librarian") {
     return signOutUser();
   }
   return children;
