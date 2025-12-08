@@ -19,6 +19,8 @@ import LibrarianRoutes from "./LibrarianRoutes";
 import Editbooks from "../Pages/LiberianPage/Editbooks";
 import Books from "../Pages/Book/Books";
 import BookDetails from "../Pages/Book/BookDetails";
+import PaymentSucce from "../Pages/Payment/PaymentSucce";
+import PaymentCancled from "../Pages/Payment/PaymentCancled";
 
 export const router = createBrowserRouter([
   {
@@ -124,6 +126,14 @@ export const router = createBrowserRouter([
           </AdminRoutes>
         ),
       },
+      {
+        path:'payment-success',
+        Component: PaymentSucce
+      },
+      {
+        path:'payment-cancled',
+        Component: PaymentCancled
+      }
     ],
   },
 ]);

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import useAxios from "../../Hooks/useAxios";
 import useAuth from "../../Hooks/useAuth";
@@ -7,9 +7,19 @@ import { useForm } from "react-hook-form";
 
 const BookDetails = () => {
   const { register, handleSubmit } = useForm();
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
+  const [loading, setLoading] = useState(true);
   const axiosSecure = useAxios();
   const { id } = useParams();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const { data: book } = useQuery({
     queryKey: ["singlebook"],
     queryFn: async () => {
@@ -24,7 +34,11 @@ const BookDetails = () => {
   }
 
   const handleOrderForm = (data) => {
+    const date = new Date().toLocaleDateString();
     data.bookId = id;
+    data.bookname = book?.bookname;
+    data.date = date;
+    data.price = book?.price;
     console.log(data);
     axiosSecure.post("/order", data).then((res) => {
       if (res.data.insertedId) {
@@ -93,7 +107,7 @@ const BookDetails = () => {
                 className="input"
                 placeholder="Name"
                 readOnly
-                defaultValue={user.displayName}
+                defaultValue={user?.displayName}
                 {...register("name")}
               />
               <label className="label">Email</label>
@@ -101,7 +115,7 @@ const BookDetails = () => {
                 type="email"
                 className="input"
                 placeholder="Email"
-                defaultValue={user.email}
+                defaultValue={user?.email}
                 readOnly
                 {...register("email")}
               />
