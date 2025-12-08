@@ -3,8 +3,10 @@ import React from "react";
 import { useParams } from "react-router";
 import useAxios from "../../Hooks/useAxios";
 import useAuth from "../../Hooks/useAuth";
+import { useForm } from "react-hook-form";
 
 const BookDetails = () => {
+  const { register, handleSubmit } = useForm();
   const { loading } = useAuth();
   const axiosSecure = useAxios();
   const { id } = useParams();
@@ -20,6 +22,12 @@ const BookDetails = () => {
   if (loading) {
     return <span class="loading loading-spinner loading-sm"></span>;
   }
+
+  const handleOrderForm = (data) => {
+    console.log(data);
+
+    document.getElementById("my_modal_5").close();
+  };
 
   return (
     <div>
@@ -51,12 +59,69 @@ const BookDetails = () => {
             <h1 className="font-bold text-orange-500 text-3xl">
               ${book.price}
             </h1>
-            <button className="btn rounded text-white w-[300px] bg-orange-500">
+            <button
+              onClick={() => document.getElementById("my_modal_5").showModal()}
+              className="btn rounded text-white w-[300px] bg-orange-500"
+            >
               Order
             </button>
           </div>
         </div>
       </div>
+
+      {/* Open the modal using document.getElementById('ID').showModal() method */}
+
+      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box flex items-center justify-center">
+          <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+          <form method="dialog" onSubmit={handleSubmit(handleOrderForm)}>
+            <fieldset className="fieldset">
+              <label className="label">Name</label>
+              <input
+                type="text"
+                className="input"
+                placeholder="Name"
+                {...register("name")}
+              />
+              <label className="label">Email</label>
+              <input
+                type="email"
+                className="input"
+                placeholder="Email"
+                {...register("email")}
+              />
+              <label className="label">Phone Number</label>
+              <input
+                type="number"
+                className="input"
+                placeholder="Phone Number"
+                {...register("number")}
+              />
+              <label className="label">Address</label>
+              <input
+                type="text"
+                className="input"
+                placeholder="Address"
+                {...register("address")}
+              />
+            </fieldset>
+            <button className="btn rounded text-white w-[300px] bg-orange-500">
+              Order Now
+            </button>
+          </form>
+          {/* <div className="modal-action">
+            <form method="dialog">
+              
+               <button className="btn">Close</button>
+            </form>
+          </div> */}
+        </div>
+      </dialog>
     </div>
   );
 };
