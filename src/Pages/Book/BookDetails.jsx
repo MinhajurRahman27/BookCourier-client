@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 
 const BookDetails = () => {
   const { register, handleSubmit } = useForm();
-  const { loading } = useAuth();
+  const { user, loading } = useAuth();
   const axiosSecure = useAxios();
   const { id } = useParams();
   const { data: book } = useQuery({
@@ -24,7 +24,13 @@ const BookDetails = () => {
   }
 
   const handleOrderForm = (data) => {
+    data.bookId = id;
     console.log(data);
+    axiosSecure.post("/order", data).then((res) => {
+      if (res.data.insertedId) {
+        alert("saved to database");
+      }
+    });
 
     document.getElementById("my_modal_5").close();
   };
@@ -86,6 +92,8 @@ const BookDetails = () => {
                 type="text"
                 className="input"
                 placeholder="Name"
+                readOnly
+                defaultValue={user.displayName}
                 {...register("name")}
               />
               <label className="label">Email</label>
@@ -93,11 +101,13 @@ const BookDetails = () => {
                 type="email"
                 className="input"
                 placeholder="Email"
+                defaultValue={user.email}
+                readOnly
                 {...register("email")}
               />
               <label className="label">Phone Number</label>
               <input
-                type="number"
+                type="text"
                 className="input"
                 placeholder="Phone Number"
                 {...register("number")}
