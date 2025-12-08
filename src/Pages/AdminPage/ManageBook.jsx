@@ -38,6 +38,16 @@ const ManageBook = () => {
       if (res.data.deletedCount) {
         refetch();
         alert("deleted");
+
+        try {
+          axiosSecure.delete(`/delete-order/${id}`).then((res) => {
+            if (res.data.deletedCount) {
+              alert("deleted order");
+            }
+          });
+        } catch (err) {
+          console.log(err.message);
+        }
       }
     });
   };
