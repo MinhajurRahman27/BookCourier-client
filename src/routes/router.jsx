@@ -17,6 +17,8 @@ import AdminRoutes from "./AdminRoutes";
 import UserRoutes from "./UserRoutes";
 import LibrarianRoutes from "./LibrarianRoutes";
 import Editbooks from "../Pages/LiberianPage/Editbooks";
+import Books from "../Pages/Book/Books";
+import BookDetails from "../Pages/Book/BookDetails";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +37,14 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         Component: Register,
+      },
+      {
+        path: "/books",
+        Component: Books,
+      },
+      {
+        path: "/bookdetails/:id",
+        Component: BookDetails,
       },
     ],
   },
