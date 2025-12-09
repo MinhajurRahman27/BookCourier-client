@@ -7,7 +7,7 @@ import useAuth from "../Hooks/useAuth";
 
 const DashboardLayout = () => {
   const { role } = useRole();
-  const {loading} = useAuth()
+  const { loading } = useAuth();
 
   if (loading) {
     return <span className="loading loading-spinner loading-sm"></span>;
@@ -84,6 +84,20 @@ const DashboardLayout = () => {
               {role === "user" && (
                 <>
                   {" "}
+                  <li>
+                    <NavLink
+                      to="/dashboard/mywhishlist"
+                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      data-tip="My Wishlist"
+                    >
+                      {/* Settings icon */}
+                      <FaJediOrder></FaJediOrder>
+
+                      <span className="is-drawer-close:hidden">
+                        My Wishlist
+                      </span>
+                    </NavLink>
+                  </li>
                   <li>
                     <NavLink
                       to="/dashboard/myorders"

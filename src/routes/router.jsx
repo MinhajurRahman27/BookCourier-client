@@ -21,6 +21,7 @@ import Books from "../Pages/Book/Books";
 import BookDetails from "../Pages/Book/BookDetails";
 import PaymentSucce from "../Pages/Payment/PaymentSucce";
 import PaymentCancled from "../Pages/Payment/PaymentCancled";
+import MyWhishlist from "../Pages/UserPage/MyWhishlist";
 
 export const router = createBrowserRouter([
   {
@@ -75,6 +76,14 @@ export const router = createBrowserRouter([
         element: (
           <UserRoutes>
             <Invoice></Invoice>
+          </UserRoutes>
+        ),
+      },
+      {
+        path: "mywhishlist",
+        element: (
+          <UserRoutes>
+           <MyWhishlist></MyWhishlist>
           </UserRoutes>
         ),
       },

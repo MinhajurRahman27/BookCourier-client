@@ -4,9 +4,11 @@ import { useParams } from "react-router";
 import useAxios from "../../Hooks/useAxios";
 import useAuth from "../../Hooks/useAuth";
 import { useForm } from "react-hook-form";
+import UserReview from "../UserPage/UserReview";
 
 const BookDetails = () => {
   const { register, handleSubmit } = useForm();
+  const { register: register2, handleSubmit: handleSubmit2 } = useForm();
   const { user } = useAuth();
   const [loading, setLoading] = useState(true);
   const axiosSecure = useAxios();
@@ -27,7 +29,14 @@ const BookDetails = () => {
       return res?.data;
     },
   });
-  console.log(book);
+  const { refetch, data: reviews } = useQuery({
+    queryKey: ["alllreviews"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/reviews/${id}`);
+      return res?.data;
+    },
+  });
+  console.log(reviews);
 
   if (loading) {
     return <span class="loading loading-spinner loading-sm"></span>;
@@ -43,10 +52,55 @@ const BookDetails = () => {
     axiosSecure.post("/order", data).then((res) => {
       if (res.data.insertedId) {
         alert("saved to database");
+        document.getElementById("my_modal_2").showModal();
       }
     });
 
     document.getElementById("my_modal_5").close();
+  };
+
+  const handleWishlist = (book) => {
+    const bookInfo = {
+      bookname: book.bookname,
+      bookimge: book.bookimage,
+      author: book.author,
+      status: book.status,
+      price: book.price,
+      date: new Date().toLocaleDateString(),
+    };
+    console.log("whislist");
+
+    axiosSecure
+      .post(`/user-wishlist/${user.email}`, bookInfo)
+      .then((res) => {
+        if (res.data.insertedId) {
+          alert("added to wishlist");
+        }
+      })
+      .catch((err) => console.log(err.message));
+  };
+
+  const handleReview = (data) => {
+    console.log(data);
+    const review = {
+      bookId: book._id,
+      name: user.displayName,
+      image: user.photoURL,
+      comment: data.review,
+      date: new Date().toLocaleDateString(),
+    };
+
+    console.log(review);
+    axiosSecure
+      .post("/review", review)
+      .then((res) => {
+        if (res.data.insertedId) {
+          refetch();
+          document.getElementById("my_modal_2").close();
+          alert("added to review");
+        }
+      })
+      .catch((err) => console.log(err.message));
   };
 
   return (
@@ -79,13 +133,33 @@ const BookDetails = () => {
             <h1 className="font-bold text-orange-500 text-3xl">
               ${book.price}
             </h1>
-            <button
-              onClick={() => document.getElementById("my_modal_5").showModal()}
-              className="btn rounded text-white w-[300px] bg-orange-500"
-            >
-              Order
-            </button>
+            <div className="flex gap-2">
+              <button
+                onClick={() => handleWishlist(book)}
+                className="btn rounded text-white w-[200px] bg-orange-500"
+              >
+                Add to Wishlist
+              </button>
+              <button
+                onClick={() =>
+                  document.getElementById("my_modal_5").showModal()
+                }
+                className="btn rounded text-white w-[200px] bg-orange-500"
+              >
+                Order
+              </button>
+            </div>
           </div>
+        </div>
+      </div>
+
+      <div className="mt-20">
+        <h1 className="text-4xl text-center mb-10">Reviews</h1>
+
+        <div className="grid grid-cols-3 px-50">
+          {reviews.map((r) => (
+            <UserReview key={r._id} r={r}></UserReview>
+          ))}
         </div>
       </div>
 
@@ -136,6 +210,36 @@ const BookDetails = () => {
             </fieldset>
             <button className="btn rounded text-white w-[300px] bg-orange-500">
               Order Now
+            </button>
+          </form>
+          {/* <div className="modal-action">
+            <form method="dialog">
+              
+               <button className="btn">Close</button>
+            </form>
+          </div> */}
+        </div>
+      </dialog>
+      <dialog id="my_modal_2" className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box flex items-center justify-center">
+          <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+
+          <form method="dialog" onSubmit={handleSubmit2(handleReview)}>
+            <h1 className="text-2xl text-center  ">Give us a Review</h1>
+            <fieldset>
+              <textarea
+                className="textarea my-5"
+                placeholder="Write...."
+                {...register2("review")}
+              ></textarea>
+            </fieldset>
+            <button className="btn rounded text-white w-[300px] bg-orange-500">
+              Submit
             </button>
           </form>
           {/* <div className="modal-action">

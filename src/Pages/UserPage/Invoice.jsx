@@ -31,7 +31,7 @@ const Invoice = () => {
               <tr key={index}>
                 <th>{index + 1}</th>
                 <td>{o.bookname}</td>
-                <td>{o.paymentID}</td>
+                <td>{o.transactionId}</td>
                 <td>{o.amount}</td>
                 <td>{o.date}</td>
               </tr>
