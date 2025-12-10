@@ -3,6 +3,7 @@ import Coverage from "../../components/CoverageSection/Coverage";
 import { useLoaderData } from "react-router";
 import useRole from "../../Hooks/useRole";
 import useAuth from "../../Hooks/useAuth";
+import Banner from "./Banner";
 
 const Home = () => {
   const { user } = useAuth();
@@ -12,7 +13,8 @@ const Home = () => {
   
   return (
     <div>
-      <h1>Role: {role}</h1>
+      
+      <Banner></Banner>
       <Coverage serviceCenter={serviceCenter}></Coverage>
     </div>
   );

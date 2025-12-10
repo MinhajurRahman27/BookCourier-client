@@ -1,0 +1,17 @@
+[
+  {
+    "book_image": "https://i.ibb.co/2t0Yd7y/the-alchemist.jpg",
+    "book_title": "The Alchemist",
+    "book_description": "A philosophical novel that follows Santiago, a young shepherd who sets out on a journey to discover his Personal Legend. Along the way he meets mysterious guides, faces difficult decisions, and learns that true treasure lies within one’s own heart."
+  },
+  {
+    "book_image": "https://i.ibb.co/0jJ3s7f/atomic-habits.jpg",
+    "book_title": "Atomic Habits",
+    "book_description": "A practical guide to building better habits through small, consistent improvements. The book explains how tiny changes compound over time, offering strategies to break bad habits, form new ones, and redesign your environment for long-term success."
+  },
+  {
+    "book_image": "https://i.ibb.co/nLQJQsv/harry-potter.jpg",
+    "book_title": "Harry Potter and the Sorcerer's Stone",
+    "book_description": "The first book in the beloved fantasy series introduces Harry Potter, a young boy who discovers he is a wizard. As he joins Hogwarts School, he uncovers secrets about his past, forms lifelong friendships, and faces dangers connected to a powerful dark wizard."
+  }
+]
