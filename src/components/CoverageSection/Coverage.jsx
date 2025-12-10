@@ -10,12 +10,12 @@ const Coverage = ({ serviceCenter }) => {
     <div className="mb-10">
       <div className="mb-10">
         <h1 className="text-5xl font-semibold text-center  mb-3">
-        We Deliver Nationwide
-      </h1>
-      <p className="text-gray-600 leading-relaxed text-center">
-        Our 64 distribution centers across the nation guarantee your books
-        arrive faster than ever
-      </p>
+          We Deliver Nationwide
+        </h1>
+        <p className="text-lg text-gray-400 text-center">
+          Our 64 distribution centers across the nation guarantee your books
+          arrive faster than ever
+        </p>
       </div>
       <div className=" w-full h-[400px]">
         <MapContainer

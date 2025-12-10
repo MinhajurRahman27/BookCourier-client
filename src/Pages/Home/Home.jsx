@@ -6,6 +6,8 @@ import useAuth from "../../Hooks/useAuth";
 import Banner from "./Banner";
 import LatestBook from "./LatestBook";
 import WhyChooseBookCourier from "./WhyChoosesection";
+import GetInTouch from "./GetInTouch";
+import ReviewCard from "./ReviewCard";
 
 const Home = () => {
   const { user } = useAuth();
@@ -20,6 +22,8 @@ const Home = () => {
       <LatestBook></LatestBook>
       <Coverage serviceCenter={serviceCenter}></Coverage>
       <WhyChooseBookCourier></WhyChooseBookCourier>
+      <ReviewCard></ReviewCard>
+      <GetInTouch></GetInTouch>
     </div>
   );
 };

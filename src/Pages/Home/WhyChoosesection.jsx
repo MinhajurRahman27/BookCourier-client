@@ -37,14 +37,14 @@ const WhyChooseBookCourier = () => {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-b from-white via-orange-50/30 to-amber-50/50">
+    <section className="py-16  from-white via-orange-50/30 to-amber-50/50">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-5xl font-semibold text-center md:text-5xl  mb-4">
             Why Choose Book Courier?
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
             We're not just delivering books—we're delivering knowledge,
             adventure, and endless possibilities right to your door.
           </p>
@@ -54,10 +54,10 @@ const WhyChooseBookCourier = () => {
           <div className="rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-orange-100 hover:border-orange-300">
             <FaShippingFast className="text-5xl  rounded-4xl bg-orange-500 mb-7 p-1" />
 
-            <h1 className="text-xl font-bold text-gray-900 mb-3">
+            <h1 className="text-xl font-bold  mb-3">
               Lightning Fast Delivery
             </h1>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-gray-500 leading-relaxed">
               Get your favorite books delivered to your doorstep within 2-3
               days. We understand the excitement of a new read!
             </p>
@@ -65,10 +65,10 @@ const WhyChooseBookCourier = () => {
           <div className="rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-orange-100 hover:border-orange-300">
             <FaFaceGrinStars className="text-5xl  rounded-4xl bg-orange-500 mb-7 p-1" />
 
-            <h1 className="text-xl font-bold text-gray-900 mb-3">
+            <h1 className="text-xl font-bold  mb-3">
               Unbeatable Prices
             </h1>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-gray-500 leading-relaxed">
               Enjoy competitive prices with regular discounts and offers.
               Quality reading shouldn't break the bank
             </p>
@@ -76,10 +76,10 @@ const WhyChooseBookCourier = () => {
           <div className="rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-orange-100 hover:border-orange-300">
             <MdCollectionsBookmark className="text-5xl  rounded-4xl bg-orange-500 mb-7 p-1" />
 
-            <h1 className="text-xl font-bold text-gray-900 mb-3">
+            <h1 className="text-xl font-bold mb-3">
               Vast Collection
             </h1>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-gray-500 leading-relaxed">
               From timeless classics to latest bestsellers, explore over 50,000+
               titles across all genres and languages.
             </p>
@@ -87,10 +87,10 @@ const WhyChooseBookCourier = () => {
           <div className="rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-orange-100 hover:border-orange-300">
             <SiAegisauthenticator className="text-5xl  rounded-4xl bg-orange-500 mb-7 p-1" />
 
-            <h1 className="text-xl font-bold text-gray-900 mb-3">
+            <h1 className="text-xl font-bold  mb-3">
               100% Authentic Books
             </h1>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-gray-500 leading-relaxed">
               Every book is sourced directly from verified publishers. No
               counterfeits, no compromises on quality.
             </p>
