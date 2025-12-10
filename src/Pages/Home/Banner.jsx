@@ -8,7 +8,12 @@ import { Link } from "react-router";
 
 const Banner = () => {
   return (
-    <Carousel autoPlay={true} infiniteLoop={true} interval={2000}>
+    <Carousel
+      autoPlay={true}
+      showThumbs={false}
+      infiniteLoop={true}
+      interval={2000}
+    >
       <div className="  mx-auto flex  items-center">
         <div className="w-[50%] text-start p-15 ">
           <h1 className="text-5xl font-semibold mb-2">The Simple Seerah</h1>
