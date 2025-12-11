@@ -1,12 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import useAxios from "../../Hooks/useAxios";
+import useAuth from "../../Hooks/useAuth";
 
 const AddBooks = () => {
+  const { user } = useAuth();
   const axiosSecure = useAxios();
   const { register, handleSubmit } = useForm();
   const handleAddBook = (data) => {
     console.log(data);
+    data.email = user.email;
     axiosSecure
       .post("/books", data)
       .then((res) => {

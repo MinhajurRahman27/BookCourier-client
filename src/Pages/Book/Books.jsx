@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import useAxios from "../../Hooks/useAxios";
 import BookCard from "../../components/BookCard.jsx/BookCard";
+import { FaSort } from "react-icons/fa";
 
 const Books = () => {
   const [search, setSearch] = useState("");
@@ -34,7 +35,7 @@ const Books = () => {
   return (
     <div>
       <div className="flex items-center justify-between px-10 pt-5">
-        <label className="input">
+        <label className="input  shadow shadow-gray-600 rounded-2xl border-0">
           <svg
             className="h-[1em] opacity-50"
             xmlns="http://www.w3.org/2000/svg"
@@ -62,9 +63,10 @@ const Books = () => {
           <div
             tabIndex={0}
             role="button"
-            className="btn border-gray-300 border m-1 w-31"
+            className="btn border-gray-300 border m-1 w-31 rounded-2xl"
           >
-            Click
+            Sort
+            <FaSort />
           </div>
           <ul
             tabIndex="-1"

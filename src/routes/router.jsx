@@ -22,6 +22,8 @@ import BookDetails from "../Pages/Book/BookDetails";
 import PaymentSucce from "../Pages/Payment/PaymentSucce";
 import PaymentCancled from "../Pages/Payment/PaymentCancled";
 import MyWhishlist from "../Pages/UserPage/MyWhishlist";
+import UserDashBoard from "../DashboardPage/UserDashBoard";
+import DashboardHome from "../DashboardPage/DashboardHome";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +62,10 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
+        index: true,
+        element: <DashboardHome></DashboardHome>,
+      },
+      {
         path: "myorders",
         element: (
           <UserRoutes>
@@ -83,7 +89,7 @@ export const router = createBrowserRouter([
         path: "mywhishlist",
         element: (
           <UserRoutes>
-           <MyWhishlist></MyWhishlist>
+            <MyWhishlist></MyWhishlist>
           </UserRoutes>
         ),
       },
@@ -107,7 +113,7 @@ export const router = createBrowserRouter([
         path: "mybooks/editbooks/:id",
         element: (
           <LibrarianRoutes>
-           <Editbooks></Editbooks>
+            <Editbooks></Editbooks>
           </LibrarianRoutes>
         ),
       },
@@ -136,13 +142,13 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path:'payment-success',
-        Component: PaymentSucce
+        path: "payment-success",
+        Component: PaymentSucce,
       },
       {
-        path:'payment-cancled',
-        Component: PaymentCancled
-      }
+        path: "payment-cancled",
+        Component: PaymentCancled,
+      },
     ],
   },
 ]);

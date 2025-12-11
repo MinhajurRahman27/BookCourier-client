@@ -21,11 +21,11 @@ const Editbooks = () => {
   const handleEdit = (data) => {
     console.log(data);
     const finalData = {
-      bookname: data.bookname || book.bookname,
-      bookimage: data.bookimage || book.bookimage,
-      author: data.author || book.author,
-      status: data.status || book.status,
-      price: data.price || book.price,
+      bookname: data.bookname,
+      bookimage: data.bookimage,
+      author: data.author,
+      status: data.status,
+      price: data.price,
     };
 
     axiosSecure.patch(`/books-edit/${id}`, finalData).then((res) => {
@@ -49,17 +49,16 @@ const Editbooks = () => {
                 type="text"
                 className="input"
                 placeholder="Book Name"
-                defaultValue={book.bookname}
                 {...register("bookname")}
                 required
               />
               <label className="label">Book Image</label>
               <input
                 type="text"
-                defaultValue={book.bookimage}
                 {...register("bookimage")}
                 className="input"
                 placeholder="URL"
+                required
               />
 
               <label className="label">Book Author</label>
@@ -67,7 +66,6 @@ const Editbooks = () => {
                 type="text"
                 className="input"
                 placeholder="Book Author"
-                defaultValue={book.author}
                 {...register("author")}
                 required
               />
@@ -75,7 +73,6 @@ const Editbooks = () => {
               {/* status section will be here */}
               <label className="label">Select Status</label>
               <select
-                defaultValue={book.status}
                 className="select appearance-none"
                 {...register("status")}
               >
@@ -89,7 +86,6 @@ const Editbooks = () => {
                 type="number"
                 className="input"
                 required
-                defaultValue={book.price}
                 placeholder="Price"
                 {...register("price")}
               />

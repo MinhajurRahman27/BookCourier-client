@@ -1,5 +1,5 @@
 import React from "react";
-import looti from "../.././..//public/Untitled file.json";
+import looti from "../../assets/Untitledfile.json";
 import Lottie from "lottie-react";
 
 const GetInTouch = () => {

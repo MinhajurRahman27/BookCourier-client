@@ -2,13 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAxios from "../../Hooks/useAxios";
 import { Link } from "react-router";
+import useAuth from "../../Hooks/useAuth";
 
 const MyBooks = () => {
+  const { user } = useAuth();
   const axiosSecure = useAxios();
   const { data: books = [] } = useQuery({
     queryKey: ["books"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/allbooks");
+      const res = await axiosSecure.get(`/libraian-books/${user.email}`);
       return res.data;
     },
   });

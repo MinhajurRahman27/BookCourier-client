@@ -16,7 +16,7 @@ const PaymentSucce = () => {
           console.log(res.data);
         });
     }
-  }, []);
+  }, [sessionId]);
 
   return (
     <div>
