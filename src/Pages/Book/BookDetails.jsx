@@ -17,7 +17,7 @@ const BookDetails = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -107,15 +107,15 @@ const BookDetails = () => {
     <div>
       <div className=" flex pt-10  gap-3 px-50 ">
         <div className="">
-          <img className="w-250 h-100" src={book.bookimage} alt="" />
+          <img className="w-250 h-100" src={book?.bookimage} alt="" />
         </div>
         <div className=" pt-9">
-          <h1 className="text-3xl font-bold">{book.bookname}</h1>
+          <h1 className="text-3xl font-bold">{book?.bookname}</h1>
           {/* ratings will be here */}
 
           <div className="my-5">
             <h1 className="text-secondary">Written By</h1>
-            <h1 className="text-[30px] font-semibold">{book.author}</h1>
+            <h1 className="text-[30px] font-semibold">{book?.author}</h1>
           </div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum
@@ -131,7 +131,7 @@ const BookDetails = () => {
 
           <div className="flex items-center justify-between mt-5">
             <h1 className="font-bold text-orange-500 text-3xl">
-              ${book.price}
+              ${book?.price}
             </h1>
             <div className="flex gap-2">
               <button
