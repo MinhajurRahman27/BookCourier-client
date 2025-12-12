@@ -28,13 +28,15 @@ const MyProfile = () => {
       });
   };
   return (
-    <div className="w-7/12 h-[400px] mx-auto ">
+    <div className="w-[700px] h-[400px] mx-auto ">
       <h1 className="font-semibold text-3xl mb-4">My Profile</h1>
       <div className="flex  items-center justify-around   bg-orange-500 rounded-2xl p-10">
-        <div className="  text-white font-semibold  border-r-2 border-gray-200 pr-15">
+        <div className="  text-white font-semibold   border-gray-200 pr-0 mr-0">
           <img className="rounded-2xl w-40" src={image} alt="Users photo" />
-          <h1 className="text-[15px]">{nameState}</h1>
-          <h1 className="text-[15px]">{user.email}</h1>
+          <div className="text-wrap w-[200px] ">
+            <h1 className="text-[15px]">{nameState}</h1>
+            <h1 className="text-[15px] break-words">{user.email}</h1>
+          </div>
         </div>
         <div className=" w-[300px]">
           <h1 className=" text-2xl font-semibold text-white">Update Info</h1>
@@ -58,7 +60,9 @@ const MyProfile = () => {
                 {...register("photo")}
               />
 
-              <button className="btn bg-gray-500 border-0 text-white mt-4">Update</button>
+              <button className="btn bg-gray-500 border-0 text-white mt-4 ">
+                Update
+              </button>
             </fieldset>
           </form>
         </div>

@@ -195,70 +195,42 @@ const UserDashBoard = () => {
         </RadarChart>
       </div>
 
-      <div className="flex justify-around ">
-        <div className="shadow-xl  ">
-          <h1 className="text-center font-semibold text-xl border-gray-400 pb-2">
-            TransactionId
-          </h1>
-          {invoice.map((i) => (
-            <div className="shadow-xl rounded-xl p-6 border-none">
-              <p className="flex items-center gap-2"><IoCheckmarkDoneCircleSharp className="text-xl font-semibold text-green-700"/>{i.transactionId}</p>
-            </div>
-          ))}
-        </div>
+      <div className="mt-15   mx-auto gap-6">
         {/* User Profile Card */}
+        <div className="bg-slate-800 rounded-xl p-6 border-none">
+          <h3 className="text-lg font-semibold text-white mb-6">
+            User Profile
+          </h3>
+          <div className="flex flex-col items-center">
+            <div>
+              <img
+                className="rounded-2xl w-20 h-20"
+                src={user.photoURL}
+                alt=""
+              />
+            </div>
+            <h4 className="text-xl font-bold text-white mb-1">
+              {user.displayName}
+            </h4>
+            <p className="text-purple-400 text-sm mb-4">{role}</p>
 
-        <div className="   lg:w-[500px]  ">
-          {/* User Profile Card */}
-          <div className="bg-slate-800 rounded-xl p-6 border-none">
-            <h3 className="text-lg font-semibold text-white mb-6">
-              User Profile
-            </h3>
-            <div className="flex flex-col items-center">
-              <div>
-                <img
-                  className="rounded-2xl w-20 h-20"
-                  src={user.photoURL}
-                  alt=""
-                />
+            <div className="w-full space-y-3 mt-4">
+              <div className="flex items-center justify-between py-2 border-b border-slate-700">
+                <span className="text-slate-400 text-sm">Email</span>
+                <span className="text-white text-sm">{user.email}</span>
               </div>
-              <h4 className="text-xl font-bold text-white mb-1">
-                {user.displayName}
-              </h4>
-              <p className="text-purple-400 text-sm mb-4">{role}</p>
-
-              <div className="w-full space-y-3 mt-4">
-                <div className="flex items-center justify-between py-2 border-b border-slate-700">
-                  <span className="text-slate-400 text-sm">Email</span>
-                  <span className="text-white text-sm">{user.email}</span>
-                </div>
-                <div className="flex items-center justify-between py-2 border-b border-slate-700">
-                  <span className="text-slate-400 text-sm">Role</span>
-                  <span className="text-white text-sm">{role}</span>
-                </div>
-                <div className="flex items-center justify-between py-2 border-b border-slate-700">
-                  <span className="text-slate-400 text-sm">Location</span>
-                  <span className="text-white text-sm">New York, USA</span>
-                </div>
-                <div className="flex items-center justify-between py-2">
-                  <span className="text-slate-400 text-sm">Member Since</span>
-                  <span className="text-white text-sm">Jan 2023</span>
-                </div>
+              <div className="flex items-center justify-between py-2 border-b border-slate-700">
+                <span className="text-slate-400 text-sm">Role</span>
+                <span className="text-white text-sm">{role}</span>
               </div>
-
-              <Link
-                to={"/dashboard/myprofile"}
-                className="w-full mt-6 px-4 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-lg font-semibold hover:from-purple-600 hover:to-blue-600 transition-all duration-200 shadow-lg text-center"
-              >
-                Edit Profile
-              </Link>
-              {/* <button
-              onClick={handleSignOut}
-              className="w-full btn mt-3 px-4 py-2 bg-slate-700 text-slate-300 rounded-lg font-semibold hover:bg-slate-600 hover:text-white transition-all duration-200 flex items-center justify-center gap-2"
-            >
-              <LogOut size={18} />
-              Log Out
-            </button> */}
+              <div className="flex items-center justify-between py-2 border-b border-slate-700">
+                <span className="text-slate-400 text-sm">Location</span>
+                <span className="text-white text-sm">New York, USA</span>
+              </div>
+              <div className="flex items-center justify-between py-2">
+                <span className="text-slate-400 text-sm">Member Since</span>
+                <span className="text-white text-sm">Jan 2023</span>
+              </div>
             </div>
           </div>
         </div>

@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { FaFileInvoiceDollar, FaJediOrder } from "react-icons/fa";
+import {
+  FaBook,
+  FaFileInvoiceDollar,
+  FaJediOrder,
+  FaUsers,
+} from "react-icons/fa";
 import { GiProfit } from "react-icons/gi";
 import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../Hooks/useRole";
@@ -11,10 +16,11 @@ import { LuListCollapse } from "react-icons/lu";
 import { TbHomeFilled } from "react-icons/tb";
 import { RiShoppingBag2Fill } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
+import { MdLibraryAdd } from "react-icons/md";
 
 const DashboardLayout = () => {
   const { role } = useRole();
-  const { loading, user } = useAuth();
+  const { loading, user, signOutUser } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   if (loading) {
@@ -24,6 +30,12 @@ const DashboardLayout = () => {
       </div>
     );
   }
+
+  const handleSignOut = () => {
+    signOutUser().then(() => {
+      // console.log("signout successful");
+    });
+  };
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -83,11 +95,7 @@ const DashboardLayout = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                
-                  to="/dashboard/invoice"
-                  data-tip="Invoice"
-                >
+                <NavLink to="/dashboard/invoice" data-tip="Invoice">
                   <FaFileInvoiceDollar className="text-orange-500 text-2xl" />
                   {isSidebarOpen && <span>Invoice</span>}
                 </NavLink>
@@ -104,7 +112,7 @@ const DashboardLayout = () => {
                   className={`${!isSidebarOpen ? "tooltip tooltip-right" : ""}`}
                   data-tip="Add Book"
                 >
-                  <GiProfit className="w-5 h-5" />
+                  <MdLibraryAdd className="text-orange-500 text-2xl" />
                   {isSidebarOpen && <span>Add Book</span>}
                 </NavLink>
               </li>
@@ -114,7 +122,7 @@ const DashboardLayout = () => {
                   className={`${!isSidebarOpen ? "tooltip tooltip-right" : ""}`}
                   data-tip="My Books"
                 >
-                  <GiProfit className="w-5 h-5" />
+                  <FaBook className="text-orange-500 text-2xl" />
                   {isSidebarOpen && <span>My Books</span>}
                 </NavLink>
               </li>
@@ -124,7 +132,7 @@ const DashboardLayout = () => {
                   className={`${!isSidebarOpen ? "tooltip tooltip-right" : ""}`}
                   data-tip="Orders"
                 >
-                  <GiProfit className="w-5 h-5" />
+                  <RiShoppingBag2Fill className="text-orange-500 text-2xl" />
                   {isSidebarOpen && <span>Orders</span>}
                 </NavLink>
               </li>
@@ -140,7 +148,7 @@ const DashboardLayout = () => {
                   className={`${!isSidebarOpen ? "tooltip tooltip-right" : ""}`}
                   data-tip="All Users"
                 >
-                  <GiProfit className="w-5 h-5" />
+                  <FaUsers className="text-orange-500 text-2xl" />
                   {isSidebarOpen && <span>All Users</span>}
                 </NavLink>
               </li>
@@ -150,7 +158,7 @@ const DashboardLayout = () => {
                   className={`${!isSidebarOpen ? "tooltip tooltip-right" : ""}`}
                   data-tip="Manage Books"
                 >
-                  <GiProfit className="w-5 h-5" />
+                  <FaBook className="text-orange-500 text-2xl" />
                   {isSidebarOpen && <span>Manage Books</span>}
                 </NavLink>
               </li>
@@ -160,7 +168,7 @@ const DashboardLayout = () => {
                   className={`${!isSidebarOpen ? "tooltip tooltip-right" : ""}`}
                   data-tip="My Profile"
                 >
-                  <GiProfit className="w-5 h-5" />
+                  <CgProfile className="text-orange-500 text-2xl" />
                   {isSidebarOpen && <span>My Profile</span>}
                 </NavLink>
               </li>
@@ -189,6 +197,9 @@ const DashboardLayout = () => {
               src={user.photoURL}
               alt="User"
             />
+            <button className="btn" onClick={handleSignOut}>
+              LogOut
+            </button>
           </div>
         </nav>
 

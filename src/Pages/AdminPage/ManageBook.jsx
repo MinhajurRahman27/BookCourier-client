@@ -3,6 +3,7 @@ import useAuth from "../../Hooks/useAuth";
 import useAxios from "../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router";
+import { MdOutlinePublishedWithChanges, MdUnpublished } from "react-icons/md";
 
 const ManageBook = () => {
   const axiosSecure = useAxios();
@@ -73,11 +74,14 @@ const ManageBook = () => {
         <table className="table">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="bg-gray-600 text-white">
               <th>Sl.</th>
               <th>Photo</th>
               <th>Name</th>
-              <th>Actions</th>
+              <th>Status</th>
+              <th>Action</th>
+              <th>Action</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -97,12 +101,19 @@ const ManageBook = () => {
                   <div className="font-bold">{u.bookname}</div>
                 </td>
                 <td>
-                  <div className="font-bold text-gray-700">{u.status}</div>
+                  <div className="font-bold text-gray-500">
+                    {u.status}{" "}
+                    {u.status === "Unpublished" ? (
+                      <MdUnpublished className="inline text-red-400 font-bold text-[18px]" />
+                    ) : (
+                      <MdOutlinePublishedWithChanges className="inline text-green-600 text-[18px]" />
+                    )}
+                  </div>
                 </td>
                 <td className="font-semibold">
                   <button
                     onClick={() => handlePublish(u._id)}
-                    className="btn btn-ghost"
+                    className="btn bg-gray-500 hover:bg-orange-500"
                   >
                     Publish
                   </button>
@@ -110,7 +121,7 @@ const ManageBook = () => {
                 <td className="font-semibold">
                   <button
                     onClick={() => handleUnPublish(u._id)}
-                    className="btn btn-ghost"
+                    className="btn bg-gray-500 hover:bg-orange-500"
                   >
                     Unpublish
                   </button>
@@ -118,7 +129,7 @@ const ManageBook = () => {
                 <td className="font-semibold">
                   <button
                     onClick={() => handleDelete(u._id)}
-                    className="btn btn-ghost"
+                    className="btn bg-red-400 hover:bg-orange-500"
                   >
                     Delete
                   </button>

@@ -1,18 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAxios from "../../Hooks/useAxios";
+import useAuth from "../../Hooks/useAuth";
+import { MdPaid } from "react-icons/md";
 
 const Orders = () => {
+  const { user } = useAuth();
   const axiosSecure = useAxios();
   const { refetch, data: books = [] } = useQuery({
     queryKey: ["ordered book"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/all-order-book");
+      const res = await axiosSecure.get(`/all-order-book/${user.email}`);
       return res.data;
     },
   });
 
-  // console.log(books);
+  console.log(books);
 
   const handleCancelbtn = (id) => {
     const updateStatus = { status: "cancelled" };
@@ -68,12 +71,11 @@ const Orders = () => {
   // }
   return (
     <div>
-      orders book : {books.length}
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="bg-gray-600 text-white">
               <th>Sl.</th>
               <th>Title</th>
               <th>Payment Status</th>
@@ -87,26 +89,23 @@ const Orders = () => {
             {books.map((o, index) => (
               <tr key={index}>
                 <th>{index + 1}</th>
-                <td>{o.bookname}</td>
-                <td>{o.payment}</td>
-                <td>{o.status}</td>
-                <td>{o.date}</td>
+                <td className="font-semibold">{o.bookname}</td>
+                <td className="font-semibold text-gray-600">{o.payment}{o.payment === 'paid'? <MdPaid className="inline"/> : ''}</td>
+                <td className="font-semibold">{o.status}</td>
+                <td className="font-semibold">{o.date}</td>
                 <td className="">
-                  
-                    
-                    <button className="btn">pending</button>
-                    <button className="btn" onClick={() => handleShipped(o._id)}>
-                      shipped
-                    </button>
-                    <button className="btn" onClick={() => handleDeliver(o._id)}>
-                      delivered
-                    </button>
-                  
+                  {/* <button className="btn bg-gray-400 text-white">pending</button> */}
+                  <button className="btn bg-gray-400 text-white" onClick={() => handleShipped(o._id)}>
+                    shipped
+                  </button>
+                  <button className="btn bg-gray-400 text-white" onClick={() => handleDeliver(o._id)}>
+                    delivered
+                  </button>
                 </td>
                 <td>
                   <button
                     onClick={() => handleCancelbtn(o._id)}
-                    className="btn"
+                    className="btn bg-red-400 text-white"
                   >
                     Cancel
                   </button>

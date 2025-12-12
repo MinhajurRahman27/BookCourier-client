@@ -12,6 +12,8 @@ import {
   BarChart,
   CartesianGrid,
   Legend,
+  Pie,
+  PieChart,
   Tooltip,
   XAxis,
   YAxis,
@@ -39,14 +41,37 @@ const AdminDashboard = () => {
     },
   });
 
-  const chartData = [
+  const publishCOunt = books.filter((a) => a.status === "Published").length;
+  const UnPublishCOunt = books.filter((a) => a.status === "Unpublished").length;
+
+  const adminCOunt = users.filter((a) => a.role === "admin").length;
+  const userCOunt = users.filter((a) => a.role === "user").length;
+  const librarianCOunt = users.filter((a) => a.role === "librarian").length;
+  console.log(publishCOunt, UnPublishCOunt);
+
+  const bookChartdata = [
     {
-      name: "Users",
-      count: users.length,
+      name: "Published",
+      count: publishCOunt,
     },
     {
-      name: "Books",
-      count: books.length,
+      name: "Unpublished",
+      count: UnPublishCOunt,
+    },
+  ];
+
+  const chartData = [
+    {
+      name: "Admin",
+      count: adminCOunt,
+    },
+    {
+      name: "User",
+      count: userCOunt,
+    },
+    {
+      name: "librarian",
+      count: librarianCOunt,
     },
   ];
 
@@ -54,49 +79,125 @@ const AdminDashboard = () => {
   // console.log("books:", books.length);
   return (
     <div>
-      <div className=" flex justify-center gap-5">
-        <div className="p-5 bg-white shadow-xl rounded-xl ">
+      <div className=" flex justify-center gap-5 mb-20">
+        <div className="p-5  shadow-xl rounded-xl ">
           <FaUserFriends className="text-xl" />
           <h1 className="text-xl">Total User : {users.length}</h1>
         </div>
-        <div className="p-5 bg-white shadow-xl rounded-xl">
+        <div className="p-5  shadow-xl rounded-xl">
           <IoShieldCheckmarkSharp className="text-xl" />
           <h1 className="text-xl">Total Roles : 3</h1>
         </div>
-        <div className="p-5 bg-white shadow-xl rounded-xl">
+        <div className="p-5  shadow-xl rounded-xl">
           <FaBan className="text-xl" />
           <h1 className="text-xl">Suspended User : 0</h1>
         </div>
-        <div className="p-5 bg-white shadow-xl rounded-xl">
+        <div className="p-5  shadow-xl rounded-xl">
           <FaBook className="text-xl" />
           <h1 className="text-xl">Total Book : {books.length}</h1>
         </div>
       </div>
-      <BarChart
-        style={{
-          width: "100%",
-          maxWidth: "700px",
-          maxHeight: "50vh",
-          aspectRatio: 1.618,
-        }}
-        responsive
-        data={chartData}
-        margin={{
-          top: 25,
-          right: 0,
-          left: 0,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis width="auto" />
-        <Tooltip />
-        <Legend />
-       
-        <Bar dataKey="count" fill="#82ca9d" />
-      </BarChart>
-      <div className="mt-6 grid grid-cols-1 lg:w-[500px] mx-auto gap-6">
+      <div className="flex items-center  shadow-xl">
+        <BarChart
+          style={{
+            width: "100%",
+            maxWidth: "700px",
+            maxHeight: "50vh",
+            aspectRatio: 1.618,
+          }}
+          responsive
+          data={chartData}
+          margin={{
+            top: 25,
+            right: 0,
+            left: 0,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis width="auto" />
+          <Tooltip />
+          <Legend />
+
+          <Bar dataKey="count" fill="#1E293B" />
+        </BarChart>
+        <PieChart
+          style={{
+            width: "100%",
+            maxWidth: "500px",
+            maxHeight: "80vh",
+            aspectRatio: 2,
+          }}
+          responsive
+        >
+          <Pie
+            dataKey="count"
+            startAngle={180}
+            endAngle={0}
+            data={chartData}
+            cx="50%"
+            cy="100%"
+            outerRadius="120%"
+            fill="#1E293B"
+            label
+            isAnimationActive={true}
+          />
+          <Legend />
+          <Tooltip></Tooltip>
+        </PieChart>
+      </div>
+      <div className="flex items-center  shadow-xl my-20">
+        <PieChart
+          style={{
+            width: "100%",
+            maxWidth: "500px",
+            maxHeight: "80vh",
+            aspectRatio: 2,
+          }}
+          responsive
+        >
+          <Pie
+            dataKey="count"
+            startAngle={180}
+            endAngle={0}
+            data={bookChartdata}
+            cx="50%"
+            cy="100%"
+            outerRadius="120%"
+            fill="#1E293B"
+            label
+            isAnimationActive={true}
+          />
+          <Legend />
+          <Tooltip></Tooltip>
+        </PieChart>
+        <BarChart
+          style={{
+            width: "100%",
+            maxWidth: "700px",
+            maxHeight: "50vh",
+            aspectRatio: 1.618,
+          }}
+          responsive
+          data={bookChartdata}
+          margin={{
+            top: 25,
+            right: 0,
+            left: 0,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis width="auto" />
+          <Tooltip />
+          <Legend />
+
+          <Bar dataKey="count" fill="#1E293B" />
+        </BarChart>
+      </div>
+      <div className="mt-6   mx-auto gap-6">
         {/* User Profile Card */}
         <div className="bg-slate-800 rounded-xl p-6 border-none">
           <h3 className="text-lg font-semibold text-white mb-6">
@@ -140,13 +241,6 @@ const AdminDashboard = () => {
             >
               Edit Profile
             </Link>
-            <button
-              onClick={handleSignOut}
-              className="w-full mt-3 px-4 py-2 bg-slate-700 text-slate-300 rounded-lg font-semibold hover:bg-slate-600 hover:text-white transition-all duration-200 flex items-center justify-center gap-2"
-            >
-              <LogOut size={18} />
-              Log Out
-            </button>
           </div>
         </div>
       </div>

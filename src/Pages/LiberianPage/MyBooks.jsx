@@ -18,38 +18,38 @@ const MyBooks = () => {
   // console.log(books);
   return (
     <div>
-      all users {books.length}
+   
       <div className="overflow-x-auto p-10 px-20">
-        <table className="table">
+        <table className="table ">
           {/* head */}
-          <thead>
-            <tr>
+          <thead >
+            <tr className="bg-gray-600 text-white">
               <th>Sl.</th>
               <th>Photo</th>
               <th>Name</th>
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody >
             {books.map((u, index) => (
-              <tr key={index}>
-                <th>{index + 1}</th>
-                <td>
+              <tr  key={index} >
+                <th className="">{index + 1}</th>
+                <td >
                   <div className="flex items-center gap-3">
                     <div className="avatar">
-                      <div className="rounded h-20 w-20">
+                      <div className="rounded h-20 w-full">
                         <img src={u.bookimage} alt="books" />
                       </div>
                     </div>
                   </div>
                 </td>
-                <td>
+                <td >
                   <div className="font-bold">{u.bookname}</div>
                 </td>
-                <td className="font-semibold">
+                <td className="font-semibold ">
                   <Link
                     to={`/dashboard/mybooks/editbooks/${u._id}`}
-                    className="btn btn-primary btn-xs"
+                    className="btn bg-orange-500 rounded-b-xl w-[200px]"
                   >
                     Edit
                   </Link>

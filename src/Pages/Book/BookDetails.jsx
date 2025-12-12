@@ -43,10 +43,12 @@ const BookDetails = () => {
   if (loading) {
     return <span class="loading loading-spinner loading-sm"></span>;
   }
+  console.log(book);
 
   const handleOrderForm = (data) => {
     const date = new Date().toLocaleDateString();
     data.bookId = id;
+    data.provider = book.email;
     data.bookname = book?.bookname;
     data.date = date;
     data.price = book?.price;

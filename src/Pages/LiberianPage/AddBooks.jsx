@@ -6,7 +6,7 @@ import useAuth from "../../Hooks/useAuth";
 const AddBooks = () => {
   const { user } = useAuth();
   const axiosSecure = useAxios();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const handleAddBook = (data) => {
     // console.log(data);
     data.email = user.email;
@@ -14,6 +14,7 @@ const AddBooks = () => {
       .post("/books", data)
       .then((res) => {
         if (res.data.insertedId) {
+          reset();
           alert("book added successfully");
         }
       })
@@ -23,41 +24,44 @@ const AddBooks = () => {
   };
   return (
     <div>
-      add book
-      <div className="card-body">
-        <h1 className="text-5xl font-bold">Add Book</h1>
+      <div className="card-body bg-orange-500 w-[600px] mx-auto rounded-lg">
+        <h1 className="text-5xl font-bold text-white">Add Book</h1>
         <form onSubmit={handleSubmit(handleAddBook)}>
           <fieldset className="fieldset">
-            <label className="label">Book Name</label>
+            <label className="label text-white font-semibold">Book Name</label>
             <input
               type="text"
-              className="input"
+              className="input w-full"
               placeholder="Book Name"
               {...register("bookname")}
               required
             />
-            <label className="label">Book Image</label>
+            <label className="label text-white font-semibold">Book Image</label>
             <input
               type="text"
               {...register("bookimage")}
-              className="input"
+              className="input w-full"
               placeholder="URL"
             />
 
-            <label className="label">Book Author</label>
+            <label className="label text-white font-semibold">
+              Book Author
+            </label>
             <input
               type="text"
-              className="input"
+              className="input w-full "
               placeholder="Book Author"
               {...register("author")}
               required
             />
 
             {/* status section will be here */}
-            <label className="label">Select Status</label>
+            <label className="label text-white font-semibold">
+              Select Status
+            </label>
             <select
               defaultValue="Pick a color"
-              className="select appearance-none"
+              className="select appearance-none w-full"
               {...register("status")}
             >
               <option disabled={true}>Select Status</option>
@@ -65,16 +69,18 @@ const AddBooks = () => {
               <option>Unpublished</option>
             </select>
 
-            <label className="label">Price</label>
+            <label className="label text-white font-semibold">Price</label>
             <input
               type="number"
-              className="input"
+              className="input w-full"
               required
               placeholder="Price"
               {...register("price")}
             />
 
-            <button className="btn btn-neutral mt-4">Submit</button>
+            <button className="btn btn-neutral mt-4 hover:opacity-90">
+              Submit
+            </button>
           </fieldset>
         </form>
       </div>

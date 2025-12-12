@@ -5,7 +5,7 @@ import useAxios from "../../Hooks/useAxios";
 import { useForm } from "react-hook-form";
 
 const Editbooks = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const axiosSecure = useAxios();
   const { id } = useParams();
   // console.log(id);
@@ -30,21 +30,23 @@ const Editbooks = () => {
 
     axiosSecure.patch(`/books-edit/${id}`, finalData).then((res) => {
       if (res.data.modifiedCount) {
+        reset();
         alert("modified");
+
         // console.log(res.data);
       }
     });
   };
   return (
     <div>
-      id: {id} <br />
-      <h1 className="text-4xl text-primary">Edit</h1>
-      <div className="flex justify-between border w-7/12 mx-auto">
-        <div className="card-body border">
-          <h1 className="text-5xl font-bold">Add Book</h1>
+      <div className="flex bg-orange-500 justify-between rounded-xl w-[600px] mx-auto ">
+        <div className="card-body  ">
+          <h1 className="text-5xl font-bold text-white">Edit Book</h1>
           <form onSubmit={handleSubmit(handleEdit)}>
             <fieldset className="fieldset">
-              <label className="label">Book Name</label>
+              <label className="label text-white font-semibold">
+                Book Name
+              </label>
               <input
                 type="text"
                 className="input"
@@ -52,7 +54,9 @@ const Editbooks = () => {
                 {...register("bookname")}
                 required
               />
-              <label className="label">Book Image</label>
+              <label className="label text-white font-semibold">
+                Book Image
+              </label>
               <input
                 type="text"
                 {...register("bookimage")}
@@ -61,7 +65,9 @@ const Editbooks = () => {
                 required
               />
 
-              <label className="label">Book Author</label>
+              <label className="label text-white font-semibold">
+                Book Author
+              </label>
               <input
                 type="text"
                 className="input"
@@ -71,7 +77,9 @@ const Editbooks = () => {
               />
 
               {/* status section will be here */}
-              <label className="label">Select Status</label>
+              <label className="label text-white font-semibold">
+                Select Status
+              </label>
               <select
                 className="select appearance-none"
                 {...register("status")}
@@ -81,7 +89,7 @@ const Editbooks = () => {
                 <option>Unpublished</option>
               </select>
 
-              <label className="label">Price</label>
+              <label className="label text-white font-semibold">Price</label>
               <input
                 type="number"
                 className="input"
@@ -96,7 +104,7 @@ const Editbooks = () => {
         </div>
 
         <div className="w-[50%] flex items-center justify-center">
-          <img className="w-50 rounded-2xl" src={book.bookimage} alt="" />
+          <img className="w-55 rounded-2xl" src={book.bookimage} alt="" />
         </div>
       </div>
     </div>

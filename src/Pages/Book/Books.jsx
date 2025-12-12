@@ -12,11 +12,15 @@ const Books = () => {
   const { data: books = [], isLoading } = useQuery({
     queryKey: ["allbook", search],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/allbooks?searchText=${search}`);
+      const res = await axiosSecure.get(
+        `/allbooks?searchText=${search}&status=Published`
+      );
       setAllbook(res.data);
       return res.data;
     },
   });
+
+  console.log(books)
 
   // Sync fetched books → local state
   // useEffect(() => {
