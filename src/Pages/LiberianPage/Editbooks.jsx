@@ -8,7 +8,7 @@ const Editbooks = () => {
   const { register, handleSubmit } = useForm();
   const axiosSecure = useAxios();
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
 
   const { data: book = [] } = useQuery({
     queryKey: ["editbook"],
@@ -19,7 +19,7 @@ const Editbooks = () => {
   });
 
   const handleEdit = (data) => {
-    console.log(data);
+    // console.log(data);
     const finalData = {
       bookname: data.bookname,
       bookimage: data.bookimage,
@@ -31,7 +31,7 @@ const Editbooks = () => {
     axiosSecure.patch(`/books-edit/${id}`, finalData).then((res) => {
       if (res.data.modifiedCount) {
         alert("modified");
-        console.log(res.data);
+        // console.log(res.data);
       }
     });
   };

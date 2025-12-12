@@ -12,7 +12,7 @@ const MyProfile = () => {
   }
 
   const handleUpdate = (data) => {
-    console.log(data);
+    
 
     const updateUserInfo = {
       displayName: data.name,

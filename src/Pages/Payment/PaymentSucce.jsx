@@ -6,7 +6,7 @@ const PaymentSucce = () => {
   const [searchParams] = useSearchParams();
   const axiosSecure = useAxios();
   const sessionId = searchParams.get("session_id");
-  console.log(sessionId);
+  // console.log(sessionId);
 
   useEffect(() => {
     if (sessionId) {

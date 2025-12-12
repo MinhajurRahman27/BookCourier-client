@@ -12,7 +12,7 @@ const Orders = () => {
     },
   });
 
-  console.log(books);
+  // console.log(books);
 
   const handleCancelbtn = (id) => {
     const updateStatus = { status: "cancelled" };
@@ -35,7 +35,7 @@ const Orders = () => {
     axiosSecure
       .patch(`/update-order/${id}`, updateStatus)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.modifiedCount) {
           refetch();
 
@@ -51,7 +51,7 @@ const Orders = () => {
     axiosSecure
       .patch(`/update-order/${id}`, updateStatus)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.modifiedCount) {
           refetch();
 

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import useAxios from "../../Hooks/useAxios";
 import BookCard from "../../components/BookCard.jsx/BookCard";
 
@@ -13,7 +13,6 @@ const LatestBook = () => {
     },
   });
 
-  console.log(allbooks);
   return (
     <div className="my-20">
       <h1 className="text-5xl font-semibold text-center">Latest Books</h1>

@@ -24,6 +24,7 @@ import PaymentCancled from "../Pages/Payment/PaymentCancled";
 import MyWhishlist from "../Pages/UserPage/MyWhishlist";
 import UserDashBoard from "../DashboardPage/UserDashBoard";
 import DashboardHome from "../DashboardPage/DashboardHome";
+import ErrorPage from "../Errorpage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: "/bookdetails/:id",
         Component: BookDetails,
+      },
+      {
+        path: "*",
+        Component: ErrorPage,
       },
     ],
   },
@@ -148,6 +153,10 @@ export const router = createBrowserRouter([
       {
         path: "payment-cancled",
         Component: PaymentCancled,
+      },
+      {
+        path: "*",
+        Component: ErrorPage,
       },
     ],
   },

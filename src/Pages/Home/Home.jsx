@@ -10,14 +10,10 @@ import GetInTouch from "./GetInTouch";
 import ReviewCard from "./ReviewCard";
 
 const Home = () => {
-  const { user } = useAuth();
-  const {role} = useRole()
   const serviceCenter = useLoaderData();
 
-  
   return (
     <div>
-      
       <Banner></Banner>
       <LatestBook></LatestBook>
       <Coverage serviceCenter={serviceCenter}></Coverage>

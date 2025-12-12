@@ -3,7 +3,7 @@ import useRole from "../Hooks/useRole";
 import useAuth from "../Hooks/useAuth";
 
 const AdminRoutes = ({ children }) => {
-  const { user, loading, signOutUser } = useAuth();
+  const { user, loading } = useAuth();
   const { role } = useRole();
   if (loading) {
     return <span class="loading loading-spinner loading-sm"></span>;

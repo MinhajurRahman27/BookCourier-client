@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import useAxios from "../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
@@ -14,6 +14,16 @@ const ManageBook = () => {
     },
   });
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   const handlePublish = (id) => {
     const status = { status: "Published" };
 
@@ -24,6 +34,10 @@ const ManageBook = () => {
       }
     });
   };
+
+  if (loading) {
+    return <span class="loading loading-spinner loading-sm"></span>;
+  }
   const handleUnPublish = (id) => {
     const status = { status: "Unpublished" };
     axiosSecure.patch(`/books-update/${id}`, status).then((res) => {

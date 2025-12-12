@@ -50,8 +50,8 @@ const AdminDashboard = () => {
     },
   ];
 
-  console.log("user:", users.length);
-  console.log("books:", books.length);
+  // console.log("user:", users.length);
+  // console.log("books:", books.length);
   return (
     <div>
       <div className=" flex justify-center gap-5">

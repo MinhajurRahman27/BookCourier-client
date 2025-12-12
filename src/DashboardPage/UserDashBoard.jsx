@@ -25,7 +25,7 @@ import { LogOut } from "lucide-react";
 import { Link } from "react-router";
 
 const UserDashBoard = () => {
-  const { user,handleSignOut } = useAuth();
+  const { user, handleSignOut } = useAuth();
   const { role } = useRole();
   const axiosSecure = useAxios();
   const { data: payments = [] } = useQuery({
@@ -43,7 +43,7 @@ const UserDashBoard = () => {
     },
   });
 
-  console.log(orders);
+  // console.log(orders);
 
   const purchaseData = payments.map((p) => ({
     date: p.date,
@@ -71,7 +71,7 @@ const UserDashBoard = () => {
     { subject: "Unpaid", count: unpaid, fullMark: orders.length },
   ];
 
-  console.log(purchaseData);
+  // console.log(purchaseData);
 
   return (
     <div>
@@ -230,7 +230,10 @@ const UserDashBoard = () => {
             >
               Edit Profile
             </Link>
-            <button onClick={handleSignOut} className="w-full mt-3 px-4 py-2 bg-slate-700 text-slate-300 rounded-lg font-semibold hover:bg-slate-600 hover:text-white transition-all duration-200 flex items-center justify-center gap-2">
+            <button
+              onClick={handleSignOut}
+              className="w-full mt-3 px-4 py-2 bg-slate-700 text-slate-300 rounded-lg font-semibold hover:bg-slate-600 hover:text-white transition-all duration-200 flex items-center justify-center gap-2"
+            >
               <LogOut size={18} />
               Log Out
             </button>

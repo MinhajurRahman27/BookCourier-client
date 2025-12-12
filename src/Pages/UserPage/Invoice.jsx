@@ -14,7 +14,7 @@ const Invoice = () => {
     },
   });
 
-  console.log(payments);
+  
   return (
     <div>
       invoice

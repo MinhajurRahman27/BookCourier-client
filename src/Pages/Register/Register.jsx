@@ -7,7 +7,7 @@ import useAxios from "../../Hooks/useAxios";
 const Register = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location);
+
   const axiosSecure = useAxios();
   const { createUser, updateUser, signwithGoogle } = useAuth();
 
@@ -21,7 +21,7 @@ const Register = () => {
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
   const formsubmit = (data) => {
-    console.log(data);
+    
     const email = data.email;
     const password = data.pass;
     const photoUrl = data.photo;
@@ -30,7 +30,7 @@ const Register = () => {
     createUser(email, password)
       .then((res) => {
         navigate(location.state || "/");
-        console.log(res.user);
+      
         reset();
         alert("registation successfull");
 
@@ -71,7 +71,7 @@ const Register = () => {
 
   const googlesubmit = () => {
     signwithGoogle().then((res) => {
-      console.log(res.user);
+      
       navigate(location.state || "/");
       const userInfo = {
         email: res.user.email,
@@ -79,7 +79,7 @@ const Register = () => {
         photoURL: res.user.photoURL,
       };
 
-      console.log(userInfo);
+    
 
       //sending user to backend
 

@@ -17,7 +17,7 @@ const BookDetails = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -29,14 +29,14 @@ const BookDetails = () => {
       return res?.data;
     },
   });
-  const { refetch, data: reviews } = useQuery({
+  const { refetch, data: reviews = [] } = useQuery({
     queryKey: ["alllreviews"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/reviews/${id}`);
       return res?.data;
     },
   });
-  console.log(reviews);
+  // console.log(reviews);
 
   if (loading) {
     return <span class="loading loading-spinner loading-sm"></span>;
@@ -48,7 +48,7 @@ const BookDetails = () => {
     data.bookname = book?.bookname;
     data.date = date;
     data.price = book?.price;
-    console.log(data);
+    // console.log(data);
     axiosSecure.post("/order", data).then((res) => {
       if (res.data.insertedId) {
         alert("saved to database");
@@ -61,14 +61,15 @@ const BookDetails = () => {
 
   const handleWishlist = (book) => {
     const bookInfo = {
+      bookId: id,
       bookname: book.bookname,
-      bookimge: book.bookimage,
+      bookimage: book.bookimage,
       author: book.author,
       status: book.status,
       price: book.price,
       date: new Date().toLocaleDateString(),
     };
-    console.log("whislist");
+    // console.log("whislist");
 
     axiosSecure
       .post(`/user-wishlist/${user.email}`, bookInfo)
@@ -81,7 +82,7 @@ const BookDetails = () => {
   };
 
   const handleReview = (data) => {
-    console.log(data);
+    // console.log(data);
     const review = {
       bookId: book._id,
       name: user.displayName,
@@ -90,7 +91,7 @@ const BookDetails = () => {
       date: new Date().toLocaleDateString(),
     };
 
-    console.log(review);
+    // console.log(review);
     axiosSecure
       .post("/review", review)
       .then((res) => {
@@ -157,8 +158,8 @@ const BookDetails = () => {
         <h1 className="text-4xl text-center mb-10">Reviews</h1>
 
         <div className="grid grid-cols-3 px-50">
-          {reviews.map((r) => (
-            <UserReview key={r._id} r={r}></UserReview>
+          {reviews?.map((r) => (
+            <UserReview key={r?._id} r={r}></UserReview>
           ))}
         </div>
       </div>

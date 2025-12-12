@@ -5,7 +5,6 @@ import { Link, Navigate, useLocation } from "react-router";
 const PrivateRoutes = ({ children }) => {
   const { user, loading } = useAuth();
   const location = useLocation();
-  console.log(location);
 
   if (loading) {
     return <span class="loading loading-spinner loading-sm"></span>;

@@ -3,6 +3,7 @@ import React from "react";
 import useAuth from "../../Hooks/useAuth";
 import useAxios from "../../Hooks/useAxios";
 import BookCard from "../../components/BookCard.jsx/BookCard";
+import WishlistCard from "../../components/BookCard.jsx/WishlistCard";
 
 const MyWhishlist = () => {
   const axiosSecure = useAxios();
@@ -18,12 +19,11 @@ const MyWhishlist = () => {
   console.log(whishlist);
   return (
     <div>
-      book: {whishlist.length}
-     <div className="grid grid-cols-4">
-       {whishlist.map((book) => (
-        <BookCard key={book._id} book={book}></BookCard>
-      ))}
-     </div>
+      <div className="grid grid-cols-4">
+        {whishlist.map((book) => (
+          <WishlistCard key={book._id} book={book}></WishlistCard>
+        ))}
+      </div>
     </div>
   );
 };

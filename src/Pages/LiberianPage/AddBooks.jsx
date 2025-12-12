@@ -8,7 +8,7 @@ const AddBooks = () => {
   const axiosSecure = useAxios();
   const { register, handleSubmit } = useForm();
   const handleAddBook = (data) => {
-    console.log(data);
+    // console.log(data);
     data.email = user.email;
     axiosSecure
       .post("/books", data)

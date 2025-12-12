@@ -14,7 +14,7 @@ const AllUser = () => {
     },
   });
 
-  console.log(users);
+  // console.log(users);
 
   if (loading) {
     return <span className="loading loading-spinner loading-sm"></span>;
@@ -24,7 +24,7 @@ const AllUser = () => {
     const update = {
       role: "admin",
     };
-    console.log(u);
+    // console.log(u);
     axiosSecure.patch(`/update-user/${u._id}`, update).then((res) => {
       if (res.data.modifiedCount) {
         refetch();
@@ -37,7 +37,7 @@ const AllUser = () => {
     const update = {
       role: "librarian",
     };
-    console.log(u);
+    // console.log(u);
     axiosSecure.patch(`/update-user/${u._id}`, update).then((res) => {
       if (res.data.modifiedCount) {
         refetch();

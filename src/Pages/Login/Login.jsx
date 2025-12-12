@@ -7,26 +7,26 @@ import useAxios from "../../Hooks/useAxios";
 const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location);
+  // console.log(location);
   const axiosSecure = useAxios();
 
   const { signIn, signwithGoogle, updateUser } = useAuth();
   const { register, handleSubmit } = useForm();
 
   const formsubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     const email = data.email;
     const password = data.pass;
 
     signIn(email, password).then((res) => {
-      console.log("login suceess ful");
+      // console.log("login suceess ful");
       navigate(location?.state || "/");
     });
   };
 
   const googlesubmit = () => {
     signwithGoogle().then((res) => {
-      console.log(res.user);
+      // console.log(res.user);
       navigate(location?.state || "/");
       const userInfo = {
         email: res.user.email,
@@ -34,7 +34,7 @@ const Login = () => {
         photoURL: res.user.photoURL,
       };
 
-      console.log(userInfo);
+      // console.log(userInfo);
 
       //sending user to backend
 

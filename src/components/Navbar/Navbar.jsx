@@ -8,7 +8,7 @@ const Navbar = () => {
   const { signOutUser, user } = useAuth();
   const handleSignOut = () => {
     signOutUser().then(() => {
-      console.log("signout successful");
+      // console.log("signout successful");
     });
   };
   const links = (
@@ -52,8 +52,12 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <GrBook />
-        <a className="btn-ghost text-xl">BookCourier</a>
+        {/* <GrBook />
+        <a className="btn-ghost text-xl">BookCourier</a> */}
+        <div className="flex items-end font-semibold">
+          <GrBook className="text-4xl text-orange-500" />
+          <a className="btn-ghost text-2xl">BookCourier</a>
+        </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
