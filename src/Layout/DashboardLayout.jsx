@@ -1,236 +1,200 @@
-import React from "react";
-import { FaJediOrder } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaFileInvoiceDollar, FaJediOrder } from "react-icons/fa";
 import { GiProfit } from "react-icons/gi";
-import { NavLink, Outlet } from "react-router";
+import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../Hooks/useRole";
 import useAuth from "../Hooks/useAuth";
 import Theme from "../darklightmode/theme";
+import { GrBook } from "react-icons/gr";
+import { FiMenu, FiX } from "react-icons/fi";
+import { LuListCollapse } from "react-icons/lu";
+import { TbHomeFilled } from "react-icons/tb";
+import { RiShoppingBag2Fill } from "react-icons/ri";
+import { CgProfile } from "react-icons/cg";
 
 const DashboardLayout = () => {
   const { role } = useRole();
   const { loading, user } = useAuth();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   if (loading) {
-    return <span className="loading loading-spinner loading-sm"></span>;
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
   }
+
   return (
-    <div>
-      <div className="drawer lg:drawer-open">
-        <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content">
-          {/* Navbar */}
-          <nav className="navbar w-full bg-base-300 flex justify-between">
-            <div className="flex items-center">
-              <label
-                htmlFor="my-drawer-4"
-                aria-label="open sidebar"
-                className="btn btn-square btn-ghost"
-              >
-                {/* Sidebar toggle icon */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                  fill="none"
-                  stroke="currentColor"
-                  className="my-1.5 inline-block size-4"
-                >
-                  <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
-                  <path d="M9 4v16"></path>
-                  <path d="M14 10l2 2l-2 2"></path>
-                </svg>
-              </label>
-              <div>Dashboard</div>
+    <div className="flex h-screen overflow-hidden">
+      {/* Sidebar */}
+      <div
+        className={`bg-base-200 transition-all duration-300 flex flex-col ${
+          isSidebarOpen ? "w-64" : "w-20"
+        }`}
+      >
+        {/* Sidebar Header with Logo */}
+        <div className="p-4 border-b border-base-300 flex items-center justify-between ">
+          <Link to={"/"}>
+            <div className="flex items-center gap-2">
+              <GrBook className="text-3xl text-orange-500 flex-shrink-0" />
+              {isSidebarOpen && (
+                <span className="text-xl font-semibold">BookCourier</span>
+              )}
             </div>
-            <div className="flex items-center">
-              <Theme></Theme>
-              <img
-                className="w-8 rounded-[50%] h-8"
-                src={user.photoURL}
-                alt=""
-              />
-            </div>
-          </nav>
-          <Outlet></Outlet>
+          </Link>
+          <button
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            className="btn btn-ghost btn-sm"
+          >
+            {isSidebarOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+          </button>
         </div>
 
-        <div className="drawer-side is-drawer-close:overflow-visible">
-          <label
-            htmlFor="my-drawer-4"
-            aria-label="close sidebar"
-            className="drawer-overlay"
-          ></label>
-          <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
-            {/* Sidebar content here */}
-            <ul className="menu w-full grow">
-              {/* List item */}
+        {/* Sidebar Menu */}
+        <ul className="menu flex-1 p-2 overflow-y-auto ">
+          {/* Home */}
+          <li>
+            <NavLink to={"/dashboard"} data-tip="Home">
+              <TbHomeFilled className="text-orange-500 text-2xl" />
+              {isSidebarOpen && <span>Home</span>}
+            </NavLink>
+          </li>
+
+          {/* User Role Links */}
+          {role === "user" && (
+            <>
               <li>
-                <NavLink
-                  to={"/"}
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  data-tip="Home"
-                >
-                  {/* Home icon */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    strokeLinejoin="round"
-                    strokeLinecap="round"
-                    strokeWidth="2"
-                    fill="none"
-                    stroke="currentColor"
-                    className="my-1.5 inline-block size-4"
-                  >
-                    <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
-                    <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                  </svg>
-                  <span className="is-drawer-close:hidden">Home</span>
+                <NavLink to="/dashboard/mywhishlist" data-tip="My Wishlist">
+                  <LuListCollapse className="text-orange-500 text-2xl" />
+                  {isSidebarOpen && <span>My Wishlist</span>}
                 </NavLink>
               </li>
-              {/* List item */}
+              <li>
+                <NavLink to="/dashboard/myorders" data-tip="My Orders">
+                  <RiShoppingBag2Fill className="text-orange-500 text-2xl" />
+                  {isSidebarOpen && <span>My Orders</span>}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/myprofile" data-tip="My Profile">
+                  <CgProfile className="text-orange-500 text-2xl" />
+                  {isSidebarOpen && <span>My Profile</span>}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                
+                  to="/dashboard/invoice"
+                  data-tip="Invoice"
+                >
+                  <FaFileInvoiceDollar className="text-orange-500 text-2xl" />
+                  {isSidebarOpen && <span>Invoice</span>}
+                </NavLink>
+              </li>
+            </>
+          )}
 
-              {role === "user" && (
-                <>
-                  {" "}
-                  <li>
-                    <NavLink
-                      to="/dashboard/mywhishlist"
-                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                      data-tip="My Wishlist"
-                    >
-                      {/* Settings icon */}
-                      <FaJediOrder></FaJediOrder>
+          {/* Librarian Role Links */}
+          {role === "librarian" && (
+            <>
+              <li>
+                <NavLink
+                  to="/dashboard/addbook"
+                  className={`${!isSidebarOpen ? "tooltip tooltip-right" : ""}`}
+                  data-tip="Add Book"
+                >
+                  <GiProfit className="w-5 h-5" />
+                  {isSidebarOpen && <span>Add Book</span>}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/mybooks"
+                  className={`${!isSidebarOpen ? "tooltip tooltip-right" : ""}`}
+                  data-tip="My Books"
+                >
+                  <GiProfit className="w-5 h-5" />
+                  {isSidebarOpen && <span>My Books</span>}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/orders"
+                  className={`${!isSidebarOpen ? "tooltip tooltip-right" : ""}`}
+                  data-tip="Orders"
+                >
+                  <GiProfit className="w-5 h-5" />
+                  {isSidebarOpen && <span>Orders</span>}
+                </NavLink>
+              </li>
+            </>
+          )}
 
-                      <span className="is-drawer-close:hidden">
-                        My Wishlist
-                      </span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/myorders"
-                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                      data-tip="My Orders"
-                    >
-                      {/* Settings icon */}
-                      <FaJediOrder></FaJediOrder>
+          {/* Admin Role Links */}
+          {role === "admin" && (
+            <>
+              <li>
+                <NavLink
+                  to="/dashboard/allusers"
+                  className={`${!isSidebarOpen ? "tooltip tooltip-right" : ""}`}
+                  data-tip="All Users"
+                >
+                  <GiProfit className="w-5 h-5" />
+                  {isSidebarOpen && <span>All Users</span>}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/managebooks"
+                  className={`${!isSidebarOpen ? "tooltip tooltip-right" : ""}`}
+                  data-tip="Manage Books"
+                >
+                  <GiProfit className="w-5 h-5" />
+                  {isSidebarOpen && <span>Manage Books</span>}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/myprofile"
+                  className={`${!isSidebarOpen ? "tooltip tooltip-right" : ""}`}
+                  data-tip="My Profile"
+                >
+                  <GiProfit className="w-5 h-5" />
+                  {isSidebarOpen && <span>My Profile</span>}
+                </NavLink>
+              </li>
+            </>
+          )}
+        </ul>
+      </div>
 
-                      <span className="is-drawer-close:hidden">My Orders</span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/myprofile"
-                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                      data-tip="My Profile"
-                    >
-                      {/* Settings icon */}
-                      <GiProfit></GiProfit>
-
-                      <span className="is-drawer-close:hidden">My Profile</span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/invoice"
-                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                      data-tip="Invoice"
-                    >
-                      {/* Settings icon */}
-                      <GiProfit></GiProfit>
-
-                      <span className="is-drawer-close:hidden">Invoice</span>
-                    </NavLink>
-                  </li>
-                </>
-              )}
-
-              {role === "librarian" && (
-                <>
-                  <li>
-                    <NavLink
-                      to="/dashboard/addbook"
-                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                      data-tip="Add Book"
-                    >
-                      {/* Settings icon */}
-                      <GiProfit></GiProfit>
-
-                      <span className="is-drawer-close:hidden">Add Book</span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/mybooks"
-                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                      data-tip="My books"
-                    >
-                      {/* Settings icon */}
-                      <GiProfit></GiProfit>
-
-                      <span className="is-drawer-close:hidden">My Books</span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/orders"
-                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                      data-tip="Orders"
-                    >
-                      {/* Settings icon */}
-                      <GiProfit></GiProfit>
-
-                      <span className="is-drawer-close:hidden">Orders</span>
-                    </NavLink>
-                  </li>
-                </>
-              )}
-              {role === "admin" && (
-                <>
-                  <li>
-                    <NavLink
-                      to="/dashboard/allusers"
-                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                      data-tip="All Users"
-                    >
-                      {/* Settings icon */}
-                      <GiProfit></GiProfit>
-
-                      <span className="is-drawer-close:hidden">All Users</span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/managebooks"
-                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                      data-tip="Manage books"
-                    >
-                      {/* Settings icon */}
-                      <GiProfit></GiProfit>
-
-                      <span className="is-drawer-close:hidden">
-                        Manage Books
-                      </span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/myprofile"
-                      className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                      data-tip="My Profile"
-                    >
-                      {/* Settings icon */}
-                      <GiProfit></GiProfit>
-
-                      <span className="is-drawer-close:hidden">My Profile</span>
-                    </NavLink>
-                  </li>
-                </>
-              )}
-            </ul>
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Navbar */}
+        <nav className="navbar bg-base-300 flex justify-between px-4 border-b border-base-300">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              className="btn btn-ghost btn-sm lg:hidden"
+            >
+              <FiMenu size={20} />
+            </button>
+            <span className="text-lg font-semibold">Dashboard</span>
           </div>
+          <div className="flex items-center gap-3">
+            <Theme />
+            <img
+              className="w-10 h-10 rounded-full object-cover"
+              src={user.photoURL}
+              alt="User"
+            />
+          </div>
+        </nav>
+
+        {/* Page Content */}
+        <div className="flex-1 overflow-y-auto p-4 bg-base-100">
+          <Outlet />
         </div>
       </div>
     </div>
@@ -238,130 +202,3 @@ const DashboardLayout = () => {
 };
 
 export default DashboardLayout;
-
-// import React, { useState } from "react";
-// import { FaJediOrder } from "react-icons/fa";
-// import { GiProfit } from "react-icons/gi";
-// import { NavLink, Outlet } from "react-router";
-// import useRole from "../Hooks/useRole";
-// import useAuth from "../Hooks/useAuth";
-
-// const DashboardLayout = () => {
-//   const { role } = useRole();
-//   const { loading } = useAuth();
-//   const [isOpen, setIsOpen] = useState(true); // Sidebar open by default
-
-//   if (loading) {
-//     return <span className="loading loading-spinner loading-sm"></span>;
-//   }
-
-//   return (
-//     <div className="flex h-screen">
-//       {/* Sidebar */}
-//       <div
-//         className={`flex flex-col bg-base-200 transition-all duration-300 ${
-//           isOpen ? "w-64" : "w-16"
-//         }`}
-//       >
-//         <div className="flex items-center justify-between p-4 border-b border-gray-300">
-//           {isOpen && <span className="font-bold text-lg">Dashboard</span>}
-//           <button
-//             onClick={() => setIsOpen(!isOpen)}
-//             className="btn btn-sm btn-ghost"
-//           >
-//             {isOpen ? "❌" : "☰"}
-//           </button>
-//         </div>
-
-//         <ul className="menu flex-1 p-2 overflow-auto">
-//           <li>
-//             <NavLink
-//               to={"/"}
-//               className="flex items-center space-x-2"
-//               title="Home"
-//             >
-//               <svg
-//                 xmlns="http://www.w3.org/2000/svg"
-//                 viewBox="0 0 24 24"
-//                 strokeLinejoin="round"
-//                 strokeLinecap="round"
-//                 strokeWidth="2"
-//                 fill="none"
-//                 stroke="currentColor"
-//                 className="w-5 h-5"
-//               >
-//                 <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
-//                 <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-//               </svg>
-//               {isOpen && <span>Home</span>}
-//             </NavLink>
-//           </li>
-
-//           {/* Role based links */}
-//           {role === "user" && (
-//             <>
-//               <li>
-//                 <NavLink
-//                   to="/dashboard/mywhishlist"
-//                   className="flex items-center space-x-2"
-//                   title="My Wishlist"
-//                 >
-//                   <FaJediOrder />
-//                   {isOpen && <span>My Wishlist</span>}
-//                 </NavLink>
-//               </li>
-//               <li>
-//                 <NavLink
-//                   to="/dashboard/myorders"
-//                   className="flex items-center space-x-2"
-//                   title="My Orders"
-//                 >
-//                   <FaJediOrder />
-//                   {isOpen && <span>My Orders</span>}
-//                 </NavLink>
-//               </li>
-//               <li>
-//                 <NavLink
-//                   to="/dashboard/myprofile"
-//                   className="flex items-center space-x-2"
-//                   title="My Profile"
-//                 >
-//                   <GiProfit />
-//                   {isOpen && <span>My Profile</span>}
-//                 </NavLink>
-//               </li>
-//               <li>
-//                 <NavLink
-//                   to="/dashboard/invoice"
-//                   className="flex items-center space-x-2"
-//                   title="Invoice"
-//                 >
-//                   <GiProfit />
-//                   {isOpen && <span>Invoice</span>}
-//                 </NavLink>
-//               </li>
-//             </>
-//           )}
-//           {/* Similarly add librarian/admin links */}
-//         </ul>
-//       </div>
-
-//       {/* Main content */}
-//       <div className="flex-1 overflow-auto">
-//         <nav className="navbar w-full bg-base-300 p-2">
-//           {/* Navbar content if needed */}
-//           <label
-//             htmlFor="sidebar-toggle"
-//             className="btn btn-square btn-ghost lg:hidden"
-//             onClick={() => setIsOpen(!isOpen)}
-//           >
-//             ☰
-//           </label>
-//         </nav>
-//         <Outlet />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default DashboardLayout;

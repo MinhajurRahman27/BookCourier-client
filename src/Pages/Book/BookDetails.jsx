@@ -11,6 +11,7 @@ const BookDetails = () => {
   const { register: register2, handleSubmit: handleSubmit2 } = useForm();
   const { user } = useAuth();
   const [loading, setLoading] = useState(true);
+  const [showReview, setShowRewiew] = useState(false);
   const axiosSecure = useAxios();
   const { id } = useParams();
 
@@ -33,6 +34,7 @@ const BookDetails = () => {
     queryKey: ["alllreviews"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/reviews/${id}`);
+      setShowRewiew(true);
       return res?.data;
     },
   });
@@ -155,13 +157,17 @@ const BookDetails = () => {
       </div>
 
       <div className="mt-20">
-        <h1 className="text-4xl text-center mb-10">Reviews</h1>
-
-        <div className="grid grid-cols-3 px-50">
-          {reviews?.map((r) => (
-            <UserReview key={r?._id} r={r}></UserReview>
-          ))}
-        </div>
+        {showReview ? (
+          <>
+            <div className="grid md:grid-cols-3 gap-3 px-50">
+              {reviews?.map((r) => (
+                <UserReview key={r?._id} r={r}></UserReview>
+              ))}
+            </div>{" "}
+          </>
+        ) : (
+          " "
+        )}
       </div>
 
       {/* Open the modal using document.getElementById('ID').showModal() method */}

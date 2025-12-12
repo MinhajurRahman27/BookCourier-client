@@ -1,6 +1,5 @@
 import React from "react";
-import looti from "../../assets/Untitledfile.json";
-import Lottie from "lottie-react";
+import { MdOutlineMessage } from "react-icons/md";
 
 const GetInTouch = () => {
   const handleForm = (e) => {
@@ -44,13 +43,8 @@ const GetInTouch = () => {
               </button>
             </form>
           </div>
-          <div>
-            {/* animation */}
-            <Lottie
-              animationData={looti}
-              loop={true}
-              style={{ width: 300, height: 300 }}
-            />
+          <div>{/* animation */}
+            <MdOutlineMessage className="text-[300px] text-orange-500 animate-bounce"/>
           </div>
         </div>
       </div>

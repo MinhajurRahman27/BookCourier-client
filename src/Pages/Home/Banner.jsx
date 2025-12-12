@@ -12,7 +12,7 @@ const Banner = () => {
       autoPlay={true}
       showThumbs={false}
       infiniteLoop={true}
-      interval={2000}
+      interval={3000}
     >
       <div className="  mx-auto flex  items-center">
         <div className="w-[50%] text-start p-15 ">

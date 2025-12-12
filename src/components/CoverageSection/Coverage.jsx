@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -18,24 +18,32 @@ const Coverage = ({ serviceCenter }) => {
         </p>
       </div>
       <div className=" w-full h-[400px]">
-        <MapContainer
-          center={position}
-          zoom={8}
-          scrollWheelZoom={false}
-          className="h-[400px] w-[800px] mx-auto rounded-lg border-2"
+        <Suspense
+          fallback={
+            <div className="h-[400px] w-[800px] mx-auto rounded-lg border-2 bg-gray-100 flex items-center justify-center">
+              <p>Loading map...</p>
+            </div>
+          }
         >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          {center.map((c) => (
-            <Marker position={[c.latitude, c.longitude]}>
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
-            </Marker>
-          ))}
-        </MapContainer>
+          <MapContainer
+            center={position}
+            zoom={8}
+            scrollWheelZoom={false}
+            className="h-[400px] w-[800px] mx-auto rounded-lg border-2"
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            {center.map((c) => (
+              <Marker position={[c.latitude, c.longitude]}>
+                <Popup>
+                  A pretty CSS3 popup. <br /> Easily customizable.
+                </Popup>
+              </Marker>
+            ))}
+          </MapContainer>
+        </Suspense>
       </div>
     </div>
   );

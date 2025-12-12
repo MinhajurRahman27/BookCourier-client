@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useEffect } from "react";
 import useAxios from "../../Hooks/useAxios";
 import useAuth from "../../Hooks/useAuth";
+import { FcCancel, FcPaid } from "react-icons/fc";
 
 const MyOrders = () => {
   // const [searchParams] = useSearchParams();
@@ -61,12 +62,11 @@ const MyOrders = () => {
   };
   return (
     <div>
-      my order : {orders.length}
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="bg-gray-600 text-white">
               <th>Sl.</th>
               <th>Title</th>
               <th>Date</th>
@@ -81,10 +81,19 @@ const MyOrders = () => {
                 <th>{index + 1}</th>
                 <td>{o.bookname}</td>
                 <td>{o.date}</td>
-                <td>{o.status}</td>
-                <td>{o.payment}</td>
+                <td
+                  className={`${
+                    o.status === "cancelled" ? "text-red-700" : ""
+                  }`}
+                >
+                  {o.status}
+                </td>
+                <td className="flex items-center gap-2">
+                  {o.payment}{" "}
+                  {o.payment === "paid" ? <FcPaid className="text-xl" /> : ""}
+                </td>
                 <td>
-                  <button
+                  {/* <button
                     onClick={() => handleCancelbtn(o._id)}
                     className={`"btn" ${
                       o.status === "cancelled" || o.payment === "paid"
@@ -101,6 +110,26 @@ const MyOrders = () => {
                         ? "hidden"
                         : "inline-block btn"
                     } `}
+                  >
+                    Pay Now
+                  </button> */}
+                  <button
+                    onClick={() => handleCancelbtn(o._id)}
+                    className={`${
+                      o.status === "cancelled" || o.payment === "paid"
+                        ? "hidden"
+                        : "inline-block px-6 py-2 bg-white text-gray-800 border-2 border-gray-300 rounded-md hover:bg-gray-100 font-medium transition-all cursor-pointer mr-2"
+                    }`}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={() => handlePayment(o)}
+                    className={`${
+                      o.status === "cancelled" || o.payment === "paid"
+                        ? "hidden"
+                        : "inline-block px-6 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 font-medium transition-all shadow-sm cursor-pointer"
+                    }`}
                   >
                     Pay Now
                   </button>

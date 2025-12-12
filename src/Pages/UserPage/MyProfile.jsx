@@ -12,8 +12,6 @@ const MyProfile = () => {
   }
 
   const handleUpdate = (data) => {
-    
-
     const updateUserInfo = {
       displayName: data.name,
       photoURL: data.photo,
@@ -30,16 +28,16 @@ const MyProfile = () => {
       });
   };
   return (
-    <div className="w-7/12 h-[400px] mx-auto border">
-      <h1 className="font-semibold text-4xl ">My Profile</h1>
-      <div className="flex gap-4 items-start border mt-5 p-10">
-        <div className="border">
-          <img className="rounded w-40" src={image} alt="Users photo" />
+    <div className="w-7/12 h-[400px] mx-auto ">
+      <h1 className="font-semibold text-3xl mb-4">My Profile</h1>
+      <div className="flex  items-center justify-around   bg-orange-500 rounded-2xl p-10">
+        <div className="  text-white font-semibold  border-r-2 border-gray-200 pr-15">
+          <img className="rounded-2xl w-40" src={image} alt="Users photo" />
           <h1 className="text-[15px]">{nameState}</h1>
           <h1 className="text-[15px]">{user.email}</h1>
         </div>
-        <div>
-          <h1 className="text-primary text-xl font-semibold">Update Info</h1>
+        <div className=" w-[300px]">
+          <h1 className=" text-2xl font-semibold text-white">Update Info</h1>
 
           <form onSubmit={handleSubmit(handleUpdate)}>
             <fieldset className="fieldset">
@@ -60,7 +58,7 @@ const MyProfile = () => {
                 {...register("photo")}
               />
 
-              <button className="btn btn-primary mt-4">Update</button>
+              <button className="btn bg-gray-500 border-0 text-white mt-4">Update</button>
             </fieldset>
           </form>
         </div>

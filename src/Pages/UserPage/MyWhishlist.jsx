@@ -19,7 +19,7 @@ const MyWhishlist = () => {
   console.log(whishlist);
   return (
     <div>
-      <div className="grid grid-cols-4">
+      <div className="grid grid-cols-3">
         {whishlist.map((book) => (
           <WishlistCard key={book._id} book={book}></WishlistCard>
         ))}
