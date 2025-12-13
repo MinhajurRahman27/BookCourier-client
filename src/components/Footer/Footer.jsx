@@ -6,7 +6,7 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="footer border-t-2 border-gray-200 my-40 sm:footer-horizontal bg-base-200 text-base-content p-10">
+    <footer className="footer border-t border-gray-200 shadow-lg sm:footer-horizontal   p-10">
       <aside>
         <div className="flex items-end font-semibold">
           <GrBook className="text-5xl text-orange-500" />

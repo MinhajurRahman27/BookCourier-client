@@ -10,7 +10,7 @@ const WhyChooseBookCourier = () => {
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-5xl font-semibold text-center md:text-5xl  mb-4">
+          <h2 className="text-2xl font-semibold text-center md:text-5xl  mb-4">
             Why Choose Book Courier?
           </h2>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
@@ -19,9 +19,9 @@ const WhyChooseBookCourier = () => {
           </p>
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex flex-col lg:flex-row gap-2 mt-20">
           <div className="rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-orange-100 hover:border-orange-300">
-            <FaShippingFast className="text-5xl  rounded-4xl bg-orange-500 mb-7 p-1" />
+            <FaShippingFast className="text-5xl  rounded-4xl bg-orange-500 mb-7 p-2  text-white" />
 
             <h1 className="text-xl font-bold  mb-3">Lightning Fast Delivery</h1>
             <p className="text-gray-500 leading-relaxed">
@@ -30,7 +30,7 @@ const WhyChooseBookCourier = () => {
             </p>
           </div>
           <div className="rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-orange-100 hover:border-orange-300">
-            <FaFaceGrinStars className="text-5xl  rounded-4xl bg-orange-500 mb-7 p-1" />
+            <FaFaceGrinStars className="text-5xl  rounded-4xl bg-orange-500 mb-7 p-2  text-white" />
 
             <h1 className="text-xl font-bold  mb-3">Unbeatable Prices</h1>
             <p className="text-gray-500 leading-relaxed">
@@ -39,7 +39,7 @@ const WhyChooseBookCourier = () => {
             </p>
           </div>
           <div className="rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-orange-100 hover:border-orange-300">
-            <MdCollectionsBookmark className="text-5xl  rounded-4xl bg-orange-500 mb-7 p-1" />
+            <MdCollectionsBookmark className="text-5xl  rounded-4xl bg-orange-500 mb-7 p-2  text-white" />
 
             <h1 className="text-xl font-bold mb-3">Vast Collection</h1>
             <p className="text-gray-500 leading-relaxed">
@@ -48,7 +48,7 @@ const WhyChooseBookCourier = () => {
             </p>
           </div>
           <div className="rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-orange-100 hover:border-orange-300">
-            <SiAegisauthenticator className="text-5xl  rounded-4xl bg-orange-500 mb-7 p-1" />
+            <SiAegisauthenticator className="text-5xl  rounded-4xl bg-orange-500 mb-7 p-2  text-white" />
 
             <h1 className="text-xl font-bold  mb-3">100% Authentic Books</h1>
             <p className="text-gray-500 leading-relaxed">

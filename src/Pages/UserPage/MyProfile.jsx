@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import { useForm } from "react-hook-form";
+import { toast, ToastContainer } from "react-toastify";
 
 const MyProfile = () => {
   const { register, handleSubmit } = useForm();
@@ -19,7 +20,7 @@ const MyProfile = () => {
 
     updateUser(updateUserInfo)
       .then(() => {
-        // alert("user updated successfully");
+        toast("Profile updated");
         setNameState(data.name);
         setImage(data.photo);
       })
@@ -28,17 +29,21 @@ const MyProfile = () => {
       });
   };
   return (
-    <div className="w-[700px] h-[400px] mx-auto ">
-      <h1 className="font-semibold text-3xl mb-4">My Profile</h1>
-      <div className="flex  items-center justify-around   bg-orange-500 rounded-2xl p-10">
-        <div className="  text-white font-semibold   border-gray-200 pr-0 mr-0">
-          <img className="rounded-2xl w-40" src={image} alt="Users photo" />
+    <div className="md:w-[700px] md:h-[400px] mx-auto overflow-x-auto">
+      <h1 className="font-semibold text-3xl mb-4 ">My Profile</h1>
+      <div className="flex flex-col md:flex-row items-center justify-around   bg-orange-500 rounded-2xl p-10">
+        <div className="  text-white font-semibold   border-gray-200 pr-0 mr-0 ">
+          <img
+            className="rounded-2xl object-cover h-40 w-40"
+            src={image}
+            alt="Users photo"
+          />
           <div className="text-wrap w-[200px] ">
             <h1 className="text-[15px]">{nameState}</h1>
             <h1 className="text-[15px] break-words">{user.email}</h1>
           </div>
         </div>
-        <div className=" w-[300px]">
+        <div className=" md:w-[300px]">
           <h1 className=" text-2xl font-semibold text-white">Update Info</h1>
 
           <form onSubmit={handleSubmit(handleUpdate)}>
@@ -67,6 +72,7 @@ const MyProfile = () => {
           </form>
         </div>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import useAxios from "../../Hooks/useAxios";
 import BookCard from "../../components/BookCard.jsx/BookCard";
 import { FaSort } from "react-icons/fa";
+import Spinner from "../../components/Spinner";
 
 const Books = () => {
   const [search, setSearch] = useState("");
@@ -20,7 +21,7 @@ const Books = () => {
     },
   });
 
-  console.log(books)
+  console.log(books);
 
   // Sync fetched books → local state
   // useEffect(() => {
@@ -36,8 +37,8 @@ const Books = () => {
   };
 
   return (
-    <div>
-      <div className="flex items-center justify-between px-10 pt-5">
+    <div className="mb-20">
+      <div className="flex gap-3 items-center justify-between px-10 pt-5 mb-10 md:mb-0">
         <label className="input shadow shadow-gray-600 rounded-2xl border-0">
           <input
             type="search"
@@ -65,10 +66,14 @@ const Books = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-4">
-        {isLoading
-          ? "Loading"
-          : allbooks.map((book, idx) => <BookCard key={idx} book={book} />)}
+      <div className="grid justify-items-center sm:grid-cols-2 lg:grid-cols-4">
+        {isLoading ? (
+          <div className="col-span-4">
+            <Spinner></Spinner>
+          </div>
+        ) : (
+          allbooks.map((book, idx) => <BookCard key={idx} book={book} />)
+        )}
       </div>
     </div>
   );

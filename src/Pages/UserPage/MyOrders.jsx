@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import useAxios from "../../Hooks/useAxios";
 import useAuth from "../../Hooks/useAuth";
 import { FcCancel, FcPaid } from "react-icons/fc";
+import { toast, ToastContainer } from "react-toastify";
 
 const MyOrders = () => {
   // const [searchParams] = useSearchParams();
@@ -53,7 +54,7 @@ const MyOrders = () => {
         if (res.data.modifiedCount) {
           refetch();
 
-          alert("modified");
+          toast("Order cancelled");
         }
       })
       .catch((err) => {
@@ -63,7 +64,7 @@ const MyOrders = () => {
   return (
     <div>
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table overflow-x-auto">
           {/* head */}
           <thead>
             <tr className="bg-gray-600 text-white">
@@ -88,31 +89,15 @@ const MyOrders = () => {
                 >
                   {o.status}
                 </td>
-                <td className="flex items-center gap-2">
+                <td className="">
                   {o.payment}{" "}
-                  {o.payment === "paid" ? <FcPaid className="text-xl" /> : ""}
+                  {o.payment === "paid" ? (
+                    <FcPaid className="text-xl inline ml-1" />
+                  ) : (
+                    ""
+                  )}
                 </td>
-                <td>
-                  {/* <button
-                    onClick={() => handleCancelbtn(o._id)}
-                    className={`"btn" ${
-                      o.status === "cancelled" || o.payment === "paid"
-                        ? "hidden"
-                        : "inline-block btn"
-                    }`}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={() => handlePayment(o)}
-                    className={`"btn" ${
-                      o.status === "cancelled" || o.payment === "paid"
-                        ? "hidden"
-                        : "inline-block btn"
-                    } `}
-                  >
-                    Pay Now
-                  </button> */}
+                <td className="flex">
                   <button
                     onClick={() => handleCancelbtn(o._id)}
                     className={`${
@@ -139,6 +124,7 @@ const MyOrders = () => {
           </tbody>
         </table>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };

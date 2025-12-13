@@ -84,7 +84,7 @@ const UserDashBoard = () => {
 
   return (
     <div>
-      <div className="flex justify-between ">
+      <div className="flex flex-col md:flex-row justify-between ">
         <BarChart
           style={{
             width: "100%",
@@ -135,7 +135,7 @@ const UserDashBoard = () => {
           <Tooltip></Tooltip>
         </PieChart>
       </div>
-      <div className="flex justify-between">
+      <div className="flex flex-col md:flex-row justify-between items-center">
         <AreaChart
           style={{
             width: "70%",

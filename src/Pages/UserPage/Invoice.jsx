@@ -19,7 +19,7 @@ const Invoice = () => {
   return (
     <div>
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table overflow-x-auto">
           {/* head */}
           <thead>
             <tr className="bg-gray-600 text-white ">

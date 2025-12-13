@@ -6,16 +6,16 @@ const BookCard = ({ book }) => {
   const { _id, bookname, bookimage, author, price } = book;
 
   return (
-    <div className="card bg-base-100  sm:w-70 shadow-2xl   mb-10  md:mb-0  md:m-10 p-5 ">
+    <div className="card bg-base-100 w-70   sm:w-70 md:w-70 md:shadow-2xl   mb-10  md:mb-0  md:m-10 p-5 ">
       <figure className="">
         <img
           src={bookimage}
           alt="Shoes"
-          className="rounded-xl  h-[300px]  w-full object-fit transition-transform duration-500   hover:scale-105"
+          className="rounded-xl  h-[300px]  w-full object-cover transition-transform duration-500   hover:scale-105"
         />
       </figure>
       <div className="card-body p-0 mt-3">
-        <h2 className=" font-semibold text-2xl ">{bookname}</h2>
+        <h2 className=" font-semibold text-xl sm:text-2xl ">{bookname}</h2>
         <p className=" font-semibold text-gray-600">{author}</p>
         <div className="flex items-center justify-between mb-4">
           <span className="text-2xl font-semibold">${price}</span>

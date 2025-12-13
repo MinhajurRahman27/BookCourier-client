@@ -4,13 +4,15 @@ import useAxios from "../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router";
 import { MdOutlinePublishedWithChanges, MdUnpublished } from "react-icons/md";
+import { toast, ToastContainer } from "react-toastify";
+import Spinner from "../../components/Spinner";
 
 const ManageBook = () => {
   const axiosSecure = useAxios();
   const { refetch, data: books = [] } = useQuery({
     queryKey: ["books"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/allbooks");
+      const res = await axiosSecure.get("/allbooks/admin");
       return res.data;
     },
   });
@@ -31,20 +33,17 @@ const ManageBook = () => {
     axiosSecure.patch(`/books-update/${id}`, status).then((res) => {
       if (res.data.modifiedCount) {
         refetch();
-        alert(`book modified to ${status.status}`);
+        toast(`book modified to ${status.status}`);
       }
     });
   };
 
-  if (loading) {
-    return <span class="loading loading-spinner loading-sm"></span>;
-  }
   const handleUnPublish = (id) => {
     const status = { status: "Unpublished" };
     axiosSecure.patch(`/books-update/${id}`, status).then((res) => {
       if (res.data.modifiedCount) {
         refetch();
-        alert(`book modified to ${status.status}`);
+        toast(`book modified to ${status.status}`);
       }
     });
   };
@@ -52,12 +51,12 @@ const ManageBook = () => {
     axiosSecure.delete(`/delete-book/${id}`).then((res) => {
       if (res.data.deletedCount) {
         refetch();
-        alert("deleted");
+        toast("deleted");
 
         try {
           axiosSecure.delete(`/delete-order/${id}`).then((res) => {
             if (res.data.deletedCount) {
-              alert("deleted order");
+              toast("order deleted");
             }
           });
         } catch (err) {
@@ -67,11 +66,14 @@ const ManageBook = () => {
     });
   };
 
+  if (loading) {
+    return <Spinner></Spinner>;
+  }
+
   return (
     <div>
-      manage books
       <div className="overflow-x-auto p-10 px-20">
-        <table className="table">
+        <table className="table overflow-x-auto">
           {/* head */}
           <thead>
             <tr className="bg-gray-600 text-white">
@@ -139,6 +141,7 @@ const ManageBook = () => {
           </tbody>
         </table>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };

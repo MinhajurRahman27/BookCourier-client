@@ -2,8 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAxios from "../../Hooks/useAxios";
 import useAuth from "../../Hooks/useAuth";
-import { MdAdminPanelSettings } from "react-icons/md";
-import { BiBookAdd } from "react-icons/bi";
+
+import { toast, ToastContainer } from "react-toastify";
+import Spinner from "../../components/Spinner";
 
 const AllUser = () => {
   const { user, loading } = useAuth();
@@ -19,7 +20,7 @@ const AllUser = () => {
   // console.log(users);
 
   if (loading) {
-    return <span className="loading loading-spinner loading-sm"></span>;
+    return <Spinner></Spinner>;
   }
 
   const makeAdmin = (u) => {
@@ -30,7 +31,7 @@ const AllUser = () => {
     axiosSecure.patch(`/update-user/${u._id}`, update).then((res) => {
       if (res.data.modifiedCount) {
         refetch();
-        alert("updated as admin");
+        toast("updated as admin");
       }
     });
   };
@@ -43,7 +44,7 @@ const AllUser = () => {
     axiosSecure.patch(`/update-user/${u._id}`, update).then((res) => {
       if (res.data.modifiedCount) {
         refetch();
-        alert("updated as librarian");
+        toast("updated as librarian");
       }
     });
   };
@@ -51,7 +52,7 @@ const AllUser = () => {
   return (
     <div>
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table overflow-x-auto">
           {/* head */}
           <thead>
             <tr className="bg-gray-600 text-white">
@@ -82,11 +83,6 @@ const AllUser = () => {
                 <td className="font-semibold ">
                   <div className="bg-blue-950 text-white p-1 border-gray-500  rounded">
                     {u.role}
-                    {u.role === "admin" ? (
-                      <MdAdminPanelSettings className="text-green-600 text-xl inline" />
-                    ) : (
-                      ""
-                    )}
                   </div>
                 </td>
                 <th className="flex">
@@ -108,6 +104,7 @@ const AllUser = () => {
           </tbody>
         </table>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };

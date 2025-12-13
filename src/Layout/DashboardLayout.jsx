@@ -17,6 +17,7 @@ import { TbHomeFilled } from "react-icons/tb";
 import { RiShoppingBag2Fill } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 import { MdLibraryAdd } from "react-icons/md";
+import Spinner from "../components/Spinner";
 
 const DashboardLayout = () => {
   const { role } = useRole();
@@ -24,11 +25,7 @@ const DashboardLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <span className="loading loading-spinner loading-lg"></span>
-      </div>
-    );
+    return <Spinner></Spinner>;
   }
 
   const handleSignOut = () => {
@@ -38,7 +35,7 @@ const DashboardLayout = () => {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-screen overflow-hidden ">
       {/* Sidebar */}
       <div
         className={`bg-base-200 transition-all duration-300 flex flex-col ${
@@ -46,7 +43,7 @@ const DashboardLayout = () => {
         }`}
       >
         {/* Sidebar Header with Logo */}
-        <div className="p-4 border-b border-base-300 flex items-center justify-between ">
+        <div className="p-4 border-b border-base-300 flex items-center justify-between">
           <Link to={"/"}>
             <div className="flex items-center gap-2">
               <GrBook className="text-3xl text-orange-500 flex-shrink-0" />
@@ -182,12 +179,12 @@ const DashboardLayout = () => {
         {/* Navbar */}
         <nav className="navbar bg-base-300 flex justify-between px-4 border-b border-base-300">
           <div className="flex items-center gap-2">
-            <button
+            {/* <button
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
               className="btn btn-ghost btn-sm lg:hidden"
             >
               <FiMenu size={20} />
-            </button>
+            </button> */}
             <span className="text-lg font-semibold">Dashboard</span>
           </div>
           <div className="flex items-center gap-3">

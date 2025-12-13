@@ -3,6 +3,7 @@ import React from "react";
 import useAxios from "../../Hooks/useAxios";
 import useAuth from "../../Hooks/useAuth";
 import { MdPaid } from "react-icons/md";
+import { toast, ToastContainer } from "react-toastify";
 
 const Orders = () => {
   const { user } = useAuth();
@@ -26,7 +27,7 @@ const Orders = () => {
         if (res.data.modifiedCount) {
           refetch();
 
-          alert("modified");
+          toast("Order cancelled");
         }
       })
       .catch((err) => {
@@ -42,7 +43,7 @@ const Orders = () => {
         if (res.data.modifiedCount) {
           refetch();
 
-          alert("modified");
+          toast("Shipped");
         }
       })
       .catch((err) => {
@@ -58,7 +59,7 @@ const Orders = () => {
         if (res.data.modifiedCount) {
           refetch();
 
-          alert("modified");
+          toast("Delivered");
         }
       })
       .catch((err) => {
@@ -66,9 +67,6 @@ const Orders = () => {
       });
   };
 
-  // const cancelBtn =(id)=>{
-  //   const
-  // }
   return (
     <div>
       <div className="overflow-x-auto">
@@ -90,15 +88,24 @@ const Orders = () => {
               <tr key={index}>
                 <th>{index + 1}</th>
                 <td className="font-semibold">{o.bookname}</td>
-                <td className="font-semibold text-gray-600">{o.payment}{o.payment === 'paid'? <MdPaid className="inline"/> : ''}</td>
+                <td className="font-semibold text-gray-600">
+                  {o.payment}
+                  {o.payment === "paid" ? <MdPaid className="inline" /> : ""}
+                </td>
                 <td className="font-semibold">{o.status}</td>
                 <td className="font-semibold">{o.date}</td>
                 <td className="">
                   {/* <button className="btn bg-gray-400 text-white">pending</button> */}
-                  <button className="btn bg-gray-400 text-white" onClick={() => handleShipped(o._id)}>
+                  <button
+                    className="btn bg-gray-400 text-white"
+                    onClick={() => handleShipped(o._id)}
+                  >
                     shipped
                   </button>
-                  <button className="btn bg-gray-400 text-white" onClick={() => handleDeliver(o._id)}>
+                  <button
+                    className="btn bg-gray-400 text-white"
+                    onClick={() => handleDeliver(o._id)}
+                  >
                     delivered
                   </button>
                 </td>
@@ -115,6 +122,7 @@ const Orders = () => {
           </tbody>
         </table>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };

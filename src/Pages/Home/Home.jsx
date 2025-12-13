@@ -13,12 +13,24 @@ const Home = () => {
 
   return (
     <div>
-      <Banner></Banner>
-      <LatestBook></LatestBook>
-      <Coverage serviceCenter={serviceCenter}></Coverage>
-      <WhyChooseBookCourier></WhyChooseBookCourier>
-      <ReviewCard></ReviewCard>
-      <GetInTouch></GetInTouch>
+      <section>
+        <Banner></Banner>
+      </section>
+      <section>
+        <LatestBook></LatestBook>
+      </section>
+      <section>
+        <Coverage serviceCenter={serviceCenter}></Coverage>
+      </section>
+      <section>
+        <WhyChooseBookCourier></WhyChooseBookCourier>
+      </section>
+      <section>
+        <ReviewCard></ReviewCard>
+      </section>
+      <section>
+        <GetInTouch></GetInTouch>
+      </section>
     </div>
   );
 };

@@ -27,7 +27,7 @@ const AdminDashboard = () => {
   const { data: books = [] } = useQuery({
     queryKey: ["books"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/allbooks");
+      const res = await axiosSecure.get("/allbooks/admin");
       return res.data;
     },
   });
@@ -79,7 +79,7 @@ const AdminDashboard = () => {
   // console.log("books:", books.length);
   return (
     <div>
-      <div className=" flex justify-center gap-5 mb-20">
+      <div className=" grid grid-cols-2 md:grid-cols-4 justify-center gap-5 mb-20">
         <div className="p-5  shadow-xl rounded-xl ">
           <FaUserFriends className="text-xl" />
           <h1 className="text-xl">Total User : {users.length}</h1>
@@ -97,7 +97,7 @@ const AdminDashboard = () => {
           <h1 className="text-xl">Total Book : {books.length}</h1>
         </div>
       </div>
-      <div className="flex items-center  shadow-xl">
+      <div className="flex  flex-col-reverse md:flex-row items-center  shadow-xl">
         <BarChart
           style={{
             width: "100%",
@@ -147,7 +147,7 @@ const AdminDashboard = () => {
           <Tooltip></Tooltip>
         </PieChart>
       </div>
-      <div className="flex items-center  shadow-xl my-20">
+      <div className="flex flex-col-reverse md:flex-row items-center  shadow-xl my-20">
         <PieChart
           style={{
             width: "100%",

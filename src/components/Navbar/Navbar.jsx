@@ -13,25 +13,38 @@ const Navbar = () => {
   };
   const links = (
     <>
-      <NavLink className="btn" to="/">
+      <NavLink
+        className="btn border-0 hover:border-b-gray-500 hover:border-b-2"
+        to="/"
+      >
         <li>Home</li>
       </NavLink>
-      <NavLink className="btn" to="/books">
+      <NavLink
+        className="btn border-0 hover:border-b-gray-500 hover:border-b-2"
+        to="/books"
+      >
         <li>Books</li>
       </NavLink>
-      <NavLink className="btn" to="/dashboard">
+      <NavLink
+        className="btn border-0 hover:border-b-gray-500 hover:border-b-2"
+        to="/dashboard"
+      >
         <li>Dashboard</li>
       </NavLink>
     </>
   );
   return (
     <div className="navbar bg-base-100 shadow-sm">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+      <div className="navbar-start ">
+        <div className="dropdown ">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost lg:hidden  p-2 md:p-0"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="h-5 w-5  "
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -55,8 +68,8 @@ const Navbar = () => {
         {/* <GrBook />
         <a className="btn-ghost text-xl">BookCourier</a> */}
         <div className="flex items-end font-semibold">
-          <GrBook className="text-4xl text-orange-500" />
-          <a className="btn-ghost text-2xl">BookCourier</a>
+          <GrBook className="text-3xl md:text-4xl text-orange-500" />
+          <a className="btn-ghost md:text-2xl">BookCourier</a>
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -64,16 +77,24 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <Theme></Theme>
-        <div className="m-2 w-5 h-5 rounded-[50%] ">
-          <img className="w-5 h-5 rounded-lg" src={user?.photoURL} alt="" />
-        </div>
+        {user && (
+          <div className="m-2 w-5 h-5 rounded-[50%] border-none">
+            <img className="w-5 h-5 rounded-lg" src={user?.photoURL} alt="" />
+          </div>
+        )}
 
         {user ? (
-          <button className="btn" onClick={handleSignOut}>
-            LogOut
+          <button
+            className="btn bg-orange-500 text-white  rounded-3xl w-[100px]"
+            onClick={handleSignOut}
+          >
+            Logout
           </button>
         ) : (
-          <Link to="/login" className="btn">
+          <Link
+            to="/login"
+            className="btn rounded-3xl bg-orange-500 text-white"
+          >
             Login/Register
           </Link>
         )}

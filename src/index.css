@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 @plugin "daisyui";
@@ -9,5 +10,10 @@
 }
 
 html, body, #root {
-height: 100%
+height: 100%;
+font-family: "Merriweather Sans", sans-serif;
+}
+
+a.active {
+  border-bottom: 2px solid rgb(255, 102, 0);
 }

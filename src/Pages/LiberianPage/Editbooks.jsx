@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router";
 import useAxios from "../../Hooks/useAxios";
 import { useForm } from "react-hook-form";
+import { toast, ToastContainer } from "react-toastify";
 
 const Editbooks = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -31,7 +32,7 @@ const Editbooks = () => {
     axiosSecure.patch(`/books-edit/${id}`, finalData).then((res) => {
       if (res.data.modifiedCount) {
         reset();
-        alert("modified");
+        toast("Book modified");
 
         // console.log(res.data);
       }
@@ -107,6 +108,7 @@ const Editbooks = () => {
           <img className="w-55 rounded-2xl" src={book.bookimage} alt="" />
         </div>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };

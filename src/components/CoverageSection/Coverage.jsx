@@ -9,7 +9,7 @@ const Coverage = ({ serviceCenter }) => {
   return (
     <div className="mb-10">
       <div className="mb-10">
-        <h1 className="text-5xl font-semibold text-center  mb-3">
+        <h1 className="text-2xl md:text-5xl font-semibold text-center  mb-3">
           We Deliver Nationwide
         </h1>
         <p className="text-lg text-gray-400 text-center">
@@ -17,33 +17,25 @@ const Coverage = ({ serviceCenter }) => {
           arrive faster than ever
         </p>
       </div>
-      <div className=" w-full h-[400px]">
-        <Suspense
-          fallback={
-            <div className="h-[400px] w-[800px] mx-auto rounded-lg border-2 bg-gray-100 flex items-center justify-center">
-              <p>Loading map...</p>
-            </div>
-          }
+      <div className=" w-full h-[400px] mt-20">
+        <MapContainer
+          center={position}
+          zoom={8}
+          scrollWheelZoom={false}
+          className="h-[200px] w-[300px] sm:h-[300px] sm:w-[600px] md:h-[400px] md:w-[800px] mx-auto rounded-lg  mt-10"
         >
-          <MapContainer
-            center={position}
-            zoom={8}
-            scrollWheelZoom={false}
-            className="h-[400px] w-[800px] mx-auto rounded-lg border-2"
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            {center.map((c) => (
-              <Marker position={[c.latitude, c.longitude]}>
-                <Popup>
-                  A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-              </Marker>
-            ))}
-          </MapContainer>
-        </Suspense>
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {center.map((c) => (
+            <Marker position={[c.latitude, c.longitude]}>
+              <Popup>
+                A pretty CSS3 popup. <br /> Easily customizable.
+              </Popup>
+            </Marker>
+          ))}
+        </MapContainer>
       </div>
     </div>
   );

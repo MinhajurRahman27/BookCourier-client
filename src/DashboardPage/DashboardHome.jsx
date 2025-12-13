@@ -4,12 +4,13 @@ import UserDashBoard from "./UserDashBoard";
 import AdminDashboard from "./AdminDashboard";
 import LibrarianDashboard from "./LibrarianDashboard";
 import { Link } from "react-router";
+import Spinner from "../components/Spinner";
 
 const DashboardHome = () => {
   const { role, roleLoading } = useRole();
 
   if (roleLoading) {
-    return <span className="loading loading-spinner text-secondary"></span>;
+    return <Spinner></Spinner>;
   }
 
   if (role === "user") {

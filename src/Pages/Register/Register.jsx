@@ -21,7 +21,6 @@ const Register = () => {
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
   const formsubmit = (data) => {
-    
     const email = data.email;
     const password = data.pass;
     const photoUrl = data.photo;
@@ -30,7 +29,7 @@ const Register = () => {
     createUser(email, password)
       .then((res) => {
         navigate(location.state || "/");
-      
+
         reset();
         alert("registation successfull");
 
@@ -71,15 +70,12 @@ const Register = () => {
 
   const googlesubmit = () => {
     signwithGoogle().then((res) => {
-      
       navigate(location.state || "/");
       const userInfo = {
         email: res.user.email,
         displayName: res.user.displayName,
         photoURL: res.user.photoURL,
       };
-
-    
 
       //sending user to backend
 
@@ -104,30 +100,32 @@ const Register = () => {
     });
   };
   return (
-    <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-      <div className="card-body">
-        <h1 className="text-5xl font-bold">Register</h1>
-        <form onSubmit={handleSubmit(formsubmit)}>
-          <fieldset className="fieldset">
-            <label className="label">Name</label>
-            <input
-              type="text"
-              className="input"
-              placeholder="Name"
-              {...register("name")}
-              required
-            />
-            <label className="label">Image</label>
-            <input
-              type="text"
-              {...register("photo", { required: true })}
-              className="input"
-              placeholder="your photo URL"
-            />
-            {errors.photo?.type === "required" && (
-              <p className="text-red-500">photo is required</p>
-            )}
-            {/* <input
+    <div className="py-10 md:p-10 flex items-center">
+      <div className="  flex w-full justify-center">
+        <div className="card sm:w-[500px] w-full  bg-orange-500 sm:rounded-2xl sm:p-5">
+          <div className="card-body  ">
+            <h1 className="text-5xl font-semibold text-white">Register</h1>
+            <form onSubmit={handleSubmit(formsubmit)}>
+              <fieldset className="fieldset">
+                <label className="label font-semibold text-white">Name</label>
+                <input
+                  type="text"
+                  className="input rounded-2xl w-full"
+                  placeholder="Name"
+                  {...register("name")}
+                  required
+                />
+                <label className="label font-semibold text-white">Image</label>
+                <input
+                  type="text"
+                  {...register("photo", { required: true })}
+                  className="input rounded-2xl w-full"
+                  placeholder="your photo URL"
+                />
+                {errors.photo?.type === "required" && (
+                  <p className="text-red-500">photo is required</p>
+                )}
+                {/* <input
               type="file"
               {...register("photo", { required: true })}
               className="file-input"
@@ -136,84 +134,90 @@ const Register = () => {
             {errors.photo?.type === "required" && (
               <p className="text-red-500">photo is required</p>
             )} */}
-            {/* <input
+                {/* <input
               type="file"
               name="photo"
               class="file-input file-input-bordered file-input-primary w-full max-w-xs"
             /> */}
-            <label className="label">Email</label>
-            <input
-              type="email"
-              className="input"
-              placeholder="Email"
-              {...register("email")}
-              required
-            />
-            <label className="label">Password</label>
-            <input
-              type="password"
-              className="input"
-              required
-              placeholder="Password"
-              {...register("pass", {
-                pattern: {
-                  value: passwordRegex,
-                  message:
-                    "Password must be 6+ chars, include uppercase, lowercase, number & special char",
-                },
-              })}
-            />
+                <label className="label font-semibold text-white">Email</label>
+                <input
+                  type="email"
+                  className="input rounded-2xl w-full"
+                  placeholder="Email"
+                  {...register("email")}
+                  required
+                />
+                <label className="label font-semibold text-white">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  className="input rounded-2xl w-full"
+                  required
+                  placeholder="Password"
+                  {...register("pass", {
+                    pattern: {
+                      value: passwordRegex,
+                      message:
+                        "Password must be 6+ chars, include uppercase, lowercase, number & special char",
+                    },
+                  })}
+                />
 
-            <div>
-              <a className="link link-hover">Forgot password?</a>
-            </div>
-            <button className="btn btn-neutral mt-4">Login</button>
-          </fieldset>
-          {errors.pass && <p className="text-red-500">{errors.pass.message}</p>}
-          <p>
-            Already have an account!
-            <Link
-              state={location.state}
-              className="text-blue-500 font-semibold"
-              to="/login"
+                
+                <button className="btn rounded-2xl w-full btn-neutral mt-4 border-none">
+                 Register
+                </button>
+              </fieldset>
+              {errors.pass && (
+                <p className="text-red-500">{errors.pass.message}</p>
+              )}
+            </form>
+            <button
+              onClick={googlesubmit}
+              className="btn rounded-2xl w-full bg-white text-black border-none"
             >
-              Login
-            </Link>
-          </p>
-        </form>
-        <button
-          onClick={googlesubmit}
-          className="btn bg-white text-black border-[#e5e5e5]"
-        >
-          <svg
-            aria-label="Google logo"
-            width="16"
-            height="16"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"
-          >
-            <g>
-              <path d="m0 0H512V512H0" fill="#fff"></path>
-              <path
-                fill="#34a853"
-                d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
-              ></path>
-              <path
-                fill="#4285f4"
-                d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
-              ></path>
-              <path
-                fill="#fbbc02"
-                d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
-              ></path>
-              <path
-                fill="#ea4335"
-                d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
-              ></path>
-            </g>
-          </svg>
-          Login with Google
-        </button>
+              <svg
+                aria-label="Google logo"
+                width="16"
+                height="16"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <g>
+                  <path d="m0 0H512V512H0" fill="#fff"></path>
+                  <path
+                    fill="#34a853"
+                    d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
+                  ></path>
+                  <path
+                    fill="#4285f4"
+                    d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
+                  ></path>
+                  <path
+                    fill="#fbbc02"
+                    d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
+                  ></path>
+                  <path
+                    fill="#ea4335"
+                    d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
+                  ></path>
+                </g>
+              </svg>
+              Login with Google
+            </button>
+            <p className="font-semibold text-white text-center">
+              Already have an account!
+              <Link
+                state={location.state}
+                className="text-blue-700 ml-1 font-semibold"
+                to="/login"
+              >
+                Login
+              </Link>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

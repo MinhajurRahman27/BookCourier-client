@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import useAxios from "../../Hooks/useAxios";
 import useAuth from "../../Hooks/useAuth";
+import { toast, ToastContainer } from "react-toastify";
 
 const AddBooks = () => {
   const { user } = useAuth();
@@ -15,7 +16,7 @@ const AddBooks = () => {
       .then((res) => {
         if (res.data.insertedId) {
           reset();
-          alert("book added successfully");
+          toast("book added successfully");
         }
       })
       .catch((error) => {
@@ -84,6 +85,7 @@ const AddBooks = () => {
           </fieldset>
         </form>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };
