@@ -72,7 +72,7 @@ const ManageBook = () => {
 
   return (
     <div>
-      <div className="overflow-x-auto p-10 px-20">
+      <div className="overflow-x-auto md:p-10 md:px-20">
         <table className="table overflow-x-auto">
           {/* head */}
           <thead>
@@ -106,9 +106,9 @@ const ManageBook = () => {
                   <div className="font-bold text-gray-500">
                     {u.status}{" "}
                     {u.status === "Unpublished" ? (
-                      <MdUnpublished className="inline text-red-400  font-bold text-[18px]" />
+                      <MdUnpublished className="md:inline text-red-400 hidden font-bold text-[18px]" />
                     ) : (
-                      <MdOutlinePublishedWithChanges className="inline text-green-600 text-[18px]" />
+                      <MdOutlinePublishedWithChanges className="md:inline text-green-600 text-[18px] hidden" />
                     )}
                   </div>
                 </td>

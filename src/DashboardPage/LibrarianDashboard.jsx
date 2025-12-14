@@ -111,8 +111,10 @@ const LibrarianDashboard = () => {
             aspectRatio: 2,
           }}
           responsive
+           className="hidden md:flex"
         >
           <Pie
+         
             dataKey="count"
             startAngle={180}
             endAngle={0}
@@ -137,6 +139,7 @@ const LibrarianDashboard = () => {
             aspectRatio: 2,
           }}
           responsive
+          className="hidden md:flex"
         >
           <Pie
             dataKey="count"

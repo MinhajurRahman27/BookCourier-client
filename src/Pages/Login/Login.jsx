@@ -22,7 +22,6 @@ const Login = () => {
 
     signIn(email, password)
       .then((res) => {
-        // console.log("login suceess ful");
         navigate(location?.state || "/");
         const user = res.user;
 
@@ -47,15 +46,12 @@ const Login = () => {
   const googlesubmit = () => {
     signwithGoogle()
       .then((res) => {
-        // console.log(res.user);
         navigate(location?.state || "/");
         const userInfo = {
           email: res.user.email,
           displayName: res.user.displayName,
           photoURL: res.user.photoURL,
         };
-
-        // console.log(userInfo);
 
         //sending user to backend
 

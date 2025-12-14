@@ -18,7 +18,7 @@ const MyBooks = () => {
   // console.log(books);
   return (
     <div>
-      <div className="overflow-x-auto p-10 px-20">
+      <div className="overflow-x-auto py-2 md:p-10 md:px-20">
         <table className="table ">
           {/* head */}
           <thead>

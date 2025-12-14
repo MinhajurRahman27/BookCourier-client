@@ -130,6 +130,7 @@ const AdminDashboard = () => {
             aspectRatio: 2,
           }}
           responsive
+          className="hidden md:flex"
         >
           <Pie
             dataKey="count"
@@ -156,6 +157,7 @@ const AdminDashboard = () => {
             aspectRatio: 2,
           }}
           responsive
+          className="hidden md:flex"
         >
           <Pie
             dataKey="count"

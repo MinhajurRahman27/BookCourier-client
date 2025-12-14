@@ -2,21 +2,15 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import { Outlet } from "react-router";
 import Footer from "../components/Footer/Footer";
+import useAuth from "../Hooks/useAuth";
+import Spinner from "../components/Spinner";
 
 const RootLayout = () => {
-  // const [loading, setLoading] = useState(true);
+  const { loading } = useAuth();
 
-  // useEffect(() => {
-  //   const timeout = setTimeout(() => {
-  //     setLoading(false);
-  //   }, 2000);
-
-  //   return () => clearTimeout(timeout);
-  // }, []);
-
-  // if (loading) {
-  //   return <span class="loading loading-spinner loading-sm"></span>;
-  // }
+  if (loading) {
+    return <Spinner></Spinner>;
+  }
   return (
     <div className="lg:w-11/12 mx-auto">
       <Navbar></Navbar>

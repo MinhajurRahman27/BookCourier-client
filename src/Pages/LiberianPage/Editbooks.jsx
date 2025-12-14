@@ -40,7 +40,7 @@ const Editbooks = () => {
   };
   return (
     <div>
-      <div className="flex bg-orange-500 justify-between rounded-xl w-[600px] mx-auto ">
+      <div className="flex bg-orange-500 justify-between rounded-xl md:w-[600px] mx-auto ">
         <div className="card-body  ">
           <h1 className="text-5xl font-bold text-white">Edit Book</h1>
           <form onSubmit={handleSubmit(handleEdit)}>
@@ -104,7 +104,7 @@ const Editbooks = () => {
           </form>
         </div>
 
-        <div className="w-[50%] flex items-center justify-center">
+        <div className="w-[50%] hidden  md:flex items-center justify-center">
           <img className="w-55 rounded-2xl" src={book.bookimage} alt="" />
         </div>
       </div>

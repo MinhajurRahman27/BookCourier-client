@@ -118,6 +118,7 @@ const UserDashBoard = () => {
             aspectRatio: 2,
           }}
           responsive
+          className="hidden md:flex"
         >
           <Pie
             dataKey="value"

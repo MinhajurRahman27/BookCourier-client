@@ -20,13 +20,13 @@ const AddBooks = () => {
         }
       })
       .catch((error) => {
-        console.log(error.message);
+        // console.log(error.message);
       });
   };
   return (
     <div>
-      <div className="card-body bg-orange-500 md:w-[600px] mx-auto rounded-lg">
-        <h1 className="text-5xl font-bold text-white">Add Book</h1>
+      <div className="card-body  bg-orange-500 md:w-[600px] mx-auto rounded-lg">
+        <h1 className="text-3xl md:text-5xl font-bold text-white">Add Book</h1>
         <form onSubmit={handleSubmit(handleAddBook)}>
           <fieldset className="fieldset">
             <label className="label text-white font-semibold">Book Name</label>

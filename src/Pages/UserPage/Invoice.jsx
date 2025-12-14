@@ -37,13 +37,13 @@ const Invoice = () => {
                 <td>{o.bookname}</td>
                 <td>
                   <p className="flex items-center gap-2">
-                    <IoCheckmarkDoneCircleSharp className="text-xl font-semibold text-green-700" />
+                    <IoCheckmarkDoneCircleSharp className="text-xl font-semibold text-green-700 inline" />
                     {o.transactionId}
                   </p>
                 </td>
-                <td className="flex items-center gap-2 font-semibold">
+                <td className=" gap-2 font-semibold">
                   {o.amount}
-                  <FaSackDollar className=" text-orange-600 font-semibold" />
+                  <FaSackDollar className=" text-orange-600 font-semibold ml-1 inline" />
                 </td>
                 <td>{o.date}</td>
               </tr>
