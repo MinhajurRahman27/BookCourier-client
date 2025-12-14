@@ -1,16 +1,17 @@
 import React from "react";
 import useAuth from "../Hooks/useAuth";
 import useRole from "../Hooks/useRole";
+import Spinner from "../components/Spinner";
 
 const LibrarianRoutes = ({ children }) => {
-  const { loading, signOutUser } = useAuth();
+  const { loading } = useAuth();
   const { role } = useRole();
   if (loading) {
-    return <span class="loading loading-spinner loading-sm"></span>;
+    return <Spinner></Spinner>;
   }
 
   if (role !== "librarian") {
-    return <span class="loading loading-spinner loading-sm"></span>;
+    return <Spinner></Spinner>;
   }
   return children;
 };

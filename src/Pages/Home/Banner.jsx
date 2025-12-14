@@ -16,7 +16,7 @@ const Banner = () => {
     >
       <div className="  mx-auto flex flex-col-reverse lg:flex-row  items-center  ">
         <div className="w-full sm:w-full  lg:w-[50%] md:text-start p-6 md:p-15 ">
-          <h1 className="text-2xl md:text-5xl font-semibold mb-2">
+          <h1 className="text-2xl md:text-4xl font-semibold mb-2">
             The Simple Seerah
           </h1>
           <p className="text-gray-500 ">
@@ -40,7 +40,7 @@ const Banner = () => {
       </div>
       <div className="   mx-auto flex flex-col-reverse lg:flex-row  items-center  ">
         <div className="w-full sm:w-full  lg:w-[50%] md:text-start p-6 md:p-15">
-          <h1 className="text-2xl md:text-5xl font-semibold mb-2">
+          <h1 className="text-2xl md:text-4xl font-semibold mb-2">
             World Watch History
           </h1>
           <p className="text-gray-500 ">
@@ -67,7 +67,7 @@ const Banner = () => {
       </div>
       <div className="  mx-auto flex flex-col-reverse lg:flex-row  items-center ">
         <div className="w-full sm:w-full  lg:w-[50%] md:text-start p-6 md:p-15">
-          <h1 className="text-2xl md:text-5xl font-semibold mb-2">
+          <h1 className="text-2xl md:text-4xl font-semibold mb-2">
             The Lords Of Easy Money
           </h1>
           <p className="text-gray-500 ">

@@ -97,7 +97,7 @@ const AdminDashboard = () => {
           <h1 className="text-xl">Total Book : {books.length}</h1>
         </div>
       </div>
-      <div className="flex  flex-col-reverse md:flex-row items-center  shadow-xl">
+      <div className="flex gap-10 flex-col-reverse md:flex-row items-center  shadow-xl">
         <BarChart
           style={{
             width: "100%",
@@ -147,7 +147,7 @@ const AdminDashboard = () => {
           <Tooltip></Tooltip>
         </PieChart>
       </div>
-      <div className="flex flex-col-reverse md:flex-row items-center  shadow-xl my-20">
+      <div className="flex gap-10 flex-col-reverse md:flex-row items-center  shadow-xl my-20">
         <PieChart
           style={{
             width: "100%",
@@ -218,8 +218,11 @@ const AdminDashboard = () => {
 
             <div className="w-full space-y-3 mt-4">
               <div className="flex items-center justify-between py-2 border-b border-slate-700">
-                <span className="text-slate-400 text-sm">Email</span>
-                <span className="text-white text-sm">{user.email}</span>
+                <span className="text-slate-400 text-sm shrink-0">Email</span>
+
+                <span className="text-white text-sm max-w-[60%] break-all text-right">
+                  {user.email}
+                </span>
               </div>
               <div className="flex items-center justify-between py-2 border-b border-slate-700">
                 <span className="text-slate-400 text-sm">Role</span>

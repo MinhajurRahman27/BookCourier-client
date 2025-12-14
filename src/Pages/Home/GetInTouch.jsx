@@ -13,7 +13,7 @@ const GetInTouch = () => {
     <div className="mb-25">
       <div>
         <div className="mb-15">
-          <h1 className="text-2xl md:text-5xl font-semibold text-center  mb-3">
+          <h1 className="text-2xl md:text-4xl font-semibold text-center  mb-3">
             Get In Touch
           </h1>
           <p className="text-lg text-gray-400 text-center">

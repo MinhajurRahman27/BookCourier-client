@@ -9,7 +9,7 @@ const Coverage = ({ serviceCenter }) => {
   return (
     <div className="mb-10">
       <div className="mb-10">
-        <h1 className="text-2xl md:text-5xl font-semibold text-center  mb-3">
+        <h1 className="text-2xl md:text-4xl font-semibold text-center  mb-3">
           We Deliver Nationwide
         </h1>
         <p className="text-lg text-gray-400 text-center">

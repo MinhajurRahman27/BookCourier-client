@@ -1,11 +1,6 @@
 import React, { useState } from "react";
-import {
-  FaBook,
-  FaFileInvoiceDollar,
-  FaJediOrder,
-  FaUsers,
-} from "react-icons/fa";
-import { GiProfit } from "react-icons/gi";
+import { FaBook, FaFileInvoiceDollar, FaUsers } from "react-icons/fa";
+
 import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../Hooks/useRole";
 import useAuth from "../Hooks/useAuth";
@@ -20,9 +15,13 @@ import { MdLibraryAdd } from "react-icons/md";
 import Spinner from "../components/Spinner";
 
 const DashboardLayout = () => {
-  const { role } = useRole();
+  const { role, roleLoading } = useRole();
   const { loading, user, signOutUser } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+  if (roleLoading) {
+    return <Spinner></Spinner>;
+  }
 
   if (loading) {
     return <Spinner></Spinner>;
@@ -176,31 +175,9 @@ const DashboardLayout = () => {
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Navbar */}
-        <nav className="navbar bg-base-300 flex justify-between px-4 border-b border-base-300">
-          <div className="flex items-center gap-2">
-            {/* <button
-              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-              className="btn btn-ghost btn-sm lg:hidden"
-            >
-              <FiMenu size={20} />
-            </button> */}
-            <span className="text-lg font-semibold">Dashboard</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <Theme />
-            <img
-              className="w-10 h-10 rounded-full object-cover"
-              src={user.photoURL}
-              alt="User"
-            />
-            <button className="btn" onClick={handleSignOut}>
-              LogOut
-            </button>
-          </div>
-        </nav>
+       
 
-        {/* Page Content */}
+
         <div className="flex-1 overflow-y-auto p-4 bg-base-100">
           <Outlet />
         </div>

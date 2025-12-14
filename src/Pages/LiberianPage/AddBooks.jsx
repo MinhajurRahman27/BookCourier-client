@@ -25,7 +25,7 @@ const AddBooks = () => {
   };
   return (
     <div>
-      <div className="card-body bg-orange-500 w-[600px] mx-auto rounded-lg">
+      <div className="card-body bg-orange-500 md:w-[600px] mx-auto rounded-lg">
         <h1 className="text-5xl font-bold text-white">Add Book</h1>
         <form onSubmit={handleSubmit(handleAddBook)}>
           <fieldset className="fieldset">

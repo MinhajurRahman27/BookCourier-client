@@ -106,7 +106,7 @@ const ManageBook = () => {
                   <div className="font-bold text-gray-500">
                     {u.status}{" "}
                     {u.status === "Unpublished" ? (
-                      <MdUnpublished className="inline text-red-400 font-bold text-[18px]" />
+                      <MdUnpublished className="inline text-red-400  font-bold text-[18px]" />
                     ) : (
                       <MdOutlinePublishedWithChanges className="inline text-green-600 text-[18px]" />
                     )}

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import useAxios from "../../Hooks/useAxios";
 
 const Register = () => {
+  const [err, setError] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -31,7 +32,6 @@ const Register = () => {
         navigate(location.state || "/");
 
         reset();
-        alert("registation successfull");
 
         const userInfo = {
           email: data.email,
@@ -42,7 +42,7 @@ const Register = () => {
         //sending user to backend
         axiosSecure.post("/users", userInfo).then((res) => {
           if (res.data.insertedId) {
-            alert("user inserted successfully");
+            // alert("user inserted successfully");
           }
         });
 
@@ -53,51 +53,51 @@ const Register = () => {
 
         updateUser(updateUserInfo)
           .then(() => {
-            console.log("user updated successfully");
+            // console.log("user updated successfully");
           })
           .catch((error) => {
             console.log(error);
           });
       })
       .catch((err) => {
-        console.log(err.message);
+        setError(err.message);
       });
-
-    // if(passwordRegex.test(data.pass)){
-
-    // }
   };
 
   const googlesubmit = () => {
-    signwithGoogle().then((res) => {
-      navigate(location.state || "/");
-      const userInfo = {
-        email: res.user.email,
-        displayName: res.user.displayName,
-        photoURL: res.user.photoURL,
-      };
+    signwithGoogle()
+      .then((res) => {
+        navigate(location.state || "/");
+        const userInfo = {
+          email: res.user.email,
+          displayName: res.user.displayName,
+          photoURL: res.user.photoURL,
+        };
 
-      //sending user to backend
+        //sending user to backend
 
-      axiosSecure.post("/users", userInfo).then((res) => {
-        if (res.data.insertedId) {
-          alert("user inserted successfully");
-        }
-      });
-
-      const updateUserInfo = {
-        displayName: res.user.displayName,
-        photoURL: res.user.photoURL,
-      };
-
-      updateUser(updateUserInfo)
-        .then(() => {
-          console.log("user updated successfully");
-        })
-        .catch((error) => {
-          console.log(error);
+        axiosSecure.post("/users", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            // alert("user inserted successfully");
+          }
         });
-    });
+
+        const updateUserInfo = {
+          displayName: res.user.displayName,
+          photoURL: res.user.photoURL,
+        };
+
+        updateUser(updateUserInfo)
+          .then(() => {
+            // console.log("user updated successfully");
+          })
+          .catch((error) => {
+            // console.log(error);
+          });
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
   };
   return (
     <div className="py-10 md:p-10 flex items-center">
@@ -123,22 +123,9 @@ const Register = () => {
                   placeholder="your photo URL"
                 />
                 {errors.photo?.type === "required" && (
-                  <p className="text-red-500">photo is required</p>
+                  <p className="text-red-800">photo is required</p>
                 )}
-                {/* <input
-              type="file"
-              {...register("photo", { required: true })}
-              className="file-input"
-              placeholder="your photo"
-            />
-            {errors.photo?.type === "required" && (
-              <p className="text-red-500">photo is required</p>
-            )} */}
-                {/* <input
-              type="file"
-              name="photo"
-              class="file-input file-input-bordered file-input-primary w-full max-w-xs"
-            /> */}
+
                 <label className="label font-semibold text-white">Email</label>
                 <input
                   type="email"
@@ -164,9 +151,8 @@ const Register = () => {
                   })}
                 />
 
-                
                 <button className="btn rounded-2xl w-full btn-neutral mt-4 border-none">
-                 Register
+                  Register
                 </button>
               </fieldset>
               {errors.pass && (
@@ -216,6 +202,7 @@ const Register = () => {
                 Login
               </Link>
             </p>
+            <p className="font-semibold text-gray-400 text-center">{err}</p>
           </div>
         </div>
       </div>

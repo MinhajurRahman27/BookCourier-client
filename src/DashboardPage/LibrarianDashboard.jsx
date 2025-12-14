@@ -78,7 +78,7 @@ const LibrarianDashboard = () => {
   }
   return (
     <div>
-      <div className="flex items-center  shadow-xl my-10">
+      <div className="flex gap-5  flex-col md:flex-row items-center  shadow-xl my-10">
         <BarChart
           style={{
             width: "100%",
@@ -128,7 +128,7 @@ const LibrarianDashboard = () => {
           <Tooltip></Tooltip>
         </PieChart>
       </div>
-      <div className="flex items-center my-15 shadow-xl">
+      <div className="flex gap-5 flex-col-reverse md:flex-row items-center my-15 shadow-xl">
         <PieChart
           style={{
             width: "100%",
@@ -199,8 +199,11 @@ const LibrarianDashboard = () => {
 
             <div className="w-full space-y-3 mt-4">
               <div className="flex items-center justify-between py-2 border-b border-slate-700">
-                <span className="text-slate-400 text-sm">Email</span>
-                <span className="text-white text-sm">{user.email}</span>
+                <span className="text-slate-400 text-sm shrink-0">Email</span>
+
+                <span className="text-white text-sm max-w-[60%] break-all text-right">
+                  {user.email}
+                </span>
               </div>
               <div className="flex items-center justify-between py-2 border-b border-slate-700">
                 <span className="text-slate-400 text-sm">Role</span>

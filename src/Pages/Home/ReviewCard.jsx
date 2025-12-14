@@ -5,7 +5,7 @@ const ReviewCard = () => {
   return (
     <div className="w-11/12 mx-auto m-10 my-30">
       <div>
-        <h1 className="text-2xl md:text-5xl font-semibold text-center  mb-3">
+        <h1 className="text-2xl md:text-4xl font-semibold text-center  mb-3">
           Customer Reviews
         </h1>
         <p className="text-lg text-gray-400  text-center">

@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import useAxios from "../../Hooks/useAxios";
 import { GrBook } from "react-icons/gr";
-import loginImg from "./../../assets/chris-lawton-zvKx6ixUhWQ-unsplash-Photoroom.png";
 
 const Login = () => {
+  const [err, setError] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
   // console.log(location);
@@ -20,45 +20,67 @@ const Login = () => {
     const email = data.email;
     const password = data.pass;
 
-    signIn(email, password).then((res) => {
-      // console.log("login suceess ful");
-      navigate(location?.state || "/");
-    });
+    signIn(email, password)
+      .then((res) => {
+        // console.log("login suceess ful");
+        navigate(location?.state || "/");
+        const user = res.user;
+
+        const userInfo = {
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+        };
+
+        //sending user to backend
+        axiosSecure.post("/users", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            // alert("user inserted successfully");
+          }
+        });
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
   };
 
   const googlesubmit = () => {
-    signwithGoogle().then((res) => {
-      // console.log(res.user);
-      navigate(location?.state || "/");
-      const userInfo = {
-        email: res.user.email,
-        displayName: res.user.displayName,
-        photoURL: res.user.photoURL,
-      };
+    signwithGoogle()
+      .then((res) => {
+        // console.log(res.user);
+        navigate(location?.state || "/");
+        const userInfo = {
+          email: res.user.email,
+          displayName: res.user.displayName,
+          photoURL: res.user.photoURL,
+        };
 
-      // console.log(userInfo);
+        // console.log(userInfo);
 
-      //sending user to backend
+        //sending user to backend
 
-      axiosSecure.post("/users", userInfo).then((res) => {
-        if (res.data.insertedId) {
-          alert("user inserted successfully");
-        }
-      });
-
-      const updateUserInfo = {
-        displayName: res.user.displayName,
-        photoURL: res.user.photoURL,
-      };
-
-      updateUser(updateUserInfo)
-        .then(() => {
-          console.log("user updated successfully");
-        })
-        .catch((error) => {
-          console.log(error);
+        axiosSecure.post("/users", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            alert("user inserted successfully");
+          }
         });
-    });
+
+        const updateUserInfo = {
+          displayName: res.user.displayName,
+          photoURL: res.user.photoURL,
+        };
+
+        updateUser(updateUserInfo)
+          .then(() => {
+            console.log("user updated successfully");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
   };
   return (
     <div className=" w-full h-[600px] flex items-center ">
@@ -139,6 +161,7 @@ const Login = () => {
                 Register Now
               </Link>
             </p>
+            <p className="font-semibold text-center text-gray-300">{err}</p>
           </div>
         </div>
       </div>

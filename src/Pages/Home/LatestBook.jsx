@@ -22,7 +22,7 @@ const LatestBook = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 2 }}
       >
-        <h1 className="text-2xl md:text-5xl font-semibold text-center">
+        <h1 className="text-2xl md:text-4xl font-semibold text-center">
           Latest Books
         </h1>
       </motion.h1>

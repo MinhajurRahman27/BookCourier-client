@@ -101,7 +101,7 @@ const MyOrders = () => {
                   <button
                     onClick={() => handleCancelbtn(o._id)}
                     className={`${
-                      o.status === "cancelled" || o.payment === "paid"
+                      o.status !== "pending"||  o.payment === "paid"
                         ? "hidden"
                         : "inline-block px-6 py-2 bg-white text-gray-800 border-2 border-gray-300 rounded-md hover:bg-gray-100 font-medium transition-all cursor-pointer mr-2"
                     }`}

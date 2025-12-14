@@ -10,7 +10,7 @@ const WhyChooseBookCourier = () => {
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-2xl font-semibold text-center md:text-5xl  mb-4">
+          <h2 className="text-2xl font-semibold text-center md:text-4xl  mb-4">
             Why Choose Book Courier?
           </h2>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">

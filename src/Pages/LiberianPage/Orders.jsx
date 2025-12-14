@@ -94,7 +94,7 @@ const Orders = () => {
                 </td>
                 <td className="font-semibold">{o.status}</td>
                 <td className="font-semibold">{o.date}</td>
-                <td className="">
+                <td className="flex">
                   {/* <button className="btn bg-gray-400 text-white">pending</button> */}
                   <button
                     className="btn bg-gray-400 text-white"

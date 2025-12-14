@@ -18,11 +18,10 @@ const MyBooks = () => {
   // console.log(books);
   return (
     <div>
-   
       <div className="overflow-x-auto p-10 px-20">
         <table className="table ">
           {/* head */}
-          <thead >
+          <thead>
             <tr className="bg-gray-600 text-white">
               <th>Sl.</th>
               <th>Photo</th>
@@ -30,11 +29,11 @@ const MyBooks = () => {
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody >
+          <tbody>
             {books.map((u, index) => (
-              <tr  key={index} >
+              <tr key={index}>
                 <th className="">{index + 1}</th>
-                <td >
+                <td>
                   <div className="flex items-center gap-3">
                     <div className="avatar">
                       <div className="rounded h-20 w-full">
@@ -43,7 +42,7 @@ const MyBooks = () => {
                     </div>
                   </div>
                 </td>
-                <td >
+                <td>
                   <div className="font-bold">{u.bookname}</div>
                 </td>
                 <td className="font-semibold ">

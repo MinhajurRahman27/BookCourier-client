@@ -1,20 +1,21 @@
 import React from "react";
 import useRole from "../Hooks/useRole";
 import useAuth from "../Hooks/useAuth";
+import Spinner from "../components/Spinner";
 
 const AdminRoutes = ({ children }) => {
   const { user, loading } = useAuth();
   const { role } = useRole();
   if (loading) {
-    return <span class="loading loading-spinner loading-sm"></span>;
+    return <Spinner></Spinner>;
   }
 
   if (!user) {
-    return <span className="loading loading-spinner loading-sm"></span>;
+    return <Spinner></Spinner>;
   }
 
   if (role !== "admin") {
-    return <span className="loading loading-spinner loading-sm"></span>;
+    return <Spinner></Spinner>;
   }
   return children;
 };

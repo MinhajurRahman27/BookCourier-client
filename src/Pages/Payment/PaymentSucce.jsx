@@ -22,8 +22,8 @@ const PaymentSucce = () => {
   return (
     <div className="flex items-center justify-center  h-[500px]">
       <div className="flex  flex-col items-center">
-        <MdVerifiedUser className="text-[250px] text-green-500" />
-      <h1 className="font-semibold text-4xl">Pyament successfull</h1>
+        <MdVerifiedUser className="text-[150px] md:text-[250px] text-green-500" />
+      <h1 className="font-semibold text-xl  md:text-4xl">Pyament successfull</h1>
       </div>
     </div>
   );

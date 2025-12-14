@@ -197,7 +197,7 @@ const UserDashBoard = () => {
 
       <div className="mt-15   mx-auto gap-6">
         {/* User Profile Card */}
-        <div className="bg-slate-800 rounded-xl p-6 border-none">
+        <div className="bg-slate-800 rounded-xl p-4 md:p-6 border-none">
           <h3 className="text-lg font-semibold text-white mb-6">
             User Profile
           </h3>
@@ -216,8 +216,11 @@ const UserDashBoard = () => {
 
             <div className="w-full space-y-3 mt-4">
               <div className="flex items-center justify-between py-2 border-b border-slate-700">
-                <span className="text-slate-400 text-sm">Email</span>
-                <span className="text-white text-sm">{user.email}</span>
+                <span className="text-slate-400 text-sm shrink-0">Email</span>
+
+                <span className="text-white text-sm max-w-[60%] break-all text-right">
+                  {user.email}
+                </span>
               </div>
               <div className="flex items-center justify-between py-2 border-b border-slate-700">
                 <span className="text-slate-400 text-sm">Role</span>
