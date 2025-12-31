@@ -80,6 +80,37 @@ This project focuses on **real-world book selling and courier workflow**, perfor
 * Real-world features like authentication, charts, maps, and responsive layouts
 
 ---
+## 📦 Dependencies
+
+- react
+- react-dom
+- react-router-dom
+- tailwindcss
+- daisyui
+- vite
+- axios (optional if using API calls)
+
+---
+
+## 💻 Getting Started (Local Development)
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/MinhajurRahman27/A8.git
+   cd A8
+
+2.**Install dependencies**
+
+npm install
+
+
+3.**Start the development server**
+
+npm run dev
+
+4.**Open in browser**
+Visit: http://localhost:5173
+
 
 ## 👨‍💻 Author
 
