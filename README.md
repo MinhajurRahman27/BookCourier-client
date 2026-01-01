@@ -1,9 +1,5 @@
 # 📚 BookCourier
 
-## 🔖 Project Name
-
-**BookCourier**
-
 ---
 
 ## 🎯 Purpose
@@ -17,6 +13,13 @@ This project focuses on **real-world book selling and courier workflow**, perfor
 ## 🌐 Live URL
 
 👉 [https://fir-practice-s.web.app/](https://fir-practice-s.web.app/)
+
+---
+
+## 🖼️ Screenshot
+
+![A‑Store Screenshot](https://i.ibb.co.com/dw66jfg0/Screenshot-10.png)  
+*Clean and modern UI showcasing the main page of the application.*
 
 ---
 
