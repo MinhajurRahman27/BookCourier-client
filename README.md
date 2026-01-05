@@ -117,7 +117,7 @@ Visit: http://localhost:5173
 
 ## 👨‍💻 Author
 
-Developed by **Minhaj Uddin**
+Developed by **Minhajur Rahman**
 Frontend Developer | MERN Stack Learner
 
 ---
