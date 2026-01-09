@@ -12,7 +12,7 @@ const Home = () => {
   const serviceCenter = useLoaderData();
 
   return (
-    <div>
+    <div className="pt-20">
       <section>
         <Banner></Banner>
       </section>

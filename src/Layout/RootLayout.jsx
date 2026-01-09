@@ -12,7 +12,7 @@ const RootLayout = () => {
     return <Spinner></Spinner>;
   }
   return (
-    <div className="lg:w-11/12 mx-auto">
+    <div className="mx-auto">
       <Navbar></Navbar>
       <Outlet></Outlet>
       <Footer></Footer>

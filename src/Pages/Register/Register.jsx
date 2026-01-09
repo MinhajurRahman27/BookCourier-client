@@ -53,7 +53,7 @@ const Register = () => {
 
         updateUser(updateUserInfo)
           .then(() => {
-            // console.log("user updated successfully");
+            // alert("user updated successfully");
           })
           .catch((error) => {
             console.log(error);

@@ -9,10 +9,10 @@ import { Link } from "react-router";
 const Banner = () => {
   return (
     <Carousel
-      autoPlay={false}
+      autoPlay={true}
       showThumbs={false}
       infiniteLoop={true}
-      interval={3000}
+      interval={2000}
     >
       <div className="  mx-auto flex flex-col-reverse lg:flex-row  items-center  ">
         <div className="w-full sm:w-full  lg:w-[50%] md:text-start p-6 md:p-15 ">

@@ -25,6 +25,7 @@ import MyWhishlist from "../Pages/UserPage/MyWhishlist";
 import UserDashBoard from "../DashboardPage/UserDashBoard";
 import DashboardHome from "../DashboardPage/DashboardHome";
 import ErrorPage from "../Errorpage/ErrorPage";
+import HowItWorks from "../Pages/howitworks/Howitwork";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +55,14 @@ export const router = createBrowserRouter([
           <PrivateRoutes>
             <BookDetails></BookDetails>
           </PrivateRoutes>
+        ),
+      },
+      {
+        path: "howitwork",
+        element: (
+         
+            <HowItWorks></HowItWorks>
+         
         ),
       },
       {
