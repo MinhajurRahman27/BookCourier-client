@@ -13,10 +13,11 @@ const Banner = () => {
       showThumbs={false}
       infiniteLoop={true}
       interval={2000}
+      showIndicators={false} 
     >
-      <div className="  mx-auto flex flex-col-reverse lg:flex-row  items-center  ">
+      <div className="   mx-auto flex flex-col-reverse lg:flex-row  items-center ">
         <div className="w-full sm:w-full  lg:w-[50%] md:text-start p-6 md:p-15 ">
-          <h1 className="text-2xl md:text-4xl font-semibold mb-2">
+          <h1 className="text-2xl md:text-4xl lg:text-5xl font-semibold mb-2">
             The Simple Seerah
           </h1>
           <p className="text-gray-500 ">
@@ -29,18 +30,18 @@ const Banner = () => {
           </p>
           <Link
             to={"/books"}
-            className="btn rounded-3xl text-white w-[300px] bg-orange-500 mt-4 md:mt-10"
+            className="btn rounded-3xl text-white w-[300px] btn-primary sm:mt-4 md:mt-10"
           >
             All Books
           </Link>
         </div>
-        <div className="sm:w-[50%] md:w-[50%] ">
+        <div className=" sm:w-[50%] md:w-[50%] ">
           <img src={book1} alt="" />
         </div>
       </div>
       <div className="   mx-auto flex flex-col-reverse lg:flex-row  items-center  ">
         <div className="w-full sm:w-full  lg:w-[50%] md:text-start p-6 md:p-15">
-          <h1 className="text-2xl md:text-4xl font-semibold mb-2">
+          <h1 className="text-2xl md:text-4xl lg:text-5xl font-semibold mb-2">
             World Watch History
           </h1>
           <p className="text-gray-500 ">
@@ -52,7 +53,7 @@ const Banner = () => {
           </p>
           <Link
             to={"/books"}
-            className="btn rounded-3xl text-white w-[300px] bg-orange-500 mt-4 md:mt-10"
+            className="btn rounded-3xl text-white w-[300px] btn-primary mt-4 md:mt-10"
           >
             All Books
           </Link>
@@ -67,7 +68,7 @@ const Banner = () => {
       </div>
       <div className="  mx-auto flex flex-col-reverse lg:flex-row  items-center ">
         <div className="w-full sm:w-full  lg:w-[50%] md:text-start p-6 md:p-15">
-          <h1 className="text-2xl md:text-4xl font-semibold mb-2">
+          <h1 className="text-2xl md:text-4xl lg:text-5xl font-semibold mb-2">
             The Lords Of Easy Money
           </h1>
           <p className="text-gray-500 ">
@@ -78,7 +79,7 @@ const Banner = () => {
           </p>
           <Link
             to={"/books"}
-            className="btn rounded-3xl text-white w-[300px] bg-orange-500 mt-10"
+            className="btn rounded-3xl text-white w-[300px] btn-primary mt-10"
           >
             All Books
           </Link>
@@ -91,6 +92,7 @@ const Banner = () => {
           />
         </div>
       </div>
+      
     </Carousel>
   );
 };

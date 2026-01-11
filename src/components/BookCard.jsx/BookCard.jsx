@@ -15,20 +15,20 @@ const BookCard = ({ book }) => {
         />
       </figure>
       <div className="card-body p-0 mt-3">
-        <h2 className=" font-semibold text-xl sm:text-2xl ">{bookname}</h2>
+        <h2 className=" font-semibold text-xl sm:text-xl ">{bookname}</h2>
         <p className=" font-semibold text-gray-600">{author}</p>
         <div className="flex items-center justify-between mb-4">
           <span className="text-2xl font-semibold">${price}</span>
-          <span className="text-xs font-semibold text-orange-600 bg-orange-50 px-2.5 py-1 rounded-full uppercase tracking-wide">
+          <span className="text-xs font-semibold text-primary bg-orange-50 px-2.5 py-1 rounded-full uppercase tracking-wide">
             New
           </span>
         </div>
         <div className="card-actions  flex justify-center">
           <Link
             to={`/bookdetails/${_id}`}
-            className="btn w-full hover:opacity-90 mr-2 rounded-4xl  border-0 text-white bg-orange-500 hover:scale-105 transition delay-150 duration-300 ease-in-out"
+            className="btn w-full hover:opacity-90 mr-2 rounded-4xl  border-0 text-white bg-primary hover:scale-105 transition delay-150 duration-300 ease-in-out"
           >
-            Details
+           View Details
           </Link>
         </div>
       </div>

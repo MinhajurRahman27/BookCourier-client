@@ -1,82 +1,112 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router";
 import Theme from "../../darklightmode/theme";
-import { GrBook } from "react-icons/gr";
 import useAuth from "../../Hooks/useAuth";
-import ProfileMenu from "../Profile_menu/ProfileMenu";
 import { ChevronDown, LayoutDashboard, LogOut, User } from "lucide-react";
+import useRole from "../../Hooks/useRole";
 
 const Navbar = () => {
+  
+  const{role} = useRole()
   const { signOutUser, user } = useAuth();
   const handleSignOut = () => {
+   
     signOutUser().then(() => {
       // console.log("signout successful");
+      
     });
   };
 
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null);
 
-   const [isOpen, setIsOpen] = useState(false);
-    const menuRef = useRef(null);
-  
-    // Close menu when clicking outside
-    useEffect(() => {
-      const handleClickOutside = (event) => {
-        if (menuRef.current && !menuRef.current.contains(event.target)) {
-          setIsOpen(false);
-        }
-      };
-  
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, []);
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
   const links = (
     <>
       <NavLink
-        className="btn border-0 hover:border-b-gray-500 hover:border-b-2"
+        className="btn border-0 hover:text-primary"
         to="/"
       >
         <li>Home</li>
       </NavLink>
       <NavLink
-        className="btn border-0 hover:border-b-gray-500 hover:border-b-2"
+        className="btn border-0 hover:text-primary"
         to="/books"
       >
         <li>Books</li>
       </NavLink>
 
       <NavLink
-        className="btn border-0 hover:border-b-gray-500 hover:border-b-2"
+        className="btn border-0 hover:text-primary "
         to="/howitwork"
       >
         <li>How It Works</li>
       </NavLink>
+      
+      {/* Only show role-based links when user is logged in */}
+      {user && role === "user" &&
+        <NavLink
+          className="btn border-0 hover:text-primary"
+          to="/dashboard/myorders"
+        >
+          <li>My Orders</li>
+        </NavLink>
+      }
+      {user && role === "librarian" &&
+        <NavLink
+          className="btn border-0 hover:text-primary"
+          to="/dashboard/orders"
+        >
+          <li>Orders</li>
+        </NavLink>
+      }
+      {user && role === "admin" &&
+        <NavLink
+          className="btn border-0 hover:text-primary"
+          to="/dashboard/managebooks"
+        >
+          <li>Manage Books</li>
+        </NavLink>
+      }
 
-      <NavLink
-        className="btn border-0 hover:border-b-gray-500 hover:border-b-2"
-        to="/dashboard"
-      >
-        <li>Dashboard</li>
-      </NavLink>
+      {/* Only show Dashboard link when user is logged in */}
+     
+        <NavLink
+          className="btn border-0 hover:text-primary"
+          to="/dashboard"
+        >
+          <li>Dashboard</li>
+        </NavLink>
+      
     </>
   );
 
-
-   const menuItems = [
-      {
-        icon: User,
-        label: 'My Profile',
-        href: '/profile',
-        description: 'View and edit your profile'
-      },
-      {
-        icon: LayoutDashboard,
-        label: 'Dashboard',
-        href: '/dashboard',
-        description: 'Your personal dashboard'
-      }
-    ];
+  const menuItems = [
+    {
+      icon: User,
+      label: "My Profile",
+      href: "/dashboard/myprofile",
+      description: "View and edit your profile",
+    },
+    {
+      icon: LayoutDashboard,
+      label: "Dashboard",
+      href: "/dashboard",
+      description: "Your personal dashboard",
+    },
+  ];
   return (
-    <div className="fixed z-50 navbar bg-base-100 shadow-sm ">
+    <div className="fixed z-6000 navbar bg-base-100 shadow-sm ">
       <div className="navbar-start ">
         <div className="dropdown ">
           <div
@@ -109,9 +139,9 @@ const Navbar = () => {
         </div>
         {/* <GrBook />
         <a className="btn-ghost text-xl">BookCourier</a> */}
-        <div className="flex items-end font-semibold">
-          <GrBook className="text-3xl md:text-4xl text-orange-500" />
-          <a className="btn-ghost md:text-2xl">BookCourier</a>
+        <div className="flex items-center font-semibold  rounded-3xl p-1 ">
+          {/* <GrBook className="text-3xl md:text-4xl text-primary" /> */}
+          <a className="btn-ghost text-[20px] sm:text-2xl"> <span className="text-primary text-shadow-lg">Book</span><span className="text text-shadow-lg">Courier</span></a>
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -119,47 +149,61 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <Theme></Theme>
-         <div className="relative" ref={menuRef}>
+        {user ? (
+          <div className="relative hover:opacity-90  bg-primary rounded-3xl" ref={menuRef}>
             <button
-              // onClick={() => setIsOpen(!isOpen)}
-              className="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-orange-50 transition-all duration-300 border border-gray-200 hover:border-orange-300 group"
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex items-center rounded-3xl gap-3 px-2 py-0   transition-all duration-300   cursor-pointer group "
             >
               {/* Profile Avatar */}
-              <div className="w-10 h-10 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center shadow-lg">
-                <span className="text-white font-semibold">JD</span>
+              <div className="my-2 w-7 h-7 rounded-[50%] border-none ">
+                <img
+                  className="w-7 object-cover h-7 rounded-3xl"
+                  src={user?.photoURL}
+                  alt=""
+                />
               </div>
-              
+
               {/* Name & Role */}
               <div className="hidden md:block text-left">
-                <div className="text-sm font-semibold text-gray-800">John Doe</div>
-                <div className="text-xs text-gray-500">Premium Member</div>
+                <div className="text-sm font-semibold text-white ">
+                  {user?.displayName}
+                </div>
               </div>
 
               {/* Dropdown Arrow */}
-              <ChevronDown 
-                className={`w-4 h-4 text-gray-400 transition-transform duration-300 ${
-                  isOpen ? 'rotate-180' : ''
+              <ChevronDown
+                className={`w-4 h-4 text-white transition-transform duration-300 ${
+                  isOpen ? "rotate-180" : ""
                 }`}
               />
             </button>
 
             {/* Dropdown Menu */}
             <div
-              className={`absolute right-0 mt-3 w-72 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden transition-all duration-300 origin-top ${
+              className={`absolute right-0 mt-3 w-72 bg-white rounded-2xl shadow-2xl  overflow-hidden transition-all duration-300 origin-top ${
                 isOpen
-                  ? 'opacity-100 scale-100 translate-y-0'
-                  : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
+                  ? "opacity-100 scale-100 translate-y-0"
+                  : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
               }`}
             >
               {/* User Info Header */}
-              <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-4 border-b border-orange-200">
+              <div className="bg-primary  p-4 border-b border-orange-200">
                 <div className="flex items-center gap-3">
-                  <div className="w-14 h-14 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center shadow-lg">
-                    <span className="text-white font-bold text-lg">JD</span>
+                  <div className="my-2 w-10 h-10 rounded-[50%] border-none ">
+                    <img
+                      className="w-10 h-10 object-cover rounded-3xl"
+                      src={user?.photoURL}
+                      alt=""
+                    />
                   </div>
                   <div>
-                    <div className="font-semibold text-gray-800">John Doe</div>
-                    <div className="text-sm text-gray-600">john.doe@email.com</div>
+                    <div className="font-semibold text-white">
+                      {user?.displayName}
+                    </div>
+                    <div className="text-[12px] text-gray-300">
+                      {user?.email}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -173,11 +217,11 @@ const Navbar = () => {
                     className="flex items-start gap-4 px-4 py-3 hover:bg-orange-50 transition-all duration-200 group"
                     // onClick={() => setIsOpen(false)}
                   >
-                    <div className="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center group-hover:bg-orange-200 transition-colors duration-200 flex-shrink-0">
-                      <item.icon className="w-5 h-5 text-orange-600" />
+                    <div className="w-10 h-10 bg-red-100  rounded-xl flex items-center justify-center group-hover:bg-red-50 transition-all  duration-200 flex-shrink-0">
+                      <item.icon className="w-5 h-5 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <div className="font-semibold text-gray-800 group-hover:text-orange-600 transition-colors">
+                      <div className="font-semibold text-gray-800 hover:bg-red-50 transition-all duration-200">
                         {item.label}
                       </div>
                       <div className="text-xs text-gray-500 mt-0.5">
@@ -193,19 +237,14 @@ const Navbar = () => {
 
               {/* Logout Button */}
               <button
-                className="w-full flex items-center gap-4 px-4 py-3 hover:bg-red-50 transition-all duration-200 group"
-                onClick={() => {
-                  // setIsOpen(false);
-                  alert('Logging out...');
-                }}
+                className="w-full flex items-center gap-4 px-4 py-3 hover:bg-red-50 transition-all duration-200 group cursor-pointer"
+                onClick={handleSignOut}
               >
                 <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center group-hover:bg-red-200 transition-colors duration-200">
                   <LogOut className="w-5 h-5 text-red-600" />
                 </div>
                 <div className="flex-1 text-left">
-                  <div className="font-semibold text-red-600">
-                    Logout
-                  </div>
+                  <div className="font-semibold text-red-600">Logout</div>
                   <div className="text-xs text-gray-500 mt-0.5">
                     Sign out of your account
                   </div>
@@ -213,6 +252,11 @@ const Navbar = () => {
               </button>
             </div>
           </div>
+        ) : (
+          <Link to="/login" className="btn rounded-3xl bg-primary text-white">
+            Login/Register
+          </Link>
+        )}
         {/* {user && (
           <div className="m-2 w-5 h-5 rounded-[50%] border-none">
             <img className="w-5 h-5 rounded-lg" src={user?.photoURL} alt="" />

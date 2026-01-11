@@ -31,7 +31,7 @@ const MyProfile = () => {
   return (
     <div className="md:w-[700px] md:h-[400px] mx-auto ">
       <h1 className="font-semibold text-3xl mb-4 ">My Profile</h1>
-      <div className="flex flex-col gap-10 md:gap-0 md:flex-row items-center justify-around   bg-orange-500 rounded-2xl py-5 md:p-10">
+      <div className="flex flex-col gap-10 md:gap-0 md:flex-row items-center justify-around   bg-primary rounded-2xl py-5 md:p-10">
         <div className=" w-full md:w-[250px] text-white font-semibold    pr-0 mr-0  break-words px-5 md:px-0">
           <img
             className="rounded-2xl object-cover h-40 w-40"

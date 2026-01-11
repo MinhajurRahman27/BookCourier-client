@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
 import { useParams } from "react-router";
 import useAxios from "../../Hooks/useAxios";
 import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
 
 const Editbooks = () => {
+  
   const { register, handleSubmit, reset } = useForm();
   const axiosSecure = useAxios();
   const { id } = useParams();
@@ -25,6 +25,7 @@ const Editbooks = () => {
       bookname: data.bookname,
       bookimage: data.bookimage,
       author: data.author,
+      description: data.description,
       status: data.status,
       price: data.price,
     };
@@ -40,7 +41,7 @@ const Editbooks = () => {
   };
   return (
     <div>
-      <div className="flex bg-orange-500 justify-between rounded-xl md:w-[600px] mx-auto ">
+      <div className=" bg-primary  rounded-xl md:w-[600px] mx-auto ">
         <div className="card-body  ">
           <h1 className="text-5xl font-bold text-white">Edit Book</h1>
           <form onSubmit={handleSubmit(handleEdit)}>
@@ -50,7 +51,7 @@ const Editbooks = () => {
               </label>
               <input
                 type="text"
-                className="input"
+                className="input w-full"
                 placeholder="Book Name"
                 {...register("bookname")}
                 required
@@ -61,7 +62,7 @@ const Editbooks = () => {
               <input
                 type="text"
                 {...register("bookimage")}
-                className="input"
+                className="input w-full"
                 placeholder="URL"
                 required
               />
@@ -71,18 +72,28 @@ const Editbooks = () => {
               </label>
               <input
                 type="text"
-                className="input"
+                className="input w-full"
                 placeholder="Book Author"
                 {...register("author")}
                 required
               />
+
+              <label className="label text-white font-semibold">
+                Book Description
+              </label>
+              <textarea
+                className="textarea w-full min-h-[120px] resize-none"
+                placeholder="Enter a detailed description of the book..."
+                {...register("description")}
+                rows="5"
+              ></textarea>
 
               {/* status section will be here */}
               <label className="label text-white font-semibold">
                 Select Status
               </label>
               <select
-                className="select appearance-none"
+                className="select appearance-none w-full"
                 {...register("status")}
               >
                 <option disabled={true}>Select Status</option>
@@ -93,20 +104,20 @@ const Editbooks = () => {
               <label className="label text-white font-semibold">Price</label>
               <input
                 type="number"
-                className="input"
+                className="input w-full"
                 required
                 placeholder="Price"
                 {...register("price")}
               />
 
-              <button className="btn btn-neutral mt-4">Submit</button>
+              <button className="bg-black text-white px-6 py-3 rounded-3xl mt-4 hover:opacity-90 font-semibold border border-white/20">Submit</button>
             </fieldset>
           </form>
         </div>
 
-        <div className="w-[50%] hidden  md:flex items-center justify-center">
+        {/* <div className="w-[50%] hidden  md:flex items-center justify-center">
           <img className="w-55 rounded-2xl" src={book.bookimage} alt="" />
-        </div>
+        </div> */}
       </div>
       <ToastContainer></ToastContainer>
     </div>

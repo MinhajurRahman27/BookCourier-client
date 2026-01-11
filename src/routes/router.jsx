@@ -52,9 +52,9 @@ export const router = createBrowserRouter([
       {
         path: "/bookdetails/:id",
         element: (
-          <PrivateRoutes>
+          
             <BookDetails></BookDetails>
-          </PrivateRoutes>
+          
         ),
       },
       {

@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
 import useAxios from "../../Hooks/useAxios";
 import { Link } from "react-router";
 import useAuth from "../../Hooks/useAuth";
@@ -48,7 +47,7 @@ const MyBooks = () => {
                 <td className="font-semibold ">
                   <Link
                     to={`/dashboard/mybooks/editbooks/${u._id}`}
-                    className="btn bg-orange-500 rounded-b-xl w-[200px]"
+                    className="bg-primary text-white px-6 py-3 rounded-3xl w-[200px] text-center inline-block hover:opacity-90 font-semibold"
                   >
                     Edit
                   </Link>

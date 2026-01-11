@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
 import useAxios from "../../Hooks/useAxios";
 import useAuth from "../../Hooks/useAuth";
 
@@ -88,13 +87,13 @@ const AllUser = () => {
                 <th className="flex">
                   <button
                     onClick={() => makeLibrarian(u)}
-                    className="btn  inline-block px-6 py-2  text-white rounded-md  font-medium  cursor-pointer mr-2 bg-green-500"
+                    className="btn inline-block px-6 py-2 text-white rounded-3xl font-medium cursor-pointer mr-2 bg-primary hover:bg-primary/90 transition-all duration-200"
                   >
                     Make Librarian
                   </button>
                   <button
                     onClick={() => makeAdmin(u)}
-                    className="btn   inline-block px-6 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 font-medium transition-all shadow-sm cursor-pointer"
+                    className="btn inline-block px-6 py-2 bg-primary hover:bg-primary/90 text-white rounded-3xl font-medium transition-all duration-200 shadow-sm cursor-pointer"
                   >
                     Make Admin
                   </button>

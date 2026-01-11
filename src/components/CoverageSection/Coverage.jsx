@@ -7,7 +7,7 @@ const Coverage = ({ serviceCenter }) => {
   const center = serviceCenter;
   const position = [23.685, 90.3563];
   return (
-    <div className="mb-10">
+    <div className="mb-10 ">
       <div className="mb-10">
         <h1 className="text-2xl md:text-4xl font-semibold text-center  mb-3">
           We Deliver Nationwide
@@ -17,12 +17,13 @@ const Coverage = ({ serviceCenter }) => {
           arrive faster than ever
         </p>
       </div>
-      <div className=" w-full h-[400px] mt-20">
+      <div className=" w-full h-[450px] mx-auto mt-10">
+       
         <MapContainer
           center={position}
           zoom={8}
           scrollWheelZoom={false}
-          className="h-[200px] w-[300px] sm:h-[300px] sm:w-[600px] md:h-[400px] md:w-[800px] mx-auto rounded-lg  mt-10"
+          className="h-[200px] w-[300px] sm:h-[300px] sm:w-[600px] md:h-[400px] md:w-[800px] mx-auto rounded-lg  "
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -37,6 +38,7 @@ const Coverage = ({ serviceCenter }) => {
           ))}
         </MapContainer>
       </div>
+    
     </div>
   );
 };

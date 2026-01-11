@@ -131,7 +131,7 @@ const ManageBook = () => {
                 <td className="font-semibold">
                   <button
                     onClick={() => handleDelete(u._id)}
-                    className="btn bg-red-400 hover:bg-orange-500"
+                    className="btn bg-primary hover:bg-red-400 text-white rounded-3xl"
                   >
                     Delete
                   </button>

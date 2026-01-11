@@ -112,7 +112,7 @@ const Orders = () => {
                 <td>
                   <button
                     onClick={() => handleCancelbtn(o._id)}
-                    className="btn bg-red-400 text-white"
+                    className="btn bg-primary text-white"
                   >
                     Cancel
                   </button>

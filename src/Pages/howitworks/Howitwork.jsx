@@ -32,7 +32,7 @@ export default function HowItWorks() {
       description:
         "Explore our extensive collection of books across various genres. Use our search and filter options to find exactly what you're looking for.",
       icon: Search,
-      color: "bg-orange-50",
+      color: "bg-primary",
       image:
         "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&q=80",
     },
@@ -42,7 +42,7 @@ export default function HowItWorks() {
       description:
         "Click on any book to see detailed information including description, author, price, and customer reviews to make an informed decision.",
       icon: BookOpen,
-      color: "bg-orange-50",
+      color: "bg-primary",
       image:
         "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&q=80",
     },
@@ -52,7 +52,7 @@ export default function HowItWorks() {
       description:
         "Add your favorite books to cart and proceed to checkout. We accept multiple payment methods for your convenience.",
       icon: ShoppingCart,
-      color: "bg-orange-50",
+      color: "bg-primary",
       image:
         "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
     },
@@ -62,7 +62,7 @@ export default function HowItWorks() {
       description:
         "Sit back and relax while we deliver your books right to your doorstep. Track your order in real-time until it reaches you.",
       icon: Truck,
-      color: "bg-orange-50",
+      color: "bg-primary",
       image:
         "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=800&q=80",
     },
@@ -97,11 +97,11 @@ export default function HowItWorks() {
   return (
     <div className="min-h-screen  overflow-hidden">
       {/* Hero Section with Background Pattern */}
-      <div className="relative bg-gradient-to-br from-orange-50 via-white to-orange-50 py-20 px-4 overflow-hidden">
+      <div className="relative bg-gradient-to-br from-primary/10 via-white to-primary/10 py-20 px-4 overflow-hidden">
         {/* Decorative Elements */}
-        <div className="absolute top-0 left-0 w-72 h-72 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute top-0 left-0 w-72 h-72 bg-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
         <div
-          className="absolute bottom-0 right-0 w-96 h-96 bg-orange-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"
+          className="absolute bottom-0 right-0 w-96 h-96 bg-primary/30 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"
           style={{ animationDelay: "1s" }}
         ></div>
 
@@ -112,12 +112,10 @@ export default function HowItWorks() {
               : "opacity-0 -translate-y-10"
           }`}
         >
-          <div className="inline-block mb-4 px-4 py-2 bg-orange-100 rounded-full">
-            <span className="text-orange-600 font-semibold text-sm">
-              Simple & Easy Process
-            </span>
+          <div className="inline-block mb-4 px-4 py-2 bg-primary/10 rounded-full">
+           
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-orange-800 to-gray-900 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-primary to-gray-900 bg-clip-text text-transparent">
             How It Works
           </h1>
           <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
@@ -149,7 +147,7 @@ export default function HowItWorks() {
 
       {/* Steps Section with Images */}
       <div className="max-w-7xl mx-auto px-4 py-20">
-        <div className="space-y-24">
+        <div className="space-y-24 ">
           {steps.map((step, index) => (
             <div
               key={index}
@@ -163,16 +161,16 @@ export default function HowItWorks() {
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               {/* Image Side */}
-              <div className="flex-1 relative group">
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-orange-600 rounded-3xl transform rotate-3 group-hover:rotate-6 transition-transform duration-300"></div>
-                <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+              <div className="flex-1 relative group ">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 rounded-3xl transform rotate-3 group-hover:rotate-6 transition-transform duration-300"></div>
+                <div className="relative  overflow-hidden rounded-3xl shadow-2xl">
                   <img
                     src={step.image}
                     alt={step.title}
                     className="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
-                    <span className="text-orange-500 font-bold text-lg">
+                    <span className="text-primary font-bold text-lg">
                       Step {step.number}
                     </span>
                   </div>
@@ -187,7 +185,7 @@ export default function HowItWorks() {
                   <div
                     className={`${step.color} w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg transform hover:rotate-12 transition-all duration-300`}
                   >
-                    <step.icon className="w-10 h-10 text-orange-500" />
+                    <step.icon className="w-10 h-10 text-white" />
                   </div>
 
                   <h3 className="text-4xl font-bold mb-4">{step.title}</h3>
@@ -195,7 +193,7 @@ export default function HowItWorks() {
                     {step.description}
                   </p>
 
-                  <div className="flex items-center text-orange-500 font-semibold group cursor-pointer">
+                  <div className="flex items-center text-orange-500 font-semibold group cursor-pointer ">
                     
                   </div>
                 </div>
@@ -222,10 +220,10 @@ export default function HowItWorks() {
             {features.map((feature, index) => (
               <div
                 key={index}
-                className=" p-8 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border border-orange-100"
+                className=" p-8 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border border-primary/20"
               >
                 <div className=" w-16 h-16 rounded-xl flex items-center justify-center mb-6 transform hover:rotate-12 transition-transform duration-300">
-                  <feature.icon className="w-8 h-8 text-orange-500" />
+                  <feature.icon className="w-8 h-8 text-primary" />
                 </div>
                 <h4 className="text-xl font-bold mb-3">{feature.title}</h4>
                 <p className="text-gray-500">{feature.text}</p>
@@ -258,7 +256,7 @@ export default function HowItWorks() {
             Join thousands of book lovers who trust bookCourier for their
             reading needs. Start browsing our collection today.
           </p>
-          <Link to={'/books'}  className="text-white bg-orange-500 px-10 py-5 rounded-xl text-lg font-bold transition-all duration-300 shadow-2xl hover:shadow-orange-500/50 hover:scale-105 active:scale-95 inline-flex items-center gap-3 cursor-pointer">
+          <Link to={'/books'}  className="text-white bg-primary px-10 py-5 rounded-3xl text-lg font-bold transition-all duration-300 shadow-2xl hover:shadow-primary/50 hover:scale-105 active:scale-95 inline-flex items-center gap-3 cursor-pointer">
             Browse Books Now
             <svg
               className="w-5 h-5"

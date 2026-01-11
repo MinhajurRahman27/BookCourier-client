@@ -37,20 +37,22 @@ const DashboardLayout = () => {
     <div className="flex h-screen overflow-hidden ">
       {/* Sidebar */}
       <div
-        className={`bg-base-200 transition-all duration-300 flex flex-col ${
+        className={`bg-base-200 transition-all duration-300 flex flex-col border-r border-gray-300 ${
           isSidebarOpen ? "w-64" : "w-20"
         }`}
       >
         {/* Sidebar Header with Logo */}
         <div className="p-4 border-b border-base-300 flex items-center justify-between">
-          <Link to={"/"}>
-            <div className="flex items-center gap-2">
-              <GrBook className="text-3xl text-orange-500 flex-shrink-0" />
-              {isSidebarOpen && (
-                <span className="text-xl font-semibold">BookCourier</span>
-              )}
-            </div>
-          </Link>
+          {isSidebarOpen && (
+            <Link to={"/"}>
+              <div className="flex items-center font-semibold rounded-3xl p-1">
+                <a className="btn-ghost text-[20px] sm:text-2xl">
+                  <span className="text-primary text-shadow-lg">Book</span>
+                  <span className="text text-shadow-lg">Courier</span>
+                </a>
+              </div>
+            </Link>
+          )}
           <button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
             className="btn btn-ghost btn-sm"
@@ -60,11 +62,15 @@ const DashboardLayout = () => {
         </div>
 
         {/* Sidebar Menu */}
-        <ul className="menu flex-1 p-2 overflow-y-auto ">
+        <ul className="menu flex-1 p-2 overflow-y-auto">
           {/* Home */}
           <li>
-            <NavLink to={"/dashboard"} data-tip="Home">
-              <TbHomeFilled className="text-orange-500 text-2xl" />
+            <NavLink 
+              to={"/dashboard"} 
+              data-tip="Home"
+              className={`${!isSidebarOpen ? "justify-center" : ""}`}
+            >
+              <TbHomeFilled className="text-primary text-2xl" />
               {isSidebarOpen && <span>Home</span>}
             </NavLink>
           </li>
@@ -73,26 +79,42 @@ const DashboardLayout = () => {
           {role === "user" && (
             <>
               <li>
-                <NavLink to="/dashboard/mywhishlist" data-tip="My Wishlist">
-                  <LuListCollapse className="text-orange-500 text-2xl" />
+                <NavLink 
+                  to="/dashboard/mywhishlist" 
+                  data-tip="My Wishlist"
+                  className={`${!isSidebarOpen ? "justify-center" : ""}`}
+                >
+                  <LuListCollapse className="text-primary text-2xl" />
                   {isSidebarOpen && <span>My Wishlist</span>}
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/myorders" data-tip="My Orders">
-                  <RiShoppingBag2Fill className="text-orange-500 text-2xl" />
+                <NavLink 
+                  to="/dashboard/myorders" 
+                  data-tip="My Orders"
+                  className={`${!isSidebarOpen ? "justify-center" : ""}`}
+                >
+                  <RiShoppingBag2Fill className="text-primary text-2xl" />
                   {isSidebarOpen && <span>My Orders</span>}
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/myprofile" data-tip="My Profile">
-                  <CgProfile className="text-orange-500 text-2xl" />
+                <NavLink 
+                  to="/dashboard/myprofile" 
+                  data-tip="My Profile"
+                  className={`${!isSidebarOpen ? "justify-center" : ""}`}
+                >
+                  <CgProfile className="text-primary text-2xl" />
                   {isSidebarOpen && <span>My Profile</span>}
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/invoice" data-tip="Invoice">
-                  <FaFileInvoiceDollar className="text-orange-500 text-2xl" />
+                <NavLink 
+                  to="/dashboard/invoice" 
+                  data-tip="Invoice"
+                  className={`${!isSidebarOpen ? "justify-center" : ""}`}
+                >
+                  <FaFileInvoiceDollar className="text-primary text-2xl" />
                   {isSidebarOpen && <span>Invoice</span>}
                 </NavLink>
               </li>
@@ -105,30 +127,30 @@ const DashboardLayout = () => {
               <li>
                 <NavLink
                   to="/dashboard/addbook"
-                  className={`${!isSidebarOpen ? "tooltip tooltip-right" : ""}`}
+                  className={`${!isSidebarOpen ? "tooltip tooltip-right justify-center" : ""}`}
                   data-tip="Add Book"
                 >
-                  <MdLibraryAdd className="text-orange-500 text-2xl" />
+                  <MdLibraryAdd className="text-primary text-2xl" />
                   {isSidebarOpen && <span>Add Book</span>}
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   to="/dashboard/mybooks"
-                  className={`${!isSidebarOpen ? "tooltip tooltip-right" : ""}`}
+                  className={`${!isSidebarOpen ? "tooltip tooltip-right justify-center" : ""}`}
                   data-tip="My Books"
                 >
-                  <FaBook className="text-orange-500 text-2xl" />
+                  <FaBook className="text-primary text-2xl" />
                   {isSidebarOpen && <span>My Books</span>}
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   to="/dashboard/orders"
-                  className={`${!isSidebarOpen ? "tooltip tooltip-right" : ""}`}
+                  className={`${!isSidebarOpen ? "tooltip tooltip-right justify-center" : ""}`}
                   data-tip="Orders"
                 >
-                  <RiShoppingBag2Fill className="text-orange-500 text-2xl" />
+                  <RiShoppingBag2Fill className="text-primary text-2xl" />
                   {isSidebarOpen && <span>Orders</span>}
                 </NavLink>
               </li>
@@ -141,30 +163,30 @@ const DashboardLayout = () => {
               <li>
                 <NavLink
                   to="/dashboard/allusers"
-                  className={`${!isSidebarOpen ? "tooltip tooltip-right" : ""}`}
+                  className={`${!isSidebarOpen ? "tooltip tooltip-right justify-center" : ""}`}
                   data-tip="All Users"
                 >
-                  <FaUsers className="text-orange-500 text-2xl" />
+                  <FaUsers className="text-primary text-2xl" />
                   {isSidebarOpen && <span>All Users</span>}
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   to="/dashboard/managebooks"
-                  className={`${!isSidebarOpen ? "tooltip tooltip-right" : ""}`}
+                  className={`${!isSidebarOpen ? "tooltip tooltip-right justify-center" : ""}`}
                   data-tip="Manage Books"
                 >
-                  <FaBook className="text-orange-500 text-2xl" />
+                  <FaBook className="text-primary text-2xl" />
                   {isSidebarOpen && <span>Manage Books</span>}
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   to="/dashboard/myprofile"
-                  className={`${!isSidebarOpen ? "tooltip tooltip-right" : ""}`}
+                  className={`${!isSidebarOpen ? "tooltip tooltip-right justify-center" : ""}`}
                   data-tip="My Profile"
                 >
-                  <CgProfile className="text-orange-500 text-2xl" />
+                  <CgProfile className="text-primary text-2xl" />
                   {isSidebarOpen && <span>My Profile</span>}
                 </NavLink>
               </li>

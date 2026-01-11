@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import useAxios from "../../Hooks/useAxios";
 import useAuth from "../../Hooks/useAuth";
 import { useForm } from "react-hook-form";
@@ -9,6 +9,7 @@ import Spinner from "../../components/Spinner";
 import { toast, ToastContainer } from "react-toastify";
 
 const BookDetails = () => {
+  const navigate = useNavigate()
   const { register, handleSubmit } = useForm();
   const { register: register2, handleSubmit: handleSubmit2 } = useForm();
   const { user } = useAuth();
@@ -45,12 +46,16 @@ const BookDetails = () => {
   if (loading) {
     return <Spinner></Spinner>;
   }
-  console.log(book);
+  // console.log(book);
 
   const handleOrderForm = (data) => {
+    if (!user) {
+    toast("Please login first");
+    return navigate("/login");
+  }
     const date = new Date().toLocaleDateString();
     data.bookId = id;
-    data.provider = book.email;
+    data.provider = book?.email;
     data.bookname = book?.bookname;
     data.date = date;
     data.price = book?.price;
@@ -66,6 +71,11 @@ const BookDetails = () => {
   };
 
   const handleWishlist = (book) => {
+ if (!user) {
+    toast("Please login first");
+    return navigate("/login");
+  }
+   
     const bookInfo = {
       bookId: id,
       bookname: book.bookname,
@@ -104,14 +114,16 @@ const BookDetails = () => {
         if (res.data.insertedId) {
           refetch();
           document.getElementById("my_modal_2").close();
-          alert("added to review");
+          toast("added to review");
         }
       })
       .catch((err) => console.log(err.message));
   };
 
+  // console.log(book)
+
   return (
-    <div className="mb-20">
+    <div className="px-6 py-20">
       <div className=" flex flex-col  md:items-start md:flex-row pt-10  gap-3 lg:px-50 ">
         <div className="px-5 md:px-0">
           <img className="md:w-250 h-100" src={book?.bookimage} alt="" />
@@ -121,18 +133,12 @@ const BookDetails = () => {
           {/* ratings will be here */}
 
           <div className="my-5">
-            <h1 className="text-secondary font-semibold">Written By</h1>
-            <h1 className="text-[20px] font-semibold">{book?.author}</h1>
+            <h1 className="text-gray-500">Written By</h1>
+            <h1 className="text-[22px] font-semibold">{book?.author}</h1>
           </div>
-          <p className="md:w-[500px]  md:h-[165px]">
+          <p className="md:w-[600px] ">
             <p className="text-gray-500 font-semibold">
-              This book offers an engaging and insightful journey into its
-              subject, combining clear explanations with practical examples.
-              Carefully structured and easy to follow, it provides readers with
-              both knowledge and inspiration. <br /> Whether you are reading for
-              learning or leisure, this book is a valuable addition to your
-              collection, offering lessons and perspectives that stay with you
-              long after the last page.
+              {book?.description}
             </p>
           </p>
 
@@ -141,7 +147,7 @@ const BookDetails = () => {
             <div className="flex flex-col  md:flex-row gap-2">
               <button
                 onClick={() => handleWishlist(book)}
-                className="btn rounded text-white  md:w-[200px] bg-orange-500"
+                className="btn rounded-3xl text-white  md:w-[200px] bg-primary"
               >
                 Add to Wishlist
               </button>
@@ -149,7 +155,7 @@ const BookDetails = () => {
                 onClick={() =>
                   document.getElementById("my_modal_5").showModal()
                 }
-                className="btn rounded text-white  md:w-[200px] bg-orange-500"
+                className="btn rounded-3xl text-white  md:w-[200px] bg-primary"
               >
                 Order
               </button>
@@ -173,7 +179,7 @@ const BookDetails = () => {
       </div>
 
       {/* Open the modal using document.getElementById('ID').showModal() method */}
-
+      
       <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box flex items-center justify-center">
           <form method="dialog">
@@ -217,7 +223,7 @@ const BookDetails = () => {
                 {...register("address")}
               />
             </fieldset>
-            <button className="btn rounded text-white w-[300px] bg-orange-500">
+            <button className="btn rounded-3xl text-white w-[300px] bg-primary px-6 py-3">
               Order Now
             </button>
           </form>
@@ -247,7 +253,7 @@ const BookDetails = () => {
                 {...register2("review")}
               ></textarea>
             </fieldset>
-            <button className="btn rounded text-white w-[300px] bg-orange-500">
+            <button className="btn rounded-3xl text-white w-[300px] bg-primary px-6 py-3">
               Submit
             </button>
           </form>

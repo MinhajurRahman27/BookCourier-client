@@ -1,4 +1,3 @@
-import React from "react";
 import { FaQuoteLeft } from "react-icons/fa";
 
 const ReviewCard = () => {
@@ -13,7 +12,7 @@ const ReviewCard = () => {
         </p>
         <div className="flex flex-col md:flex-row items-center justify-center  mt-20 gap-2">
           <div className="md:max-w-sm p-6 rounded-2xl shadow-lg  border border-gray-200">
-            <FaQuoteLeft className="text-orange-500 text-3xl mb-3" />
+            <FaQuoteLeft className="text-primary text-3xl mb-3" />
 
             <p className="text-gray-500 mb-6 leading-relaxed">
               BookCourier makes buying books very easy and smooth. The website
@@ -39,7 +38,7 @@ const ReviewCard = () => {
             </div>
           </div>
           <div className="md:max-w-sm p-6 rounded-2xl shadow-lg  border border-gray-200">
-            <FaQuoteLeft className="text-orange-500 text-3xl mb-3" />
+            <FaQuoteLeft className="text-primary text-3xl mb-3" />
 
             <p className="text-gray-500 mb-6 leading-relaxed">
               This is a great platform for book lovers. The design is clean, the
@@ -65,7 +64,7 @@ const ReviewCard = () => {
             </div>
           </div>
           <div className="md:max-w-sm p-6 rounded-2xl shadow-lg  border border-gray-200">
-            <FaQuoteLeft className="text-orange-500 text-3xl mb-3" />
+            <FaQuoteLeft className="text-primary text-3xl mb-3" />
 
             <p className="text-gray-500 mb-6 leading-relaxed">
               BookCourier offers a pleasant online book shopping experience.

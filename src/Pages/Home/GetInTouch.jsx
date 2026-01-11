@@ -1,4 +1,3 @@
-import React from "react";
 import { MdOutlineMessage } from "react-icons/md";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -20,48 +19,60 @@ const GetInTouch = () => {
             Have questions? We'd love to hear from you
           </p>
         </div>
-        <div className="flex flex-col md:flex-row items-center justify-center  gap-20">
-          <div className="shadow-orange-500 shadow-2xl p-5 rounded-2xl">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-12 max-w-6xl mx-auto px-6">
+          <div className="w-full lg:w-1/2 shadow-lg hover:shadow-xl transition-all duration-300 p-8 rounded-2xl border border-gray-100">
             {/* form */}
 
-            <form onSubmit={(e) => handleForm(e)}>
-              <fieldset className="fieldset">
-                <label className="label font-semibold text-[16px]">Name</label>
+            <form onSubmit={(e) => handleForm(e)} className="space-y-6">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Name</label>
                 <input
                   type="text"
-                  className="input rounded-2xl"
-                  placeholder="Name"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 outline-none"
+                  placeholder="Enter your full name"
                 />
-                <label className="label font-semibold text-[16px]">Email</label>
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
                 <input
                   type="email"
-                  className="input rounded-2xl"
-                  placeholder="Email"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 outline-none"
+                  placeholder="Enter your email address"
                 />
-                <label className="label font-semibold text-[16px]">
-                  Subject
-                </label>
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Subject</label>
                 <input
-                  type="text "
-                  className="input rounded-2xl"
-                  placeholder="Subject"
+                  type="text"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 outline-none"
+                  placeholder="What's this about?"
                 />
-                <label className="label font-semibold text-[16px]">
-                  Message
-                </label>
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Message</label>
                 <textarea
-                  className="textarea rounded-2xl"
-                  placeholder="Message"
+                  rows="5"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 outline-none resize-none"
+                  placeholder="Tell us more about your inquiry..."
                 ></textarea>
-              </fieldset>
-              <button className="btn rounded-2xl text-white w-[300px] bg-orange-500">
-                Order Now
+              </div>
+              <button className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-6 rounded-3xl transition-all duration-200 transform hover:scale-[1.02] shadow-md hover:shadow-lg">
+                Send Message
               </button>
             </form>
           </div>
-          <div>
+          <div className="w-full lg:w-1/2 flex flex-col items-center justify-center">
             {/* animation */}
-            <MdOutlineMessage className="text-[300px] text-orange-500 animate-bounce" />
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+              <MdOutlineMessage className="relative text-[200px] lg:text-[300px] text-primary animate-bounce drop-shadow-lg" />
+            </div>
+            <div className="text-center mt-8">
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">We're Here to Help!</h3>
+              <p className="text-gray-600 max-w-md">
+                Have questions about our books or services? Drop us a message and we'll get back to you within 24 hours.
+              </p>
+            </div>
           </div>
         </div>
       </div>

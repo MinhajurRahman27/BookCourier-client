@@ -5,8 +5,8 @@
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: gray;
-  --color-secondary: teal;
+  --color-primary: #DC143C;
+  /* --color-secondary: teal; */
 }
 
 html, body, #root {
@@ -14,6 +14,6 @@ height: 100%;
 font-family: "Merriweather Sans", sans-serif;
 }
 
-a.active {
+/* a.active {
   border-bottom: 2px solid rgb(255, 102, 0);
-}
+} */

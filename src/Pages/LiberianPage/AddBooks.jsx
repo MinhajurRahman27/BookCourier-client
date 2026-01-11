@@ -1,4 +1,3 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import useAxios from "../../Hooks/useAxios";
 import useAuth from "../../Hooks/useAuth";
@@ -19,13 +18,13 @@ const AddBooks = () => {
           toast("book added successfully");
         }
       })
-      .catch((error) => {
-        // console.log(error.message);
+      .catch(() => {
+        toast.error("Failed to add book. Please try again.");
       });
   };
   return (
     <div>
-      <div className="card-body  bg-orange-500 md:w-[600px] mx-auto rounded-lg">
+      <div className="card-body  bg-primary md:w-[600px] mx-auto rounded-lg">
         <h1 className="text-3xl md:text-5xl font-bold text-white">Add Book</h1>
         <form onSubmit={handleSubmit(handleAddBook)}>
           <fieldset className="fieldset">
@@ -56,6 +55,16 @@ const AddBooks = () => {
               required
             />
 
+            <label className="label text-white font-semibold">
+              Book Description
+            </label>
+            <textarea
+              className="textarea w-full min-h-[120px] resize-none"
+              placeholder="Enter a detailed description of the book..."
+              {...register("description")}
+              rows="5"
+            ></textarea>
+
             {/* status section will be here */}
             <label className="label text-white font-semibold">
               Select Status
@@ -79,7 +88,7 @@ const AddBooks = () => {
               {...register("price")}
             />
 
-            <button className="btn btn-neutral mt-4 hover:opacity-90">
+            <button className="bg-primary text-white px-6 py-3 rounded-3xl mt-4 hover:opacity-90 font-semibold">
               Submit
             </button>
           </fieldset>

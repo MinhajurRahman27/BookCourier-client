@@ -113,7 +113,7 @@ const MyOrders = () => {
                     className={`${
                       o.status === "cancelled" || o.payment === "paid"
                         ? "hidden"
-                        : "inline-block px-6 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 font-medium transition-all shadow-sm cursor-pointer"
+                        : "inline-block px-6 py-2 bg-primary text-white rounded-md hover:bg-orange-600 font-medium transition-all shadow-sm cursor-pointer"
                     }`}
                   >
                     Pay Now
