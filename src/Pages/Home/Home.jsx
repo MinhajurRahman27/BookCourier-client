@@ -23,7 +23,7 @@ const Home = () => {
         <Banner></Banner>
       </section>
       <section>
-        <div className="hidden sm:flex -m-10  flex items-center justify-center opacity-50 text-5xl text-primary   animate-bounce"><IoCaretDown className="text-center"/></div>
+        <div className="hidden sm:flex -m-10  flex items-center justify-center opacity-20 text-5xl text-primary   animate-bounce"><IoCaretDown className="text-center"/></div>
       </section>
       <section>
         <LatestBook></LatestBook>

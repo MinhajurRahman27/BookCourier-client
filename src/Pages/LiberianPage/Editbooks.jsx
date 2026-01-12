@@ -110,7 +110,7 @@ const Editbooks = () => {
                 {...register("price")}
               />
 
-              <button className="bg-black text-white px-6 py-3 rounded-3xl mt-4 hover:opacity-90 font-semibold border border-white/20">Submit</button>
+              <button className="bg-primary border-b-1 text-white px-6 py-3 rounded-3xl mt-4 hover:opacity-90 font-semibold cursor-pointer">Submit</button>
             </fieldset>
           </form>
         </div>

@@ -15,7 +15,7 @@ const Banner = () => {
       interval={2000}
       showIndicators={false} 
     >
-      <div className="   mx-auto flex flex-col-reverse lg:flex-row  items-center ">
+      <div className="  mx-auto flex flex-col-reverse lg:flex-row  items-center ">
         <div className="w-full sm:w-full  lg:w-[50%] md:text-start p-6 md:p-15 ">
           <h1 className="text-2xl md:text-4xl lg:text-5xl font-semibold mb-2">
             The Simple Seerah
@@ -35,8 +35,12 @@ const Banner = () => {
             All Books
           </Link>
         </div>
-        <div className=" sm:w-[50%] md:w-[50%] ">
-          <img src={book1} alt="" />
+        
+        <div className="relative  sm:w-[50%] md:w-[50%] ">
+          <div className="hidden lg:flex -z-5 absolute sm:w-[50%] md:w-[500px] rounded-[50%] p-60 border-none top-0 right-26 bg-primary transparent opacity-12 animate-spin">
+       
+        </div>
+          <img className="z-10" src={book1} alt="" />
         </div>
       </div>
       <div className="   mx-auto flex flex-col-reverse lg:flex-row  items-center  ">
@@ -58,7 +62,10 @@ const Banner = () => {
             All Books
           </Link>
         </div>
-        <div className="md:w-[50%] ">
+        <div className="relative md:w-[50%] ">
+          <div className="hidden lg:flex -z-5 absolute sm:w-[50%] md:w-[500px] rounded-[50%] p-60 border-none top-0 right-26 bg-primary transparent opacity-12 animate-spin">
+       
+        </div>
           <img
             className="h-[315px]  md:h-[500px]  md:w-[550px]!"
             src={book2}
@@ -84,9 +91,12 @@ const Banner = () => {
             All Books
           </Link>
         </div>
-        <div className=" md:w-[50%] ">
+        <div className="relative md:w-[50%] ">
+           <div className="hidden lg:flex -z-5 absolute sm:w-[50%] md:w-[500px] rounded-[50%] p-60 border-none top-0 right-20 bg-primary transparent opacity-12 animate-spin">
+       
+        </div>
           <img
-            className=" h-[315px] sm:w-[300px] md:h-[550px] md:w-[300px] lg:w-[420px]!"
+            className="z-10 h-[315px] sm:w-[300px] md:h-[480px] md:w-[300px] lg:w-[380px]!"
             src={book3}
             alt=""
           />

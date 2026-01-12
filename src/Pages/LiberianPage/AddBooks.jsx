@@ -88,7 +88,7 @@ const AddBooks = () => {
               {...register("price")}
             />
 
-            <button className="bg-primary text-white px-6 py-3 rounded-3xl mt-4 hover:opacity-90 font-semibold">
+            <button className="bg-primary border-b-1 text-white px-6 py-3 rounded-3xl mt-4 hover:opacity-90 font-semibold cursor-pointer">
               Submit
             </button>
           </fieldset>
