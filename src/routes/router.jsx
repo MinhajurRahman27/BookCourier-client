@@ -22,10 +22,11 @@ import BookDetails from "../Pages/Book/BookDetails";
 import PaymentSucce from "../Pages/Payment/PaymentSucce";
 import PaymentCancled from "../Pages/Payment/PaymentCancled";
 import MyWhishlist from "../Pages/UserPage/MyWhishlist";
-import UserDashBoard from "../DashboardPage/UserDashBoard";
 import DashboardHome from "../DashboardPage/DashboardHome";
 import ErrorPage from "../Errorpage/ErrorPage";
 import HowItWorks from "../Pages/howitworks/Howitwork";
+import About from "../Pages/About/About";
+import Privacy from "../Pages/Privacy/Privacy";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +49,14 @@ export const router = createBrowserRouter([
       {
         path: "/books",
         Component: Books,
+      },
+      {
+        path: "/about",
+        Component: About,
+      },
+      {
+        path: "/privacy",
+        Component: Privacy,
       },
       {
         path: "/bookdetails/:id",

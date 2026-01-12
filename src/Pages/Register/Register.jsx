@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
@@ -100,11 +100,11 @@ const Register = () => {
       });
   };
   return (
-    <div className="py-10 md:p-10 flex items-center">
+    <div className="pt-20 py-10 md:p-10 md:pt-20 flex items-center">
       <div className="  flex w-full justify-center">
-        <div className="card sm:w-[500px] w-full  bg-orange-500 sm:rounded-2xl sm:p-5">
+        <div className="card sm:w-[500px] w-full  bg-primary  sm:p-5">
           <div className="card-body  ">
-            <h1 className="text-5xl font-semibold text-white">Register</h1>
+            <h1 className="text-4xl font-semibold text-white">Register</h1>
             <form onSubmit={handleSubmit(formsubmit)}>
               <fieldset className="fieldset">
                 <label className="label font-semibold text-white">Name</label>
@@ -150,14 +150,15 @@ const Register = () => {
                     },
                   })}
                 />
+                 {errors.pass && (
+                <p className="text-white">{errors.pass.message}</p>
+              )}
 
-                <button className="btn rounded-2xl w-full btn-neutral mt-4 border-none">
+                <button className="btn rounded-2xl w-full btn-white mt-4 border-none">
                   Register
                 </button>
               </fieldset>
-              {errors.pass && (
-                <p className="text-red-500">{errors.pass.message}</p>
-              )}
+             
             </form>
             <button
               onClick={googlesubmit}
@@ -196,7 +197,7 @@ const Register = () => {
               Already have an account!
               <Link
                 state={location.state}
-                className="text-blue-700 ml-1 font-semibold"
+                className="text-sky-500 ml-1 font-semibold"
                 to="/login"
               >
                 Login

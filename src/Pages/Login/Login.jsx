@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import useAxios from "../../Hooks/useAxios";
-import { GrBook } from "react-icons/gr";
 
 const Login = () => {
+  const [loading, setLoading] = useState(false)
   const [err, setError] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
@@ -21,8 +21,13 @@ const Login = () => {
     const password = data.pass;
 
     signIn(email, password)
+    
       .then((res) => {
+        setLoading(true)
+        // setLoading(false)
         navigate(location?.state || "/");
+        setLoading(false)
+        
         const user = res.user;
 
         const userInfo = {
@@ -39,7 +44,10 @@ const Login = () => {
         });
       })
       .catch((err) => {
+       
         setError(err.message);
+        //  setLoading(false)
+       
       });
   };
 
@@ -78,12 +86,80 @@ const Login = () => {
         setError(err.message);
       });
   };
+
+  const handleDemoLogin = (role) => {
+    let demoCredentials;
+    
+    switch(role) {
+      case 'admin':
+        demoCredentials = { email: 'admin@gmail.com', password: '123Asd!@' };
+        break;
+      case 'librarian':
+        demoCredentials = { email: 'librarian1@gmail.com', password: '123Asd!@' };
+        break;
+      case 'user':
+        demoCredentials = { email: 'user1@gmail.com', password: '123Asd!@' };
+        break;
+      default:
+        return;
+    }
+
+    signIn(demoCredentials.email, demoCredentials.password)
+      .then((res) => {
+        navigate(location?.state || "/");
+        const user = res.user;
+
+        const userInfo = {
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+        };
+
+        axiosSecure.post("/users", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            // alert("user inserted successfully");
+          }
+        });
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
+  };
+
   return (
-    <div className=" w-full h-[600px] flex items-center ">
-      <div className="flex items-center center w-[500px]  mx-auto bg-orange-500 sm:rounded-2xl p-5">
+    <div className="pt-10 sm:pt-20 w-full  flex items-center ">
+      
+      <div className=" flex items-center center w-[500px]  mx-auto bg-primary sm:rounded-2xl p-5">
         <div className="card w-full ">
           <div className="card-body">
-            <h1 className="text-5xl font-semibold text-white">Login</h1>
+            <h1 className="text-4xl font-semibold text-white">Login</h1>
+            
+            {/* Demo Credentials Section */}
+            <div className="mb-6">
+             
+              <div className="grid mt-6 grid-cols-1 gap-2">
+                <button
+                  onClick={() => handleDemoLogin('admin')}
+                  className="btn bg-primary hover:bg-primary/80 text-white border-none rounded-2xl"
+                >
+                  Login as Admin
+                </button>
+                <button
+                  onClick={() => handleDemoLogin('librarian')}
+                  className="btn bg-primary hover:bg-primary/80 text-white border-none rounded-2xl"
+                >
+                  Login as Librarian
+                </button>
+                <button
+                  onClick={() => handleDemoLogin('user')}
+                  className="btn bg-primary hover:bg-primary/80 text-white border-none rounded-2xl"
+                >
+                  Login as User
+                </button>
+              </div>
+              <div className="divider text-white">OR</div>
+            </div>
+
             <form onSubmit={handleSubmit(formsubmit)}>
               <fieldset className="fieldset">
                 <label className="label font-semibold text-white">Email</label>
@@ -104,13 +180,14 @@ const Login = () => {
                   required
                   {...register("pass")}
                 />
-                <div>
+                {/* <div>
                   <a className="link link-hover font-semibold text-white">
                     Forgot password?
                   </a>
-                </div>
-                <button className="btn btn-neutral mt-4 rounded-2xl border-none">
-                  Login
+                </div> */}
+                <p className="font-semibold text-center text-white">{err}</p>
+                <button className="btn btn-white mt-4 rounded-2xl border-none">
+                  {loading?<> <span className="loading loading-spinner  loading-xs"></span> </>: "Login"}
                 </button>
               </fieldset>
             </form>
@@ -151,13 +228,13 @@ const Login = () => {
               Don't have an account!
               <Link
                 state={location.state}
-                className="text-blue-700  hover:text-blue-800 font-semibold ml-1"
+                className="text-sky-500  hover:text-blue-800 font-semibold ml-1"
                 to="/register"
               >
                 Register Now
               </Link>
             </p>
-            <p className="font-semibold text-center text-gray-300">{err}</p>
+            
           </div>
         </div>
       </div>
